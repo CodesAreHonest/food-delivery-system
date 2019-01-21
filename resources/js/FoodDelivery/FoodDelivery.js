@@ -2,7 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import Login from './login';
+import Member from './Member';
 
 import store from '../store';
 
@@ -16,13 +16,11 @@ class FoodDelivery extends Component {
 
     render() {
         return (
-            <Provider store={store}>
+            <Fragment>
                 <Router>
-                    <Fragment>
-                        <Route path="/" component={Login} exact={true}/>
-                    </Fragment>
+                    <Route path="/" exact={true} component={Member} />
                 </Router>
-            </Provider>
+            </Fragment>
         )
     }
 }
