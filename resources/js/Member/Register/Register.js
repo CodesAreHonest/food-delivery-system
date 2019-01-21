@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Form, FormGroup, Label} from "reactstrap";
+import {Button, Col, Form, FormGroup, Label, Row} from "reactstrap";
 
 // Form Input
 import EmailInput from "../../components/Input/EmailInput";
@@ -17,9 +17,9 @@ class Register extends Component {
             <div className="card">
                 <div className="card-body">
                     <Form>
-                        <FormGroup row>
-                            <Label for="register_username" md={3}>Username: </Label>
-                            <Col md={9}>
+                        <Row>
+                            <Col md={6}>
+                                <Label for="register_username">Username: </Label>
                                 <StringInput
                                     id="register_username"
                                     name="register_username"
@@ -27,11 +27,9 @@ class Register extends Component {
                                     required={true}
                                 />
                             </Col>
-                        </FormGroup>
 
-                        <FormGroup row>
-                            <Label for="register_email" md={3}>Email</Label>
-                            <Col md={9}>
+                            <Col md={6}>
+                                <Label for="register_email">Email</Label>
                                 <EmailInput
                                     id="register_email"
                                     name="register_email"
@@ -39,11 +37,9 @@ class Register extends Component {
                                     required={true}
                                 />
                             </Col>
-                        </FormGroup>
 
-                        <FormGroup row>
-                            <Label for="register_password" md={3}>Password: </Label>
-                            <Col md={9}>
+                            <Col md={6} style={{marginTop: '20px'}}>
+                                <Label for="register_password">Password: </Label>
                                 <PasswordInput
                                     id="register_password"
                                     name="register_password"
@@ -51,11 +47,9 @@ class Register extends Component {
                                     required={true}
                                 />
                             </Col>
-                        </FormGroup>
 
-                        <FormGroup row>
-                            <Label for="register_c_password" md={3}>Confirm Password: </Label>
-                            <Col md={9}>
+                            <Col md={6} style={{marginTop: '20px'}}>
+                                <Label for="register_c_password">Confirm Password: </Label>
                                 <PasswordInput
                                     id="register_c_password"
                                     name="register_c_password"
@@ -63,20 +57,18 @@ class Register extends Component {
                                     required={true}
                                 />
                             </Col>
-                        </FormGroup>
 
-                        <FormGroup row>
-                            <Label for="register_address" md={3}>Address: </Label>
-                            <Col md={9}>
+                            <Col md={12} style={{marginTop: '20px'}}>
+                                <Label for="register_address">Address: </Label>
                                 <TextArea
                                     id="register_address"
-                                    style={{minWidth: '100%', minHeight: '40px'}}
+                                    style={{minWidth: '100%', minHeight: '40px', marginBottom: '20px'}}
                                     name="register_address"
                                     placeholder="552 Meadowbrook Ave. Florence, SC 29501"
                                     required={true}
                                 />
                             </Col>
-                        </FormGroup>
+                        </Row>
 
                         <Button color="primary" block>Register</Button>
                     </Form>

@@ -45,13 +45,13 @@ class UncontrolDropdown extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem>
-                        <Link to="/member/login" >
-                            Change Password
-                        </Link>
+                        Manage Account
                     </DropdownItem>
-
                     <DropdownItem>
                         Order History
+                    </DropdownItem>
+                    <DropdownItem>
+                        Favourites
                     </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem>

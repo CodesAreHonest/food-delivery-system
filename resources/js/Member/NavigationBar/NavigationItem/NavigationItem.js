@@ -9,7 +9,7 @@ class NavigationItem extends Component {
 
     render() {
         return (
-            <NavItem>
+            <NavItem className="nav-bar-custom">
                 <NavLink href={this.props.url}>{this.props.name}</NavLink>
             </NavItem>
         );
@@ -18,7 +18,8 @@ class NavigationItem extends Component {
 
 NavigationItem.propTypes = {
     url: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    className: PropTypes.string,
 };
 
 export default NavigationItem;
