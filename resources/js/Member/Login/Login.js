@@ -37,7 +37,7 @@ class Login extends Component {
                             </Col>
                         </FormGroup>
 
-                        <Button color="primary" block>Submit</Button>
+                        <Button color="primary" block>Login</Button>
                     </Form>
                 </div>
             </div>
