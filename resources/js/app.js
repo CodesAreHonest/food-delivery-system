@@ -1,8 +1,8 @@
 import React  from 'react';
 import ReactDOM from 'react-dom';
 
-import Example from './components/Example';
+import FoodDelivery from './FoodDelivery/FoodDelivery';
 
 if (document.getElementById('food_delivery')) {
-    ReactDOM.render(<Example />, document.getElementById('food_delivery'));
+    ReactDOM.render(<FoodDelivery />, document.getElementById('food_delivery'));
 }
