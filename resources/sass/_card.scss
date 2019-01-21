@@ -1,0 +1,59 @@
+@import 'variables';
+
+.card-shadow {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .2);
+}
+
+.card-search {
+  padding: $px-12;
+}
+
+.card {
+
+  margin-bottom: $px-20;
+
+  .card-header {
+
+    background-color: $gray-dark;
+
+    b {
+      color: white;
+      font-size: $px-16;
+    }
+  }
+
+  .card-body {
+
+    .badge {
+      margin-bottom: $px-10;
+    }
+
+    .card-text {
+      b {
+        color: $orange-yellow;
+        font-size: $px-20;
+      }
+    }
+
+    .card-subtitle {
+      font-size: $px-12;
+      color: $lightslategrey;
+    }
+
+    #reputation {
+      font-size: $px-45;
+      text-align: center;
+    }
+
+    .content {
+      padding: $px-5;
+    }
+
+    .more {
+      border: 1px solid $dimgrey;
+      margin-top: $px-10;
+    }
+
+  }
+}
+
