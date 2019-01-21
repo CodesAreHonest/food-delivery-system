@@ -14,11 +14,11 @@ class Login extends Component {
                 <div className="card-body">
                     <Form>
                         <FormGroup row>
-                            <Label for="email" md={2}>Email: </Label>
+                            <Label for="login_email" md={2}>Email: </Label>
                             <Col md={10}>
                                 <EmailInput
-                                    id="email"
-                                    name="email"
+                                    id="login_email"
+                                    name="login_email"
                                     placeholder="test@gmail.com"
                                     required={true}
                                 />
@@ -29,8 +29,8 @@ class Login extends Component {
                             <Label for="password" md={2}>Password: </Label>
                             <Col md={10}>
                                 <PasswordInput
-                                    id="password"
-                                    name="password"
+                                    id="login_password"
+                                    name="login_password"
                                     placeholder="Minimum 6 characters"
                                     required={true}
                                 />

@@ -2,4 +2,5 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', 'FoodDeliveryController@index');
+Route::get('/member/login', 'FoodDeliveryController@index');
+Route::get('/member', 'FoodDeliveryController@index');

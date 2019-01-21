@@ -1,11 +1,24 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {NavItem, NavLink} from 'reactstrap';
-import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export const NavigationItem = props => (
-    <NavItem>
-        <Link to={props.url} style={{ textDecoration: 'none' }}>
-            <NavLink>{props.name}</NavLink>
-        </Link>
-    </NavItem>
-);
+class NavigationItem extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <NavItem>
+                <NavLink href={this.props.url}>{this.props.name}</NavLink>
+            </NavItem>
+        );
+    }
+}
+
+NavigationItem.propTypes = {
+    url: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired
+};
+
+export default NavigationItem;

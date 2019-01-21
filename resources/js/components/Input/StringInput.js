@@ -36,8 +36,8 @@ StringInput.defaultProps = {
 };
 
 StringInput.propTypes = {
-    name: PropTypes.string,
-    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool

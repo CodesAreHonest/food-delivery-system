@@ -5,7 +5,7 @@ import Login from "../Member/Login/Login";
 import Register from "../Member/Register/Register";
 
 
-class Member extends Component {
+class MemberLogin extends Component {
     constructor(props) {
         super(props);
 
@@ -29,7 +29,7 @@ class Member extends Component {
                 <div className="row justify-content-center">
                     <div className="col-md-8">
 
-                        <h1 style={{textAlign: 'center', marginBottom: '20px'}}>GOGO Delivery</h1>
+                        <h1 style={{textAlign: 'center', marginBottom: '20px'}}>GOGO Delivery Member Login</h1>
 
 
                         <div>
@@ -71,4 +71,4 @@ class Member extends Component {
     }
 }
 
-export default Member;
+export default MemberLogin;

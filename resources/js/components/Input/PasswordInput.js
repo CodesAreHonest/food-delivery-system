@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Input} from 'reactstrap';
 import PropTypes from 'prop-types';
+import StringInput from "./StringInput";
 
 class PasswordInput extends Component {
     constructor(props) {
@@ -36,12 +37,13 @@ PasswordInput.defaultProps = {
 };
 
 PasswordInput.propTypes = {
-    name: PropTypes.string,
-    id: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool
 };
+
 
 
 

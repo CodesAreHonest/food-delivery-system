@@ -1,8 +1,9 @@
 // React, React Router, React Router DOM
 import React, {Component, Fragment} from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import Member from './Member';
+import MemberLogin from './MemberLogin';
+import Home from '../Member/Home/Home';
 
 import store from '../store';
 
@@ -18,7 +19,10 @@ class FoodDelivery extends Component {
         return (
             <Fragment>
                 <Router>
-                    <Route path="/" exact={true} component={Member} />
+                    <Switch>
+                        <Route path="/member/login" exact={true} component={MemberLogin} />
+                        <Route path="/member" exact={true} component={Home} />
+                    </Switch>
                 </Router>
             </Fragment>
         )
