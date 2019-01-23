@@ -32,9 +32,10 @@ class MemberController extends Controller
         }
 
         /** ==========================================================================
-         *  Member Register
+         *  Get Detail
          *  ==========================================================================
          *  @return 200 success
+         *  @return 404 not found
          *  @return 500 internal server error
          *  @return 502 bad gateway
          *  =========================================================================== */
@@ -44,10 +45,10 @@ class MemberController extends Controller
         switch ($detail['response_code']) {
             case 200:
                 return response()->json ($detail,200);
-            case 500:
-                return response()->json ($detail, 500);
             case 404:
                 return response()->json ($detail, 404);
+            case 500:
+                return response()->json ($detail, 500);
             default:
                 return response()->json ([
                     'response_code' => 502,
@@ -77,9 +78,10 @@ class MemberController extends Controller
         }
 
         /** ==========================================================================
-         *  Member Register
+         *  Update Member Detail
          *  ==========================================================================
          *  @return 200 success
+         *  @return 404 not found
          *  @return 500 internal server error
          *  @return 502 bad gateway
          *  =========================================================================== */
@@ -89,10 +91,10 @@ class MemberController extends Controller
         switch ($detail['response_code']) {
             case 200:
                 return response()->json ($detail,200);
-            case 500:
-                return response()->json ($detail, 500);
             case 404:
                 return response()->json ($detail, 404);
+            case 500:
+                return response()->json ($detail, 500);
             default:
                 return response()->json ([
                     'response_code' => 502,

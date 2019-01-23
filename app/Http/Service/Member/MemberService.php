@@ -45,19 +45,9 @@ class MemberService extends BaseService
     public function getDetail($request) {
 
 
-        $member = Member::where('s_email','=',$request['email'])->get();
+        $member = Member::where('s_email', $request['email'])->first();
 
         if (!$member) {
-            return [
-                'response_code' => 500,
-                'response_msg'  => 'Internal Server Error',
-                'msgType'       => 'error',
-                'msgTitle'      => 'Retrieve Unsuccessful',
-                'msg'           => ''
-            ];
-        }
-
-        if (count($member) <= 0) {
             return [
                 'response_code' => 404,
                 'response_msg'  => 'No Matched Email',
@@ -73,33 +63,30 @@ class MemberService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Retrieve Successful',
             'msg'           => '',
-            'email'         => $member[0]['s_email'],
-            'username'      => $member[0]['s_username'],
-            'address'      => $member[0]['s_address']
+            'data'          => $member,
         ];
 
     }
 
     public function updateDetail($request) {
 
+        $member = Member::where('s_email', $request['email'])->first();
 
-        try{
-            $member = Member::where('s_email','=',$request['email'])->firstOrFail();
-        }catch(ModelNotFoundException $e){
-             return [
+        if (!$member) {
+            return [
                 'response_code' => 404,
                 'response_msg'  => 'No Matched Email',
                 'msgType'       => 'error',
-                'msgTitle'      => 'Update Unsuccessful',
+                'msgTitle'      => 'Retrieve Unsuccessful',
                 'msg'           => ''
             ];
         }
 
         $member['s_username'] = $request['username'];
-        $member['s_address'] = $request['address'];
-        $member -> save();
+        $member['s_address']  = $request['address'];
+        $result = $member->save();
 
-        if (!$member) {
+        if (!$result) {
             return [
                 'response_code' => 500,
                 'response_msg'  => 'Internal Server Error',
@@ -116,8 +103,5 @@ class MemberService extends BaseService
             'msgTitle'      => 'Update Successful',
             'msg'           => ''
         ];
-
     }
-
-
 }
