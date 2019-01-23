@@ -2,24 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="78810d09-95c4-4175-966a-0f4acde02f2e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/routes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/member/_manage_account.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/member/_sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/Member/Sidebar/Sidebar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/FoodDelivery/FoodDelivery.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/FoodDelivery/FoodDelivery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Member/Home/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Member/Home/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Member/NavigationBar/NavigationBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Member/NavigationBar/NavigationBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Member/NavigationBar/UncontrolDropdown/UncontrolDropdown.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Member/NavigationBar/UncontrolDropdown/UncontrolDropdown.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/member/_navigation.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/member/_navigation.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/food_delivery.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/food_delivery.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/member/_sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/member/_sidebar.scss" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,10 +65,10 @@
         <counts>
           <entry key="env" value="46" />
           <entry key="gitignore" value="11" />
-          <entry key="js" value="10371" />
+          <entry key="js" value="11602" />
           <entry key="json" value="25" />
           <entry key="php" value="5468" />
-          <entry key="scss" value="1592" />
+          <entry key="scss" value="1674" />
           <entry key="txt" value="76" />
         </counts>
       </usages-collector>
@@ -90,18 +77,18 @@
           <entry key=".env file" value="46" />
           <entry key="Blade" value="106" />
           <entry key="JSON" value="25" />
-          <entry key="JavaScript" value="10371" />
+          <entry key="JavaScript" value="11602" />
           <entry key="PHP" value="5362" />
           <entry key="PLAIN_TEXT" value="87" />
-          <entry key="SCSS" value="1592" />
+          <entry key="SCSS" value="1674" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="js" value="70" />
+          <entry key="js" value="71" />
           <entry key="json" value="3" />
-          <entry key="php" value="38" />
+          <entry key="php" value="40" />
           <entry key="scss" value="29" />
         </counts>
       </usages-collector>
@@ -109,8 +96,8 @@
         <counts>
           <entry key="Blade" value="3" />
           <entry key="JSON" value="3" />
-          <entry key="JavaScript" value="70" />
-          <entry key="PHP" value="35" />
+          <entry key="JavaScript" value="71" />
+          <entry key="PHP" value="37" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="29" />
         </counts>
@@ -159,11 +146,20 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/sass/member/_manage_account.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="64">
-                  <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+                <state relative-caret-position="96">
+                  <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/resources/js/Member/Sidebar/Sidebar.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="304">
+                  <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
                 </state>
               </provider>
             </entry>
@@ -187,8 +183,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="128">
-                  <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+                <state relative-caret-position="176">
+                  <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
                   <folding>
                     <element signature="e#0#49#0" expanded="true" />
                   </folding>
@@ -196,11 +192,11 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/sass/member/_sidebar.scss">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="80">
-                  <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+                <state relative-caret-position="464">
+                  <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
                 </state>
               </provider>
             </entry>
@@ -241,6 +237,27 @@
               </provider>
             </entry>
           </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/config/auth.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="155">
+                  <caret line="67" column="5" lean-forward="true" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Model/Member.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="352">
+                  <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+                  <folding>
+                    <element signature="e#29#69#0#PHP" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
         </leaf>
       </split-second>
     </splitter>
@@ -261,6 +278,8 @@
       <find>Auth</find>
       <find>npm run</find>
       <find>npm</find>
+      <find>padding</find>
+      <find>intended</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -274,7 +293,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/components/Example.js" />
         <option value="$PROJECT_DIR$/resources/js/FoodDelivery/NavigationBar/UncontrolDropdown/Dropdown/Dropdown.js" />
@@ -308,7 +326,6 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Member/LoginController.php" />
         <option value="$PROJECT_DIR$/app/Model/Restaurant.php" />
         <option value="$PROJECT_DIR$/app/Http/Service/Member/MemberService.php" />
-        <option value="$PROJECT_DIR$/app/Model/Member.php" />
         <option value="$PROJECT_DIR$/routes/api.php" />
         <option value="$PROJECT_DIR$/resources/js/Member/NavigationBar/UncontrolDropdown/UncontrolDropdown.js" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -322,9 +339,11 @@
         <option value="$PROJECT_DIR$/resources/sass/member/_navigation.scss" />
         <option value="$PROJECT_DIR$/resources/js/Member/NavigationBar/NavigationBar.js" />
         <option value="$PROJECT_DIR$/resources/sass/app.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/member/_manage_account.scss" />
         <option value="$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js" />
         <option value="$PROJECT_DIR$/resources/sass/member/_sidebar.scss" />
-        <option value="$PROJECT_DIR$/resources/sass/member/_manage_account.scss" />
+        <option value="$PROJECT_DIR$/resources/js/Member/Sidebar/Sidebar.js" />
+        <option value="$PROJECT_DIR$/app/Model/Member.php" />
       </list>
     </option>
   </component>
@@ -529,6 +548,13 @@
               <item name="food_delivery" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="food_delivery" type="b2602c69:ProjectViewProjectNode" />
+              <item name="food_delivery" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="FoodDelivery" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -569,7 +595,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="SearchEverywhereHistoryKey" value="app&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/app.scss&#10;NavigationBar&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationBar.js&#10;manageac&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/ManageAccount/ManageAccount.js&#10;route&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/routes.js&#10;FoodDe&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Http/Controllers/FoodDeliveryController.php&#10;FoodD&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/FoodDelivery/FoodDelivery.js&#10;Home&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Home/Home.js&#10;navigationBar&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationBar.js&#10;api.p&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;web&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/web.php&#10;api&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;Base&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Http/Service/BaseService.php&#10;auth.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/config/auth.php&#10;member&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Model/Member.php&#10;RegisterController&#9;null&#9;null&#10;user&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/User.php&#10;api.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;food&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/views/food_delivery.blade.php&#10;webpack&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/webpack.mix.js&#10;Searc&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/SearchInput.js&#10;Sear&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/SearchInput.js&#10;card&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/member/_card.scss&#10;vari&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/_variables.scss&#10;StringInput&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/StringInput.js&#10;Register&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;navigationItem&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationItem/NavigationItem.js&#10;navigation&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/member/_navigation.scss&#10;var&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/_variables.scss&#10;Texa&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/TextArea.js&#10;Reg&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;web.&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/web.php&#10;TextArea&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/TextArea.js&#10;Re&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;Login&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Login/Login.js&#10;.gitig&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/.gitignore&#10;FoodDeliver&#9;null&#9;null&#10;welcome.&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/resources/views/welcome.blade.php&#10;web.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/routes/web.php&#10;.env&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/.env&#10;AppServi&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/app/Providers/AppServiceProvider.php" />
+    <property name="SearchEverywhereHistoryKey" value="Member&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Model/Member.php&#10;auth.&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/config/auth.php&#10;s&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/member/_sidebar.scss&#10;app&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/app.scss&#10;NavigationBar&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationBar.js&#10;manageac&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/ManageAccount/ManageAccount.js&#10;route&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/routes.js&#10;FoodDe&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Http/Controllers/FoodDeliveryController.php&#10;FoodD&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/FoodDelivery/FoodDelivery.js&#10;Home&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Home/Home.js&#10;navigationBar&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationBar.js&#10;api.p&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;web&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/web.php&#10;api&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;Base&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Http/Service/BaseService.php&#10;auth.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/config/auth.php&#10;member&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/Model/Member.php&#10;RegisterController&#9;null&#9;null&#10;user&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/app/User.php&#10;api.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/api.php&#10;food&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/views/food_delivery.blade.php&#10;webpack&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/webpack.mix.js&#10;Searc&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/SearchInput.js&#10;Sear&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/SearchInput.js&#10;card&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/member/_card.scss&#10;vari&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/_variables.scss&#10;StringInput&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/StringInput.js&#10;Register&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;navigationItem&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/NavigationBar/NavigationItem/NavigationItem.js&#10;navigation&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/member/_navigation.scss&#10;var&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/sass/_variables.scss&#10;Texa&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/TextArea.js&#10;Reg&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;web.&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/routes/web.php&#10;TextArea&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/components/Input/TextArea.js&#10;Re&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Register/Register.js&#10;Login&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/resources/js/Member/Login/Login.js&#10;.gitig&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food_delivery/.gitignore&#10;FoodDeliver&#9;null&#9;null&#10;welcome.&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/resources/views/welcome.blade.php&#10;web.php&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/routes/web.php&#10;.env&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/.env&#10;AppServi&#9;FILE&#9;file:///Applications/XAMPP/xamppfiles/htdocs/food-delivery/app/Providers/AppServiceProvider.php" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -626,7 +652,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31606000" />
+    <option name="totallyTimeSpent" value="35082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-597" y="-1080" width="2560" height="1080" extended-state="0" />
@@ -688,16 +714,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Login landing page complete without Register function." />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/js/FoodDelivery/MemberLogin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="34" column="29" lean-forward="true" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/Input/TextArea.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="624">
@@ -829,13 +845,6 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Auth/VerificationController.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/auth.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="98" column="48" selection-start-line="98" selection-start-column="48" selection-end-line="98" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Service/BaseService.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="74">
@@ -849,16 +858,6 @@
           <caret line="33" column="21" lean-forward="true" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
           <folding>
             <element signature="e#47#89#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Model/Member.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
-          <folding>
-            <element signature="e#29#69#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1060,10 +1059,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/member/_manage_account.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/Member/ManageAccount/ManageAccount.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="8" column="14" lean-forward="true" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+        <state relative-caret-position="176">
+          <caret line="11" column="22" lean-forward="true" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
           <folding>
             <element signature="e#0#49#0" expanded="true" />
           </folding>
@@ -1072,15 +1078,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/member/_sidebar.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+        <state relative-caret-position="464">
+          <caret line="29" column="21" lean-forward="true" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/member/_manage_account.scss">
+    <entry file="file://$PROJECT_DIR$/resources/js/Member/Sidebar/Sidebar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="304">
+          <caret line="19" column="14" lean-forward="true" selection-start-line="19" selection-start-column="14" selection-end-line="19" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="67" column="5" lean-forward="true" selection-start-line="67" selection-start-column="5" selection-end-line="67" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Model/Member.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="e#29#69#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

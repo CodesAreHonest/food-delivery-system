@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import NavigationBar from "../NavigationBar/NavigationBar";
+import Sidebar from "../Sidebar/Sidebar";
 
 class ManageAccount extends Component {
     constructor(props) {
@@ -11,16 +12,11 @@ class ManageAccount extends Component {
             <Fragment>
                 <NavigationBar/>
 
-                <div className="sidebar">
-                    <a className="active">Home</a>
-                    <a>News</a>
-                    <a>Contact</a>
-                    <a>About</a>
-                </div>
+                <Sidebar />
 
                 <div className="account-manage-content">
                     <section>
-                        hi
+                        <h1></h1>
                     </section>
                 </div>
 
