@@ -45,7 +45,9 @@ class UncontrolDropdown extends Component {
                 </DropdownToggle>
                 <DropdownMenu right>
                     <DropdownItem>
-                        Manage Account
+                        <Link to="/member/manage/account" >
+                            Manage Account
+                        </Link>
                     </DropdownItem>
                     <DropdownItem>
                         Order History

@@ -44,7 +44,7 @@ class Home extends Component {
                                     options={menu_options}
                                     value={this.state.category}
                                     onChange={this.onSelectChange}
-                                    placeholder="Select Category"
+                                    placeholder="Category"
                                 />
                             </Col>
 
