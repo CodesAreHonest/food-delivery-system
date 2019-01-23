@@ -21,6 +21,7 @@ class StringInput extends Component {
                 placeholder={this.props.placeholder}
                 required={this.props.required}
                 disabled={this.props.disabled}
+                maxLength={this.props.maxLength}
 
                 valid={this.state.valid}
             />
@@ -40,7 +41,9 @@ StringInput.propTypes = {
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    maxLength: PropTypes.string,
+
 };
 
 

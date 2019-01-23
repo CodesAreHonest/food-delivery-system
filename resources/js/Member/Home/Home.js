@@ -8,6 +8,14 @@ import ReactSelect from "../../components/Input/ReactSelect";
 
 import {menu_options} from "./MenuType";
 
+const cartStyle = {
+    backgroundColor: 'white',
+    padding: '2px 3px',
+    maxWidth: '40px',
+    borderRadius: '10px',
+    border: '1px solid darkgrey'
+};
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -48,8 +56,20 @@ class Home extends Component {
                                 />
                             </Col>
 
-                            <Col md={9}>
+                            <Col md={8}>
                                 <SearchInput/>
+                            </Col>
+
+                            <Col md={1}>
+                                <button style={cartStyle}>
+                                    <div>
+                                        <img
+                                            src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png"
+                                            width={30}
+                                            height={30}
+                                        />
+                                    </div>
+                                </button>
                             </Col>
                         </Row>
                     </Container>

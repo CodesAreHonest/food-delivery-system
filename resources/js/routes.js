@@ -1,6 +1,7 @@
 import MemberLogin from './FoodDelivery/MemberLogin';
 import Home from './Member/Home/Home';
-import ManageAccount from "./Member/ManageAccount/ManageAccount";
+import CreditCard from "./Member/CreditCard/CreditCard";
+import EditProfile from "./Member/EditProfile/EditProfile";
 
 export const routes = [{
     path: '/member/login',
@@ -10,5 +11,8 @@ export const routes = [{
     component: Home
 }, {
     path: '/member/manage/account',
-    component: ManageAccount
+    component: EditProfile
+}, {
+    path: '/member/credit/card',
+    component: CreditCard
 }];
