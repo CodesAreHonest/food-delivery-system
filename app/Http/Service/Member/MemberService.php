@@ -45,7 +45,7 @@ class MemberService extends BaseService
 
         $input = [
             's_email'       => $request['email'],
-            'password'    => $request['password']
+            'password'      => $request['password']
         ];
 
         $auth = Auth::guard('member')->attempt($input);
