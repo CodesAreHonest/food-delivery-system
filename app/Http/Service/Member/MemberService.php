@@ -6,6 +6,7 @@ use App\Http\Service\BaseService;
 use App\Model\Member;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class MemberService extends BaseService
 {
@@ -41,11 +42,12 @@ class MemberService extends BaseService
         ];
     }
 
-    public function login ($request) {
+    public function login ($request)
+    {
 
         $input = [
-            's_email'       => $request['email'],
-            'password'      => $request['password']
+            's_email' => $request['email'],
+            'password' => $request['password']
         ];
 
         $auth = Auth::guard('member')->attempt($input);
@@ -53,19 +55,82 @@ class MemberService extends BaseService
         if ($auth) {
             return [
                 'response_code' => 200,
-                'response_msg'  => 'success',
-                'msgType'       => 'success',
-                'msgTitle'      => 'Member login success',
-                'msg'           => ''
+                'response_msg' => 'success',
+                'msgType' => 'success',
+                'msgTitle' => 'Member login success',
+                'msg' => ''
             ];
         }
 
         return [
             'response_code' => 401,
-            'response_msg'  => 'Unauthenticated',
-            'msgType'       => 'error',
-            'msgTitle'      => 'Invalid Credential',
-            'msg'           => 'Invalid username or password'
+            'response_msg' => 'Unauthenticated',
+            'msgType' => 'error',
+            'msgTitle' => 'Invalid Credential',
+            'msg' => 'Invalid username or password'
+        ];
+    }
+
+    public function getDetail($request) {
+
+
+        $member = Member::where('s_email', $request['email'])->first();
+
+        if (!$member) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Email',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Retrieve Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Retrieve Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Retrieve Successful',
+            'msg'           => '',
+            'data'          => $member,
+        ];
+
+    }
+
+    public function updateDetail($request) {
+
+        $member = Member::where('s_email', $request['email'])->first();
+
+        if (!$member) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Email',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Retrieve Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        $member['s_username'] = $request['username'];
+        $member['s_address']  = $request['address'];
+        $result = $member->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
         ];
     }
 }
