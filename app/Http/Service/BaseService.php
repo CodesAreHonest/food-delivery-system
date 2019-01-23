@@ -33,6 +33,7 @@ class BaseService
 
             $msg = [
                 'response_code' => 422,
+                'response_msg'  => 'Unprocessable Entity',
                 'msgType'       => 'error',
                 'msgTitle'      => 'Validation Failed',
                 'msg'           => $error_msg

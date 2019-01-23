@@ -4,6 +4,7 @@ namespace App\Http\Service\Member;
 
 use App\Http\Service\BaseService;
 use App\Model\Member;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class MemberService extends BaseService
@@ -38,8 +39,33 @@ class MemberService extends BaseService
             'msgTitle'      => 'Register Successful',
             'msg'           => ''
         ];
-
     }
 
+    public function login ($request) {
 
+        $input = [
+            's_email'       => $request['email'],
+            'password'    => $request['password']
+        ];
+
+        $auth = Auth::guard('member')->attempt($input);
+
+        if ($auth) {
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Member login success',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 401,
+            'response_msg'  => 'Unauthenticated',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Invalid Credential',
+            'msg'           => 'Invalid username or password'
+        ];
+    }
 }
