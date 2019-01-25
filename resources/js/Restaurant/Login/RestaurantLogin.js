@@ -5,7 +5,7 @@ import PasswordInput from "../../components/Input/PasswordInput";
 
 import {Link} from 'react-router-dom'
 
-class Login extends Component {
+class RestaurantLogin extends Component {
     constructor(props) {
         super(props);
     }
@@ -50,4 +50,4 @@ class Login extends Component {
     }
 }
 
-export default Login;
+export default RestaurantLogin;
