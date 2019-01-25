@@ -40,42 +40,6 @@ class RestaurantHome extends Component {
         return (
             <Fragment>
                 <NavigationBar />
-
-                <div className="search-division">
-                    <Container>
-                        <Row>
-                            <Col md={3}>
-                                <ReactSelect
-                                    name="category"
-                                    className="form-control"
-                                    closeMenuOnSelect={true}
-                                    options={menu_options}
-                                    value={this.state.category}
-                                    onChange={this.onSelectChange}
-                                    placeholder="Category"
-                                />
-                            </Col>
-
-                            <Col md={8}>
-                                <SearchInput/>
-                            </Col>
-
-                            <Col md={1}>
-                                <button style={cartStyle}>
-                                    <div>
-                                        <img
-                                            src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png"
-                                            width={30}
-                                            height={30}
-                                        />
-                                    </div>
-                                </button>
-                            </Col>
-                        </Row>
-                    </Container>
-                </div>
-
-
             </Fragment>
         )
     }

@@ -24,18 +24,17 @@ class NavigationBar extends Component {
             <header>
                 <Navbar color="dark" dark expand="md" className="nav-bar-color-custom">
                     <Container>
-                        <NavbarBrand href="/member">GOGO</NavbarBrand>
+                        <NavbarBrand href="/restaurant">GOGO Restaurant Site</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.drop_down_open} navbar className="dropdown">
                             <Nav className="ml-auto" navbar>
                                 <NavigationItem
-                                    name="Food Menu"
-                                    url="/member"
+                                    name="Add Food"
+                                    url="/restaurant"
                                 />
-
                                 <NavigationItem
-                                    name="Track My Order"
-                                    url="/member/order/history"
+                                    name="Delivery Information"
+                                    url="/restaurant/delivery/team"
                                 />
                                 <UncontrolDropdown />
                             </Nav>
