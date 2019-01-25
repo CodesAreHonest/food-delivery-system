@@ -92,7 +92,7 @@ class MemberService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Retrieve Successful',
             'msg'           => '',
-            'data'          => $member,
+            'card_name'          => $member
         ];
 
     }
@@ -106,13 +106,53 @@ class MemberService extends BaseService
                 'response_code' => 404,
                 'response_msg'  => 'No Matched Email',
                 'msgType'       => 'error',
-                'msgTitle'      => 'Retrieve Unsuccessful',
+                'msgTitle'      => 'Update Unsuccessful',
                 'msg'           => ''
             ];
         }
 
         $member['s_username'] = $request['username'];
         $member['s_address']  = $request['address'];
+        $result = $member->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
+
+    public function updateCreditCard($request) {
+
+        $member = Member::where('s_email', $request['email'])->first();
+
+        if (!$member) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Email',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        $member['s_card_name'] = $request['card_name'];
+        $member['s_card_number']  = $request['card_number'];
+        $member['s_expired_date']  = $request['card_expired_date'];
+        $member['n_cvc']  = $request['cvc'];
+
         $result = $member->save();
 
         if (!$result) {
