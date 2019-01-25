@@ -19,7 +19,6 @@ class NavigationBar extends Component {
     }
 
     render() {
-
         return (
             <header>
                 <Navbar color="dark" dark expand="md" className="nav-bar-color-custom">
@@ -44,8 +43,6 @@ class NavigationBar extends Component {
             </header>
         )
     }
-
-
 }
 
 export default NavigationBar;
