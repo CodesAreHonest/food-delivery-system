@@ -70,4 +70,43 @@ class RestaurantService extends BaseService
             'msg' => 'Invalid username or password'
         ];
     }
+
+    public function updateRestaurant($request) 
+    {
+
+        $restaurant = Restaurant::where('s_restaurant_id', $request['restaurant_id'])->first();
+
+        if (!$restaurant) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Restaurant Id',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        $restaurant['s_restaurant_name'] = $request['restaurant_name'];
+        $restaurant['s_password']  = Hash::make($request['password']);
+
+        $result = $restaurant->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
 }
