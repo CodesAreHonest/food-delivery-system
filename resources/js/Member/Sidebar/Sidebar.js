@@ -24,6 +24,9 @@ class Sidebar extends Component {
             case 'EditProfile':
                 document.getElementById('EditProfile').className = 'active';
                 break;
+            case 'EditLocation':
+                document.getElementById('EditLocation').className = 'active';
+                break;
         }
 
     }
@@ -41,11 +44,15 @@ class Sidebar extends Component {
                             Edit Profile
                         </li>
                     </Link>
+                    <li id="EditLocation">
+                        Location Information
+                    </li>
                     <Link to="/member/credit/card"  style={{textDecoration: 'none'}}>
                         <li id="CreditCard">
                             Credit Card
                         </li>
                     </Link>
+
                 </ul>
             </aside>
         )

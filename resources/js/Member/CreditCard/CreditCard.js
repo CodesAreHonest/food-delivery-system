@@ -35,6 +35,7 @@ class CreditCard extends Component {
                                         name="card_name"
                                         id="card_name"
                                         className="form-control"
+                                        placeholder="Ali bin Ahmad"
                                         required
                                     />
                                 </Col>
@@ -45,6 +46,7 @@ class CreditCard extends Component {
                                         name="card_number"
                                         id="card_number"
                                         className="form-control"
+                                        placeholder="8888 8888 8888 8888"
                                         required
                                     />
                                 </Col>

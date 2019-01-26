@@ -16,20 +16,20 @@ class RestaurantLogin extends Component {
                 <div className="card-body">
                     <Form>
                         <FormGroup row>
-                            <Label for="login_email" md={2}>Email: </Label>
-                            <Col md={10}>
+                            <Label for="restaurant_id" md={3}>Restaurant ID: </Label>
+                            <Col md={9}>
                                 <EmailInput
-                                    id="login_email"
-                                    name="login_email"
-                                    placeholder="test@gmail.com"
+                                    id="restaurant_id"
+                                    name="restaurant_id"
+                                    placeholder="sukiya"
                                     required={true}
                                 />
                             </Col>
                         </FormGroup>
 
                         <FormGroup row>
-                            <Label for="password" md={2}>Password: </Label>
-                            <Col md={10}>
+                            <Label for="password" md={3}>Password: </Label>
+                            <Col md={9}>
                                 <PasswordInput
                                     id="login_password"
                                     name="login_password"
@@ -39,7 +39,7 @@ class RestaurantLogin extends Component {
                             </Col>
                         </FormGroup>
 
-                        <Link to="/member">
+                        <Link to="/restaurant">
                             <Button color="primary" block>Login</Button>
                         </Link>
                     </Form>

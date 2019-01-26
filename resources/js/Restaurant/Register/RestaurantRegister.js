@@ -9,7 +9,7 @@ import TextArea from "../../components/Input/TextArea";
 
 import {Link} from 'react-router-dom';
 
-class RestaurantRegister extends Component {
+class Register extends Component {
     constructor(props) {
         super(props);
     }
@@ -21,7 +21,7 @@ class RestaurantRegister extends Component {
                     <Form>
                         <Row>
                             <Col md={6}>
-                                <Label for="register_username">Username: </Label>
+                                <Label for="register_restaurant_id">Restaurant ID: </Label>
                                 <StringInput
                                     id="register_username"
                                     name="register_username"
@@ -31,11 +31,11 @@ class RestaurantRegister extends Component {
                             </Col>
 
                             <Col md={6}>
-                                <Label for="register_email">Email</Label>
+                                <Label for="register_restaurant_name">Restaurant Name: </Label>
                                 <EmailInput
-                                    id="register_email"
-                                    name="register_email"
-                                    placeholder="test@gmail.com"
+                                    id="register_restaurant_name"
+                                    name="register_restaurant_name"
+                                    placeholder="ABC Restaurant"
                                     required={true}
                                 />
                             </Col>
@@ -81,4 +81,4 @@ class RestaurantRegister extends Component {
     }
 }
 
-export default RestaurantRegister;
+export default Register;

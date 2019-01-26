@@ -18,11 +18,11 @@ class Sidebar extends Component {
     sidebarClasses() {
 
         switch (this.props.feature) {
-            case 'CreditCard':
-                document.getElementById('CreditCard').className = 'active';
+            case 'DeliveryList':
+                document.getElementById('DeliveryList').className = 'active';
                 break;
-            case 'EditProfile':
-                document.getElementById('EditProfile').className = 'active';
+            case 'DeliveryTeam':
+                document.getElementById('DeliveryTeam').className = 'active';
                 break;
         }
 
@@ -36,14 +36,14 @@ class Sidebar extends Component {
         return (
             <aside>
                 <ul id="sidebar" className="sidebar">
-                    <Link to="/member/manage/account" style={{textDecoration: 'none'}}>
-                        <li id="EditProfile">
-                            Edit Profile
+                    <Link to="/restaurant/delivery/list" style={{textDecoration: 'none'}}>
+                        <li id="DeliveryList">
+                            Delivery List
                         </li>
                     </Link>
-                    <Link to="/member/credit/card"  style={{textDecoration: 'none'}}>
-                        <li id="CreditCard">
-                            Credit Card
+                    <Link to="/restaurant/delivery/team" style={{textDecoration: 'none'}}>
+                        <li id="DeliveryTeam">
+                            Delivery Team
                         </li>
                     </Link>
                 </ul>
@@ -57,7 +57,7 @@ Sidebar.propTypes = {
 };
 
 Sidebar.defaultProps = {
-    feature: 'EditProfile'
+    feature: 'SalesHistory'
 };
 
 export default Sidebar;
