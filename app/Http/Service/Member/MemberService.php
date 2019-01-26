@@ -4,6 +4,7 @@ namespace App\Http\Service\Member;
 
 use App\Http\Service\BaseService;
 use App\Model\Member;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -18,7 +19,9 @@ class MemberService extends BaseService
             's_username'    => $request['username'],
             's_email'       => $request['email'],
             's_password'    => Hash::make($request['password']),
-            's_address'     => $request['address']
+            's_address'     => $request['address'],
+            'created_at'    => Carbon::now()->toDateTimeString(),
+            'updated_at'    => Carbon::now()->toDateTimeString(),
         ];
 
         $member = Member::insert($input);
@@ -152,10 +155,12 @@ class MemberService extends BaseService
             ];
         }
 
-        $member['s_card_name'] = $request['card_name'];
-        $member['s_card_number']  = $request['card_number'];
-        $member['s_expired_date']  = $request['card_expired_date'];
-        $member['n_cvc']  = $request['cvc'];
+        $member['s_card_name']      = $request['card_name'];
+        $member['s_card_number']    = $request['card_number'];
+        $member['s_expired_date']   = $request['card_expired_date'];
+        $member['n_cvc']            = $request['cvc'];
+        $member['created_at']       = Carbon::now()->toDateTimeString();
+        $member['updated_at']       = Carbon::now()->toDateTimeString();
 
         $result = $member->save();
 
