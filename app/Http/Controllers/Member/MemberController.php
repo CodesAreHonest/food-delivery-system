@@ -114,7 +114,10 @@ class MemberController extends Controller
         $rules = [
             'email'                 => 'required|email|max:100',
             'username'              => 'required|string|max:50',
-            'address'               => 'required|string|max:255'
+            'address'               => 'required|string|max:255',
+            'city'               => 'required|string|max:100',
+            'state'               => 'required|string|max:100',
+            'country'               => 'required|string|max:100'
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);

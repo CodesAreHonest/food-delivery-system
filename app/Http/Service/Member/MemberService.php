@@ -113,6 +113,10 @@ class MemberService extends BaseService
 
         $member['s_username'] = $request['username'];
         $member['s_address']  = $request['address'];
+        $member['s_city']  = $request['city'];
+        $member['s_state']  = $request['state'];
+        $member['s_country']  = $request['country'];
+
         $result = $member->save();
 
         if (!$result) {
