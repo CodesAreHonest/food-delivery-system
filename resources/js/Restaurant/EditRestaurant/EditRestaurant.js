@@ -5,6 +5,7 @@ import StringInput from "../../components/Input/StringInput";
 import EmailInput from "../../components/Input/EmailInput";
 import TextArea from "../../components/Input/TextArea";
 import NavigationBar from "../NavigationBar/NavigationBar";
+import PasswordInput from "../../components/Input/PasswordInput";
 
 class EditRestaurant extends Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class EditRestaurant extends Component {
                                     />
                                 </Col>
 
-                                <Col md={6} style={{marginBottom: '20px'}}>
+                                <Col md={6}>
                                     <Label>Restaurant Name: </Label>
                                     <EmailInput
                                         name="restaurant_name"
@@ -45,18 +46,28 @@ class EditRestaurant extends Component {
                                     />
                                 </Col>
 
-                                <Col md={12}>
-                                    <Label>Address: </Label>
-                                    <TextArea
-                                        name="address"
-                                        id="address"
-                                        className="form-control"
-                                        style={{minWidth: '100%', minHeight: '40px', marginBottom: '20px'}}
+                                <Col md={6} style={{marginTop: '20px'}}>
+                                    <Label for="password">Password: </Label>
+                                    <PasswordInput
+                                        id="password"
+                                        name="password"
+                                        placeholder="Minimum 6 characters"
+                                        required={true}
+                                    />
+                                </Col>
+
+                                <Col md={6} style={{marginTop: '20px'}}>
+                                    <Label for="c_password">Confirm Password: </Label>
+                                    <PasswordInput
+                                        id="c_password"
+                                        name="c_password"
+                                        placeholder="Required to be same with password"
+                                        required={true}
                                     />
                                 </Col>
                             </Row>
 
-                            <Button color="primary">Save Changes</Button>
+                            <Button color="primary" style={{marginTop: '20px'}}>Save Changes</Button>
                         </div>
                     </section>
                 </Container>

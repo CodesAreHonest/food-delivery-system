@@ -51,20 +51,20 @@ class EditProfile extends Component {
                                 </Col>
 
                                 <Col md={6} style={{marginTop: '20px'}}>
-                                    <Label for="register_password">Password: </Label>
+                                    <Label for="password">Password: </Label>
                                     <PasswordInput
-                                        id="register_password"
-                                        name="register_password"
+                                        id="password"
+                                        name="password"
                                         placeholder="Minimum 6 characters"
                                         required={true}
                                     />
                                 </Col>
 
                                 <Col md={6} style={{marginTop: '20px'}}>
-                                    <Label for="register_c_password">Confirm Password: </Label>
+                                    <Label for="c_password">Confirm Password: </Label>
                                     <PasswordInput
-                                        id="register_c_password"
-                                        name="register_c_password"
+                                        id="c_password"
+                                        name="c_password"
                                         placeholder="Required to be same with password"
                                         required={true}
                                     />
