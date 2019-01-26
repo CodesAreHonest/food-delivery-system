@@ -119,6 +119,7 @@ class AddFood extends Component {
                                 <h4 style={{marginLeft: '5px'}}>Preview</h4>
 
                                 <hr />
+
                                 <FoodCard
                                     className="card-shadow"
                                     food_name={this.state.food_name}
