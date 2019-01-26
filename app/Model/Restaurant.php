@@ -14,11 +14,15 @@ class Restaurant extends Authenticatable
     protected $table = 'restaurant';
 
     protected $fillable = [
-        's_username', 's_email', 's_address'
+        's_restaurant_id', 's_restaurant_name', 's_password','s_address'
     ];
 
     protected $hidden = [
         's_password'
     ];
+
+    public function getAuthPassword() {
+        return $this->s_password;
+    }
 
 }

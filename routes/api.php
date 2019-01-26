@@ -11,3 +11,6 @@ Route::post('/member/update/detail', 'Member\MemberController@updateDetail')->na
 Route::post('/member/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
 
 
+Route::post('/restaurant/register', 'Restaurant\RegisterController@register')->name('post.restaurant.register');
+Route::post('/restaurant/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
+
