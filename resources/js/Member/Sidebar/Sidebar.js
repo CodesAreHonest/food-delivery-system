@@ -44,9 +44,12 @@ class Sidebar extends Component {
                             Edit Profile
                         </li>
                     </Link>
-                    <li id="EditLocation">
-                        Location Information
-                    </li>
+                    <Link to="/member/location/information" style={{textDecoration: 'none'}}>
+                        <li id="EditLocation">
+                            Location Information
+                        </li>
+                    </Link>
+
                     <Link to="/member/credit/card"  style={{textDecoration: 'none'}}>
                         <li id="CreditCard">
                             Credit Card

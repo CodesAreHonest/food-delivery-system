@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Col, Form, FormGroup, Label, Row} from "reactstrap";
+import {Button, Col, Form, Label, Row} from "reactstrap";
 
 // Form Input
 import EmailInput from "../../components/Input/EmailInput";

@@ -1,16 +1,18 @@
 
 // Member
-import MemberLogin from './FoodDelivery/MemberLogin';
-import Home from './Member/Home/Home';
-import CreditCard from "./Member/CreditCard/CreditCard";
-import EditProfile from "./Member/EditProfile/EditProfile";
+import MemberLogin  from './FoodDelivery/MemberLogin';
+import Home         from './Member/Home/Home';
+import CreditCard   from "./Member/CreditCard/CreditCard";
+import EditProfile  from "./Member/EditProfile/EditProfile";
+import EditLocation from "./Member/EditProfile/EditLocation";
 
 // Restaurant
-import RestaurantHome from './Restaurant/Home/RestaurantHome';
-import RestaurantLogin from './FoodDelivery/RestaurantLogin';
-import EditRestaurant from "./Restaurant/EditRestaurant/EditRestaurant";
-import DeliveryList from "./Restaurant/DeliveryList/DeliveryList";
-import DeliveryTeam from "./Restaurant/DeliveryList/DeliveryTeam";
+import RestaurantHome   from './Restaurant/Home/RestaurantHome';
+import RestaurantLogin  from './FoodDelivery/RestaurantLogin';
+import EditRestaurant   from "./Restaurant/EditRestaurant/EditRestaurant";
+import DeliveryList     from "./Restaurant/DeliveryList/DeliveryList";
+import DeliveryTeam     from "./Restaurant/DeliveryList/DeliveryTeam";
+import AddFood          from "./Restaurant/AddFood/AddFood";
 
 export const routes = [{
     path: '/member/login',
@@ -24,6 +26,9 @@ export const routes = [{
 }, {
     path: '/member/credit/card',
     component: CreditCard
+},{
+    path: '/member/location/information',
+    component: EditLocation
 }, {
     path: '/restaurant/login',
     component: RestaurantLogin
@@ -39,4 +44,7 @@ export const routes = [{
 }, {
     path: '/restaurant/delivery/team',
     component: DeliveryTeam
+}, {
+    path: '/restaurant/add/food',
+    component: AddFood
 }];

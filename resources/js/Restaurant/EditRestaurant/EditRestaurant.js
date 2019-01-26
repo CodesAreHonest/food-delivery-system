@@ -3,7 +3,6 @@ import {Container, Row, Col, Label, Button} from 'reactstrap';
 
 import StringInput from "../../components/Input/StringInput";
 import EmailInput from "../../components/Input/EmailInput";
-import TextArea from "../../components/Input/TextArea";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import PasswordInput from "../../components/Input/PasswordInput";
 

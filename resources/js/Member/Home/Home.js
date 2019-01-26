@@ -6,7 +6,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import SearchInput from "../../components/Input/SearchInput";
 import ReactSelect from "../../components/Input/ReactSelect";
 
-import {menu_options} from "./MenuType";
+import {category_options} from "./MenuType";
 
 const cartStyle = {
     backgroundColor: 'white',
@@ -49,7 +49,7 @@ class Home extends Component {
                                     name="category"
                                     className="form-control"
                                     closeMenuOnSelect={true}
-                                    options={menu_options}
+                                    options={category_options}
                                     value={this.state.category}
                                     onChange={this.onSelectChange}
                                     placeholder="Category"

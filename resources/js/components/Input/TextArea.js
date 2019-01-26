@@ -17,6 +17,7 @@ class TextArea extends Component {
                 type="textarea"
                 id={this.props.id}
                 name={this.props.name}
+                onChange={this.props.onChange}
                 className={this.props.className}
                 placeholder={this.props.placeholder}
                 required={this.props.required}
@@ -39,6 +40,7 @@ TextArea.defaultProps = {
 TextArea.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool,

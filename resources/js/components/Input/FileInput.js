@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Input} from 'reactstrap';
 import PropTypes from 'prop-types';
 
-class StringInput extends Component {
+class FileInput extends Component {
     constructor(props) {
         super(props);
 
@@ -14,16 +14,13 @@ class StringInput extends Component {
     render() {
         return (
             <Input
-                type="string"
+                type="file"
                 id={this.props.id}
                 name={this.props.name}
                 className={this.props.className}
                 placeholder={this.props.placeholder}
-                onChange={this.props.onChange}
                 required={this.props.required}
                 disabled={this.props.disabled}
-                maxLength={this.props.maxLength}
-                value={this.props.value}
 
                 valid={this.state.valid}
             />
@@ -31,23 +28,19 @@ class StringInput extends Component {
     }
 }
 
-export default StringInput;
+export default FileInput;
 
-StringInput.defaultProps = {
+FileInput.defaultProps = {
     required: false,
     disabled: false
 };
 
-StringInput.propTypes = {
+FileInput.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
-    maxLength: PropTypes.string,
-    value: PropTypes.any,
-
 };
 
 

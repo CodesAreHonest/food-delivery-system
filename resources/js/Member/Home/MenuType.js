@@ -1,4 +1,4 @@
-export const menu_options = [{
+export const category_options = [{
     value: 'cuisine',
     label: 'Cuisine'
 }, {

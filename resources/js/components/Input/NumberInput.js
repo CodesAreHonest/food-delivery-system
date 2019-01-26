@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Input} from 'reactstrap';
 import PropTypes from 'prop-types';
 
-class StringInput extends Component {
+class NumberInput extends Component {
     constructor(props) {
         super(props);
 
@@ -14,16 +14,16 @@ class StringInput extends Component {
     render() {
         return (
             <Input
-                type="string"
+                type="number"
                 id={this.props.id}
                 name={this.props.name}
                 className={this.props.className}
-                placeholder={this.props.placeholder}
+                value={this.props.value}
                 onChange={this.props.onChange}
+                placeholder={this.props.placeholder}
                 required={this.props.required}
                 disabled={this.props.disabled}
-                maxLength={this.props.maxLength}
-                value={this.props.value}
+                min={this.props.min}
 
                 valid={this.state.valid}
             />
@@ -31,21 +31,21 @@ class StringInput extends Component {
     }
 }
 
-export default StringInput;
+export default NumberInput;
 
-StringInput.defaultProps = {
+NumberInput.defaultProps = {
     required: false,
     disabled: false
 };
 
-StringInput.propTypes = {
+NumberInput.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
     placeholder: PropTypes.string,
+    onChange: PropTypes.func,
     required: PropTypes.bool,
     disabled: PropTypes.bool,
-    maxLength: PropTypes.string,
+    min: PropTypes.number,
     value: PropTypes.any,
 
 };

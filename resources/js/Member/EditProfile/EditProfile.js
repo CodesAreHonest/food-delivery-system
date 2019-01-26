@@ -69,16 +69,6 @@ class EditProfile extends Component {
                                         required={true}
                                     />
                                 </Col>
-
-                                {/*<Col md={12}>*/}
-                                    {/*<Label>Address: </Label>*/}
-                                    {/*<TextArea*/}
-                                        {/*name="address"*/}
-                                        {/*id="address"*/}
-                                        {/*className="form-control"*/}
-                                        {/*style={{minWidth: '100%', minHeight: '40px', marginBottom: '20px'}}*/}
-                                    {/*/>*/}
-                                {/*</Col>*/}
                             </Row>
 
                             <Button color="primary" style={{marginTop: '20px'}}>Save Changes</Button>
