@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 // ReactStrap
-import {Container, Row, Col, Label, Card, CardBody, CardImg} from 'reactstrap';
+import {Container, Row, Col, Label, Button, Form} from 'reactstrap';
 import StringInput from "../../components/Input/StringInput";
 import NumberInput from "../../components/Input/NumberInput";
 import ReactSelect from "../../components/Input/ReactSelect";
@@ -11,6 +11,11 @@ import {category_options} from "../../Member/Home/MenuType";
 import FileInput from "../../components/Input/FileInput";
 import TextArea from "../../components/Input/TextArea";
 import FoodCard from "../../components/Food/FoodCard";
+
+import swal from 'sweetalert2';
+import _ from 'lodash';
+
+import axios from 'axios';
 
 const labelStyle = {
     marginTop: '10px'
@@ -22,11 +27,49 @@ class AddFood extends Component {
 
         this.state = {
             food_name: '',
-            food_price: null,
+            food_price: '',
             food_image: null,
             food_category: {label: 'Soup', value: 'soup'},
             food_description: ''
+        };
+
+        this.addFood = this.addFood.bind(this);
+    }
+
+    addFood(e) {
+
+        // e.preventDefault();
+
+        let form = document.getElementById('add_food_form');
+
+        if (!form.checkValidity()) {
+            return false;
         }
+
+        const data = new FormData(form);
+        // data.append('food_name', this.state.food_image);
+        // data.append('food_image', this.state.food_image);
+
+        axios ({
+            method: "POST",
+            url: '/api/restaurant/add/food',
+            data: data,
+            headers: {'Content-Type': 'multipart/form-data'}
+        }).then(response => {
+
+            if (response.status === 200) {
+            }
+
+            const data = _.values(response);
+            console.log (data);
+            // const {msgType, msgTitle, msg} = data[0];
+
+        }).catch(err => {
+            console.log(err);
+        });
+
+        e.preventDefault();
+
     }
 
     render() {
@@ -36,6 +79,10 @@ class AddFood extends Component {
 
                 <Container style={{marginTop: '15px'}}>
                     <section>
+                        <Form
+                            id="add_food_form"
+                            onSubmit={this.addFood}
+                        >
                         <Row>
                             <Col md={7}>
                                 <h4 style={{marginLeft: '5px'}}>Add Food</h4>
@@ -43,7 +90,6 @@ class AddFood extends Component {
                                 <hr />
 
                                 <div className="edit-profile-background card-shadow" style={{borderRadius: '5px'}}>
-
                                     <Label for="food_name">Food Name: </Label>
                                     <StringInput
                                         name="food_name"
@@ -96,6 +142,8 @@ class AddFood extends Component {
                                         name="food_image"
                                         id="food_image"
                                         required={true}
+                                        value={this.state.file}
+                                        onChange={(e) => this.setState({food_image: e.target.files[0]})}
                                     />
 
                                     <Label
@@ -111,6 +159,8 @@ class AddFood extends Component {
                                         placeholder="Cream of mushroom soup is a simple type of soup where a basic roux is thinned with cream or milk"
                                         required={true}
                                     />
+
+                                    <Button color="primary" type="submit" block>Save Changes</Button>
                                 </div>
                             </Col>
 
@@ -130,6 +180,7 @@ class AddFood extends Component {
                                 />
                             </Col>
                         </Row>
+                        </Form>
                     </section>
                 </Container>
             </Fragment>
