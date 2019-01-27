@@ -37,7 +37,7 @@ class RegisterController extends Controller
         }
 
         /** ==========================================================================
-         *  Member Register
+         *  Restaurant Register
          *  ==========================================================================
          *  @return 200 success
          *  @return 500 internal server error
