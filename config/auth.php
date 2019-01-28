@@ -51,6 +51,11 @@ return [
             'provider' => 'restaurant',
         ],
 
+        'delivery' => [
+            'driver' => 'session',
+            'provider' => 'delivery',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -88,6 +93,10 @@ return [
         'restaurant' => [
             'driver' => 'eloquent',
             'model' => App\Model\Restaurant::class,
+        ],
+        'delivery' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Delivery::class,
         ],
     ],
 

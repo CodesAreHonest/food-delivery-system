@@ -22,5 +22,9 @@ Route::prefix('restaurant')->group (function() {
     Route::post('/restaurant/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
     Route::post('/restaurant/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.restaurant.updateRestaurant');
 
+
 });
 
+
+    Route::post('/delivery/register', 'Delivery\RegisterController@register')->name('post.delivery.register');
+    Route::post('/delivery/login', 'Delivery\LoginController@login')->name('post.delivery.login');
