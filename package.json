@@ -26,6 +26,7 @@
         "sass-loader": "^7.1.0"
     },
     "dependencies": {
+        "django-react-csrftoken": "^1.0.4",
         "prop-types": "^15.6.2",
         "react-redux": "^6.0.0",
         "react-router": "^4.3.1",

@@ -17,17 +17,19 @@ class FoodDelivery extends Component {
     render() {
 
         const ROUTES = routes.map((route, key) => (
-           <Route path={route.path} key={key} exact={true} component={route.component} />
+            <Route path={route.path} key={key} exact={true} component={route.component} />
         ));
 
         return (
-            <Fragment>
-                <Router>
-                    <Switch>
-                        {ROUTES}
-                    </Switch>
-                </Router>
-            </Fragment>
+            <Provider store={store}>
+                <Fragment>
+                    <Router>
+                        <Switch>
+                            {ROUTES}
+                        </Switch>
+                    </Router>
+                </Fragment>
+            </Provider>
         )
     }
 }

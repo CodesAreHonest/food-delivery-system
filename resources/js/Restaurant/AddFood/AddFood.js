@@ -3,19 +3,24 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 
 // ReactStrap
 import {Container, Row, Col, Label, Button, Form} from 'reactstrap';
+
+import {category_options} from "../../Member/Home/MenuType";
+
+import FileInput from "../../components/Input/FileInput";
+import TextArea from "../../components/Input/TextArea";
+import FoodCard from "../../components/Food/FoodCard";
 import StringInput from "../../components/Input/StringInput";
 import NumberInput from "../../components/Input/NumberInput";
 import ReactSelect from "../../components/Input/ReactSelect";
 
-import {category_options} from "../../Member/Home/MenuType";
-import FileInput from "../../components/Input/FileInput";
-import TextArea from "../../components/Input/TextArea";
-import FoodCard from "../../components/Food/FoodCard";
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss'
+import DjangoCSRFToken from 'django-react-csrftoken'
 
-import swal from 'sweetalert2';
-import _ from 'lodash';
-
-import axios from 'axios';
+import {add_food} from "./AddFoodAction";
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+import swal from "sweetalert2";
 
 const labelStyle = {
     marginTop: '10px'
@@ -28,7 +33,7 @@ class AddFood extends Component {
         this.state = {
             food_name: '',
             food_price: '',
-            food_image: null,
+            food_image: '',
             food_category: {label: 'Soup', value: 'soup'},
             food_description: ''
         };
@@ -36,9 +41,30 @@ class AddFood extends Component {
         this.addFood = this.addFood.bind(this);
     }
 
+    componentDidUpdate(prevProps) {
+
+        if (prevProps.add_food_response !== this.props.add_food_response) {
+
+            let {data} = this.props.add_food_response;
+
+            let {msgType, msgTitle, msg} = data;
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            })
+        }
+    }
+
     addFood(e) {
 
-        // e.preventDefault();
+        e.preventDefault();
 
         let form = document.getElementById('add_food_form');
 
@@ -47,28 +73,37 @@ class AddFood extends Component {
         }
 
         const data = new FormData(form);
-        // data.append('food_name', this.state.food_image);
-        // data.append('food_image', this.state.food_image);
 
-        axios ({
-            method: "POST",
-            url: '/api/restaurant/add/food',
-            data: data,
-            headers: {'Content-Type': 'multipart/form-data'}
+        Swal.fire({
+            type: 'question',
+            title: 'Are you sure?',
+            text: 'The food added cannot be modify.',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Add Food (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
         }).then(response => {
 
-            if (response.status === 200) {
+            if (response.value) {
+                this.props.add_food(data);
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
             }
-
-            const data = _.values(response);
-            console.log (data);
-            // const {msgType, msgTitle, msg} = data[0];
-
-        }).catch(err => {
-            console.log(err);
         });
-
-        e.preventDefault();
 
     }
 
@@ -83,6 +118,7 @@ class AddFood extends Component {
                             id="add_food_form"
                             onSubmit={this.addFood}
                         >
+                            <DjangoCSRFToken />
                         <Row>
                             <Col md={7}>
                                 <h4 style={{marginLeft: '5px'}}>Add Food</h4>
@@ -189,4 +225,17 @@ class AddFood extends Component {
     }
 }
 
-export default AddFood;
+AddFood.propTypes = {
+    add_food: PropTypes.func.isRequired,
+    add_food_response: PropTypes.any
+};
+
+const mapStateToProps = state => ({
+    add_food_response: state.food.add_food_response,
+});
+
+const mapDispatchToProps = {
+    add_food
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddFood);
