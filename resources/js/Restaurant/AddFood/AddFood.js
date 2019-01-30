@@ -45,7 +45,7 @@ class AddFood extends Component {
 
         if (prevProps.add_food_response !== this.props.add_food_response) {
 
-            let {data} = this.props.add_food_response;
+            let {data, status} = this.props.add_food_response;
 
             let {msgType, msgTitle, msg} = data;
 

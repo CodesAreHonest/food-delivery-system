@@ -9,6 +9,7 @@ class FoodCard extends Component {
     }
 
     render() {
+
         return (
 
             <Card className={this.props.className}>
@@ -30,7 +31,7 @@ class FoodCard extends Component {
                         top
                         width="100%"
                         alt="Food Image"
-                        src="https://www.simplyrecipes.com/wp-content/uploads/2014/12/cream-of-mushroom-soup-horiz-d-1600.jpg"
+                        src={this.props.image}
                     />
 
                     <hr />
@@ -77,6 +78,7 @@ FoodCard.propTypes = {
 };
 
 FoodCard.defaultProps = {
+    image: `http://${window.location.hostname}/images/food_preview.png`,
     checkout_quantity: 1,
     quantity_disabled: false,
 };
