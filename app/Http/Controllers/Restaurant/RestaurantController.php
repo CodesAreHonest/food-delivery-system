@@ -36,7 +36,7 @@ class RestaurantController extends Controller
         }
 
         /** ==========================================================================
-         *  Update Member Detail
+         *  Update Restaurant Detail
          *  ==========================================================================
          *  @return 200 success
          *  @return 404 not found
