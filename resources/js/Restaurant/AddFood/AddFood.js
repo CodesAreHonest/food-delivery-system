@@ -26,19 +26,26 @@ const labelStyle = {
     marginTop: '10px'
 };
 
+const initialState = {
+    food_name: '',
+    food_price: '',
+    food_image: null,
+    food_category: {label: 'Soup', value: 'soup'},
+    food_description: ''
+};
+
 class AddFood extends Component {
     constructor (props) {
         super(props);
 
-        this.state = {
-            food_name: '',
-            food_price: '',
-            food_image: '',
-            food_category: {label: 'Soup', value: 'soup'},
-            food_description: ''
-        };
+        this.state = initialState;
 
         this.addFood = this.addFood.bind(this);
+        this.resetState = this.resetState.bind(this);
+    }
+
+    resetState() {
+        this.setState(initialState);
     }
 
     componentDidUpdate(prevProps) {
@@ -46,6 +53,10 @@ class AddFood extends Component {
         if (prevProps.add_food_response !== this.props.add_food_response) {
 
             let {data, status} = this.props.add_food_response;
+
+            if (status === 200) {
+                this.resetState();
+            }
 
             let {msgType, msgTitle, msg} = data;
 
@@ -108,6 +119,7 @@ class AddFood extends Component {
     }
 
     render() {
+
         return (
             <Fragment>
                 <NavigationBar/>
