@@ -9,6 +9,7 @@ class EmailInput extends Component {
         this.state = {
             valid: false,
         }
+    
     }
 
     render() {

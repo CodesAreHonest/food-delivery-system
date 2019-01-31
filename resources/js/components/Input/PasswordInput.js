@@ -22,7 +22,6 @@ class PasswordInput extends Component {
                 placeholder={this.props.placeholder}
                 required={this.props.required}
                 disabled={this.props.disabled}
-
                 valid={this.state.valid}
             />
         )

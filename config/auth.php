@@ -56,6 +56,11 @@ return [
             'provider' => 'delivery',
         ],
 
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -97,6 +102,10 @@ return [
         'delivery' => [
             'driver' => 'eloquent',
             'model' => App\Model\Delivery::class,
+        ],
+      'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Admin::class,
         ],
     ],
 
