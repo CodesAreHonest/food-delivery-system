@@ -19,6 +19,7 @@ class TextArea extends Component {
                 name={this.props.name}
                 onChange={this.props.onChange}
                 className={this.props.className}
+                value={this.props.value}
                 placeholder={this.props.placeholder}
                 required={this.props.required}
                 disabled={this.props.disabled}

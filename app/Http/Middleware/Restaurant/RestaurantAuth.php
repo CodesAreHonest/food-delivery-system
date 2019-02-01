@@ -11,7 +11,7 @@ class RestaurantAuth
 
         if ($request->session()->has('restaurant_id')) {
 
-            $request->merge(['restaurant_id', $request->session()->get('restaurant_id')]);
+            $request->merge(['restaurant_id' => $request->session()->get('restaurant_id')]);
 
             return $next($request);
         }

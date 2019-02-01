@@ -16,7 +16,7 @@ Route::prefix('member')->group (function() {
 
 Route::prefix('restaurant')->group (function() {
 
-    Route::post('/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
+    Route::post('/login', 'Restaurant\LoginControlle r@login')->name('post.restaurant.login');
     Route::get('/logout', 'Restaurant\RestaurantController@logout')->name('post.restaurant.logout');
 
     Route::middleware('restaurant_auth')->group(function () {

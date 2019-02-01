@@ -2,14 +2,51 @@ import React, {Component, Fragment} from 'react';
 import {Container, Row, Col, Label, Button} from 'reactstrap';
 
 import StringInput from "../../components/Input/StringInput";
-import EmailInput from "../../components/Input/EmailInput";
 import NavigationBar from "../NavigationBar/NavigationBar";
-import PasswordInput from "../../components/Input/PasswordInput";
 import TextArea from "../../components/Input/TextArea";
+
+import {connect} from 'react-redux';
+import PropTypes from "prop-types";
+
+import {get_restaurant_detail} from "./EditRestaurantAction";
 
 class EditRestaurant extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            restaurant_id: '',
+            restaurant_name: '',
+            address: '',
+        };
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.get_restaurant_detail();
+    }
+
+    componentDidUpdate(prevProps) {
+
+        if (prevProps.restaurant_detail !== this.props.restaurant_detail) {
+
+            const {
+                s_restaurant_id,
+                s_restaurant_name,
+                s_address
+            } = this.props.restaurant_detail;
+
+            this.setState({
+                restaurant_id: s_restaurant_id,
+                restaurant_name: s_restaurant_name,
+                address: s_address,
+            });
+        }
+    }
+
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
@@ -33,6 +70,7 @@ class EditRestaurant extends Component {
                                         name="restaurant_id"
                                         id="restaurant_id"
                                         className="form-control"
+                                        value={this.state.restaurant_id}
                                         disabled={true}
                                         required={true}
                                     />
@@ -40,10 +78,12 @@ class EditRestaurant extends Component {
 
                                 <Col md={6}>
                                     <Label>Restaurant Name: </Label>
-                                    <EmailInput
+                                    <StringInput
                                         name="restaurant_name"
                                         id="restaurant_name"
                                         className="form-control"
+                                        value={this.state.restaurant_name}
+                                        onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>
@@ -53,9 +93,9 @@ class EditRestaurant extends Component {
                                     <TextArea
                                         id="register_address"
                                         style={{minWidth: '100%', minHeight: '40px', mfarginBottom: '20px'}}
-                                        name="register_address"
-                                        placeholder="552 Meadowbrook Ave. Florence, SC 29501"
-                                        // onChange={this.onChange}
+                                        name="address"
+                                        value={this.state.address}
+                                        onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>
@@ -71,4 +111,15 @@ class EditRestaurant extends Component {
     }
 }
 
-export default EditRestaurant;
+EditRestaurant.propTypes = {
+    restaurant_detail: PropTypes.any,
+};
+
+const mapStateToProps = state => ({
+    restaurant_detail: state.restaurant.restaurant_detail,
+});
+
+const mapDispatchToProps = {
+    get_restaurant_detail,
+};
+export default connect(mapStateToProps, mapDispatchToProps)(EditRestaurant);
