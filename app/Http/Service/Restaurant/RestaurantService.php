@@ -91,7 +91,7 @@ class RestaurantService extends BaseService
         }
 
         $restaurant['s_restaurant_name'] = $request['restaurant_name'];
-        $restaurant['s_password']  = Hash::make($request['password']);
+        $restaurant['s_address']        = $request['address'];
 
         $result = $restaurant->save();
 

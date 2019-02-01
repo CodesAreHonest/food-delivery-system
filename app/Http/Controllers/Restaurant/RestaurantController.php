@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Restaurant;
 
-use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Restaurant\RestaurantService;
@@ -28,8 +27,7 @@ class RestaurantController extends Controller
         $rules = [
         	'restaurant_id'         => 'required|string|max:50',
             'restaurant_name'       => 'required|string|max:100',
-            'password'              => 'required|string|min:6|max:255',
-           	'confirm_password'      => 'required_with:password|same:password'
+            'address'               => 'required|string|max:100',
         ];
 
         $validation = $this->restaurantService->validator($request->all(), $rules);
@@ -102,7 +100,7 @@ class RestaurantController extends Controller
 
         Session::forget('restaurant_id');
 
-        return redirect('/restaurant/login');
+        return redirect()->route('restaurant.login');
     }
 
 }

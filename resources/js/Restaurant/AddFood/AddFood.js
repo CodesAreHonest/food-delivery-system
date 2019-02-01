@@ -14,13 +14,12 @@ import NumberInput from "../../components/Input/NumberInput";
 import ReactSelect from "../../components/Input/ReactSelect";
 
 import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss'
-import DjangoCSRFToken from 'django-react-csrftoken'
+import 'sweetalert2/src/sweetalert2.scss';
+import DjangoCSRFToken from 'django-react-csrftoken';
 
 import {add_food, add_food_preview} from "./AddFoodAction";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import swal from "sweetalert2";
 
 const labelStyle = {
     marginTop: '10px'
@@ -82,8 +81,8 @@ class AddFood extends Component {
             let {data: url} = this.props.add_food_preview_response.data;
 
             const food_image_preview = `${window.location.protocol}//${window.location.hostname}/${url}`;
-            this.setState({food_image_preview});
 
+            this.setState({food_image_preview});
         }
     }
 
