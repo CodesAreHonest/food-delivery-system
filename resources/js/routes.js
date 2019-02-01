@@ -36,15 +36,12 @@ export const routes = [{
     path: '/restaurant/manage/account',
     component: EditRestaurant
 }, {
-    path: '/restaurant',
-    component: RestaurantHome
+    path: '/restaurant/',
+    component: AddFood
 }, {
     path: '/restaurant/delivery/list',
     component: DeliveryList
 }, {
     path: '/restaurant/delivery/team',
     component: DeliveryTeam
-}, {
-    path: '/restaurant/add/food',
-    component: AddFood
 }];

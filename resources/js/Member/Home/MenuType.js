@@ -1,4 +1,7 @@
 export const category_options = [{
+    value: 'all',
+    label: 'All'
+}, {
     value: 'cuisine',
     label: 'Cuisine'
 }, {

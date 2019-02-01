@@ -29,7 +29,7 @@ class NavigationBar extends Component {
                             <Nav className="ml-auto" navbar>
                                 <NavigationItem
                                     name="Add Food"
-                                    url="/restaurant/add/food"
+                                    url="/restaurant/"
                                 />
                                 <NavigationItem
                                     name="Delivery Information"

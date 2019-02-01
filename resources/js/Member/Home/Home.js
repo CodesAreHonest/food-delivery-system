@@ -21,7 +21,7 @@ class Home extends Component {
         super(props);
 
         this.state = {
-            category: ''
+            category: {label: 'All', value: 'all'}
         };
 
         this.onChange = this.onChange.bind(this);
@@ -52,7 +52,7 @@ class Home extends Component {
                                     options={category_options}
                                     value={this.state.category}
                                     onChange={this.onSelectChange}
-                                    placeholder="Category"
+                                    placeholder="All"
                                 />
                             </Col>
 

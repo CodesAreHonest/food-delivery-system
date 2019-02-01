@@ -29,9 +29,6 @@ Route::prefix('restaurant')->group(function() {
 
         Route::get('/delivery/list', 'FoodDeliveryController@index')->name('restaurant.delivery.list');
         Route::get('/delivery/team', 'FoodDeliveryController@index')->name('restaurant.delivery.team');
-
-        Route::get('/add/food', 'FoodDeliveryController@index')->name('restaurant.add.food');
-
     });
 
 });
