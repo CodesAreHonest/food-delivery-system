@@ -44,10 +44,6 @@ class Register extends Component {
 
             let {msgType, msgTitle, msg, response_code} = this.props.register_restaurant_response.data;
 
-            if (response_code === 200) {
-                this.resetForm();
-            }
-
             Swal.fire({
                 type: msgType,
                 title: msgTitle,
@@ -59,6 +55,9 @@ class Register extends Component {
                 timer: 2000
             }).then (() => {
 
+                if (response_code === 200) {
+                    this.resetForm();
+                }
             })
         }
 

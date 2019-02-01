@@ -17,7 +17,7 @@ import Swal from 'sweetalert2';
 import 'sweetalert2/src/sweetalert2.scss'
 import DjangoCSRFToken from 'django-react-csrftoken'
 
-import {add_food} from "./AddFoodAction";
+import {add_food, add_food_preview} from "./AddFoodAction";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import swal from "sweetalert2";
@@ -29,6 +29,7 @@ const labelStyle = {
 const initialState = {
     food_name: '',
     food_price: '',
+    food_image_preview: null,
     food_image: null,
     food_category: {label: 'Soup', value: 'soup'},
     food_description: ''
@@ -41,6 +42,7 @@ class AddFood extends Component {
         this.state = initialState;
 
         this.addFood = this.addFood.bind(this);
+        this.foodPreview = this.foodPreview.bind(this);
         this.resetState = this.resetState.bind(this);
     }
 
@@ -48,17 +50,20 @@ class AddFood extends Component {
         this.setState(initialState);
     }
 
+    foodPreview(e) {
+        this.setState({food_image: e.target.files[0]}, () => {
+
+            const data = new FormData();
+            data.append('food_image', this.state.food_image);
+            this.props.add_food_preview(data);
+        })
+    }
+
     componentDidUpdate(prevProps) {
 
         if (prevProps.add_food_response !== this.props.add_food_response) {
 
-            let {data, status} = this.props.add_food_response;
-
-            if (status === 200) {
-                this.resetState();
-            }
-
-            let {msgType, msgTitle, msg} = data;
+            let {msgType, msgTitle, msg} = this.props.add_food_response.data;
 
             Swal.fire({
                 type: msgType,
@@ -70,6 +75,15 @@ class AddFood extends Component {
                 confirmButtonText: 'Ok',
                 timer: 2000
             })
+        }
+
+        if (prevProps.add_food_preview_response !== this.props.add_food_preview_response) {
+
+            let {data: url} = this.props.add_food_preview_response.data;
+
+            const food_image_preview = `${window.location.protocol}//${window.location.hostname}/${url}`;
+            this.setState({food_image_preview});
+
         }
     }
 
@@ -191,7 +205,7 @@ class AddFood extends Component {
                                         id="food_image"
                                         required={true}
                                         value={this.state.file}
-                                        onChange={(e) => this.setState({food_image: e.target.files[0]})}
+                                        onChange={this.foodPreview}
                                     />
 
                                     <Label
@@ -223,6 +237,7 @@ class AddFood extends Component {
                                     food_name={this.state.food_name}
                                     food_price={this.state.food_price}
                                     food_description={this.state.food_description}
+                                    image={this.state.food_image_preview}
                                     checkout_quantity={1}
                                     quantity_disabled={true}
                                 />
@@ -239,15 +254,19 @@ class AddFood extends Component {
 
 AddFood.propTypes = {
     add_food: PropTypes.func.isRequired,
-    add_food_response: PropTypes.any
+    add_food_response: PropTypes.any,
+    add_food_preview: PropTypes.func.isRequired,
+    add_food_preview_response: PropTypes.any,
 };
 
 const mapStateToProps = state => ({
     add_food_response: state.food.add_food_response,
+    add_food_preview_response: state.food.add_food_preview_response,
 });
 
 const mapDispatchToProps = {
-    add_food
+    add_food,
+    add_food_preview
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFood);

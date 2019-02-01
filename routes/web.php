@@ -18,6 +18,7 @@ Route::prefix('member')->group(function() {
 Route::prefix('restaurant')->group(function() {
 
     Route::get('/login', 'FoodDeliveryController@index')->name('restaurant.login');
+
     Route::get('/', 'FoodDeliveryController@index')->name('restaurant.home');
 
     // Edit Profile

@@ -34,14 +34,42 @@ class FoodController extends Controller
 
         switch ($add_food['response_code']) {
             case 200:
-                return response()->json ($add_food, 200);
+                return response()->json ($add_food);
             case 500:
-                return response()->json ($add_food, 500);
+                return response()->json ($add_food);
             default:
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function addFoodPreview (Request $request) {
+
+        $rules = [
+            'food_image'    => 'required|mimes:jpeg,png,jpg,gif,svg|max:5120000',
+        ];
+
+        $validation = $this->foodService->validator ($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation, 422);
+        }
+
+        $addFoodPreview = $this->foodService->addFoodPreview($request);
+
+        switch ($addFoodPreview['response_code']) {
+            case 200:
+                return response()->json ($addFoodPreview);
+            case 500:
+                return response()->json ($addFoodPreview);
+            default:
+                return response()->json ([
+                    'response_code' => 502,
+                    'response_msg'  => 'Bad gateway'
+                ], 502);
+        }
+
     }
 }

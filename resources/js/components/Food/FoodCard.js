@@ -27,12 +27,15 @@ class FoodCard extends Component {
 
                     <hr />
 
-                    <CardImg
-                        top
-                        width="100%"
-                        alt="Food Image"
-                        src={this.props.image}
-                    />
+                    {this.props.image === null ? <h6 className="text-center">Food Image</h6> :
+                        <CardImg
+                            top
+                            width="100%"
+                            alt="Food Image"
+                            src={this.props.image}
+                        />}
+
+
 
                     <hr />
 
@@ -56,7 +59,7 @@ class FoodCard extends Component {
                         </Col>
 
                         <Col md={5} className="text-right">
-                            <Button color="success">Add to Cart</Button>
+                            <Button color="success" disabled>Add to Cart</Button>
                         </Col>
                     </Row>
 
@@ -75,10 +78,10 @@ FoodCard.propTypes = {
     className: PropTypes.string,
     checkout_quantity: PropTypes.any,
     quantity_disabled: PropTypes.bool,
+    image: PropTypes.string,
 };
 
 FoodCard.defaultProps = {
-    image: `http://${window.location.hostname}/images/food_preview.png`,
     checkout_quantity: 1,
     quantity_disabled: false,
 };
