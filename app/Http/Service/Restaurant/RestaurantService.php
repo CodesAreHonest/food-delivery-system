@@ -15,10 +15,10 @@ class RestaurantService extends BaseService
     public function register($request) {
 
         $input = [
-            's_restaurant_id'    => $request['restaurant_id'],
-            's_restaurant_name'       => $request['restaurant_name'],
-            's_password'    => Hash::make($request['password']),
-            's_address'     => $request['address']
+            's_restaurant_id'           => $request['restaurant_id'],
+            's_restaurant_name'         => $request['restaurant_name'],
+            's_password'                => Hash::make($request['password']),
+            's_address'                 => $request['register_address']
         ];
 
         $restaurant = Restaurant::insert($input);

@@ -11,6 +11,7 @@ class RestaurantController extends Controller
     private  $restaurantService;
 
     public function __construct(RestaurantService $restaurantService) {
+        $this->middleware('auth:restaurant');
         $this->restaurantService = $restaurantService;
     }
 
@@ -23,8 +24,8 @@ class RestaurantController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'restaurant_id'                 => 'required|string|max:50',
-            'restaurant_name'                 => 'required|string|max:100',
+        	'restaurant_id'         => 'required|string|max:50',
+            'restaurant_name'       => 'required|string|max:100',
             'password'              => 'required|string|min:6|max:255',
            	'confirm_password'      => 'required_with:password|same:password'
         ];

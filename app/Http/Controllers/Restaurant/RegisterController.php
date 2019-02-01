@@ -23,17 +23,17 @@ class RegisterController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'restaurant_id'              => 'required|string|unique:restaurant,s_restaurant_id|max:50',
-            'restaurant_name'                 => 'required|string|max:100',
+            'restaurant_id'         => 'required|string|unique:restaurant,s_restaurant_id|max:50',
+            'restaurant_name'       => 'required|string|max:100',
             'password'              => 'required|string|min:6|max:255',
             'confirm_password'      => 'required_with:password|same:password',
-            'address'               => 'required|string|max:255'
+            'register_address'      => 'required|string|max:255'
         ];
 
         $validation = $this->restaurantService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -48,9 +48,9 @@ class RegisterController extends Controller
 
         switch ($register['response_code']) {
             case 200:
-                return response()->json ($register,200);
+                return response()->json ($register);
             case 500:
-                return response()->json ($register, 500);
+                return response()->json ($register);
             default:
                 return response()->json ([
                     'response_code' => 502,

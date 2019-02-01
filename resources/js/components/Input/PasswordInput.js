@@ -18,6 +18,8 @@ class PasswordInput extends Component {
                 type="password"
                 id={this.props.id}
                 name={this.props.name}
+                value={this.props.value}
+                onChange={this.props.onChange}
                 className={this.props.className}
                 placeholder={this.props.placeholder}
                 required={this.props.required}
@@ -41,7 +43,9 @@ PasswordInput.propTypes = {
     id: PropTypes.string.isRequired,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    value: PropTypes.string,
+    onChange: PropTypes.func
 };
 
 

@@ -15,4 +15,5 @@ export const add_food = (data) => dispatch => {
     })).catch(err => {
         console.log(err);
     });
+
 };

@@ -47,7 +47,6 @@ StringInput.propTypes = {
     disabled: PropTypes.bool,
     maxLength: PropTypes.string,
     value: PropTypes.any,
-
 };
 
 

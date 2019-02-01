@@ -18,9 +18,9 @@ Route::prefix('restaurant')->group (function() {
 
     Route::post('/add/food', 'Restaurant\FoodController@addFood');
 
-    Route::post('/restaurant/register', 'Restaurant\RegisterController@register')->name('post.restaurant.register');
-    Route::post('/restaurant/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
-    Route::post('/restaurant/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.restaurant.updateRestaurant');
+    Route::post('/register', 'Restaurant\RegisterController@register')->name('post.restaurant.register');
+    Route::post('/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
+    Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.restaurant.updateRestaurant');
 
 });
 
