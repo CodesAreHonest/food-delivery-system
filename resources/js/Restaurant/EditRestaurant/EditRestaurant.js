@@ -5,6 +5,7 @@ import StringInput from "../../components/Input/StringInput";
 import EmailInput from "../../components/Input/EmailInput";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import PasswordInput from "../../components/Input/PasswordInput";
+import TextArea from "../../components/Input/TextArea";
 
 class EditRestaurant extends Component {
     constructor(props) {
@@ -33,6 +34,7 @@ class EditRestaurant extends Component {
                                         id="restaurant_id"
                                         className="form-control"
                                         disabled={true}
+                                        required={true}
                                     />
                                 </Col>
 
@@ -42,25 +44,18 @@ class EditRestaurant extends Component {
                                         name="restaurant_name"
                                         id="restaurant_name"
                                         className="form-control"
-                                    />
-                                </Col>
-
-                                <Col md={6} style={{marginTop: '20px'}}>
-                                    <Label for="password">Password: </Label>
-                                    <PasswordInput
-                                        id="password"
-                                        name="password"
-                                        placeholder="Minimum 6 characters"
                                         required={true}
                                     />
                                 </Col>
 
-                                <Col md={6} style={{marginTop: '20px'}}>
-                                    <Label for="c_password">Confirm Password: </Label>
-                                    <PasswordInput
-                                        id="c_password"
-                                        name="c_password"
-                                        placeholder="Required to be same with password"
+                                <Col md={12} style={{marginTop: '20px'}}>
+                                    <Label for="register_address">Address: </Label>
+                                    <TextArea
+                                        id="register_address"
+                                        style={{minWidth: '100%', minHeight: '40px', mfarginBottom: '20px'}}
+                                        name="register_address"
+                                        placeholder="552 Meadowbrook Ave. Florence, SC 29501"
+                                        // onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>

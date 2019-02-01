@@ -7,6 +7,7 @@ use App\Model\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Session;
 
 class RestaurantService extends BaseService
 {
@@ -53,6 +54,9 @@ class RestaurantService extends BaseService
         $auth = Auth::guard('restaurant')->attempt($input);
 
         if ($auth) {
+
+            $request->session()->put('restaurant_id', $request['restaurant_id']);
+
             return [
                 'response_code' => 200,
                 'response_msg' => 'success',
@@ -107,6 +111,25 @@ class RestaurantService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Update Successful',
             'msg'           => ''
+        ];
+    }
+
+    public function getRestaurant ($request) {
+
+        $restaurant = Restaurant::getDetail($request['restaurant_id']);
+
+        if ($restaurant) {
+
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'success',
+                'restaurant'    => $restaurant,
+            ];
+        }
+
+        return [
+            'response_code'     => 404,
+            'response_msg'      => 'Not Found'
         ];
     }
 }

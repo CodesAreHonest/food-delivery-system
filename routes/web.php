@@ -19,13 +19,18 @@ Route::prefix('restaurant')->group(function() {
 
     Route::get('/login', 'FoodDeliveryController@index')->name('restaurant.login');
 
-    Route::get('/', 'FoodDeliveryController@index')->name('restaurant.home');
+    Route::group(['middleware' => 'restaurant_auth'], function() {
 
-    // Edit Profile
-    Route::get('/manage/account', 'FoodDeliveryController@index')->name('restaurant.manage.account');
+        Route::get('/', 'FoodDeliveryController@index')->name('restaurant.home');
 
-    Route::get('/delivery/list', 'FoodDeliveryController@index')->name('restaurant.delivery.list');
-    Route::get('/delivery/team', 'FoodDeliveryController@index')->name('restaurant.delivery.team');
+        // Edit Profile
+        Route::get('/manage/account', 'FoodDeliveryController@index')->name('restaurant.manage.account');
 
-    Route::get('/add/food', 'FoodDeliveryController@index')->name('restaurant.add.food');
+        Route::get('/delivery/list', 'FoodDeliveryController@index')->name('restaurant.delivery.list');
+        Route::get('/delivery/team', 'FoodDeliveryController@index')->name('restaurant.delivery.team');
+
+        Route::get('/add/food', 'FoodDeliveryController@index')->name('restaurant.add.food');
+
+    });
+
 });

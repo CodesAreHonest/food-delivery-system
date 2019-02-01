@@ -50,11 +50,9 @@ class UncontrolDropdown extends Component {
                         </DropdownItem>
                     </Link>
                     <DropdownItem divider />
-                    <Link to="/restaurant/login" >
-                        <DropdownItem>
-                            Sign Out
-                        </DropdownItem>
-                    </Link>
+                    <DropdownItem href="api/restaurant/logout">
+                        Sign Out
+                    </DropdownItem>
 
                 </DropdownMenu>
             </Dropdown>

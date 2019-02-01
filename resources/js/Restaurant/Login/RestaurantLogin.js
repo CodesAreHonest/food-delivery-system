@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import StringInput from "../../components/Input/StringInput";
 
 import {login_restaurant} from "./RestaurantLoginAction";
-import Swal from "sweetalert2";
 
 import {connect} from 'react-redux';
 

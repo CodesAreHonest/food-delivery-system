@@ -25,4 +25,22 @@ class Restaurant extends Authenticatable
         return $this->s_password;
     }
 
+    public static function getDetail ($restaurant_id) {
+
+        $restaurant = Restaurant::where('s_restaurant_id', $restaurant_id)
+            ->first();
+
+        $data = $restaurant ? $restaurant : false;
+
+        return $data;
+    }
+
+    public static function get_id_from_restaurant_id ($restaurant_id) {
+
+        $restaurant = Restaurant::where('s_restaurant_id', $restaurant_id)
+            ->first(['id']);
+
+        return $restaurant ? $restaurant['id'] : false;
+    }
+
 }

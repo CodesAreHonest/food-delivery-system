@@ -16,12 +16,19 @@ Route::prefix('member')->group (function() {
 
 Route::prefix('restaurant')->group (function() {
 
-    Route::post('/add/food', 'Restaurant\FoodController@addFood');
-    Route::post('/add/food/preview', 'Restaurant\FoodController@addFoodPreview');
-
-    Route::post('/register', 'Restaurant\RegisterController@register')->name('post.restaurant.register');
     Route::post('/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
-    Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.restaurant.updateRestaurant');
+    Route::get('/logout', 'Restaurant\RestaurantController@logout')->name('post.restaurant.logout');
+
+    Route::middleware('restaurant_auth')->group(function () {
+
+        Route::post('/add/food', 'Restaurant\FoodController@addFood');
+        Route::post('/add/food/preview', 'Restaurant\FoodController@addFoodPreview');
+
+        Route::post('/register', 'Restaurant\RegisterController@register')->name('post.restaurant.register');
+
+        Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.update.restaurant');
+        Route::get('/detail', 'Restaurant\RestaurantController@getRestaurant')->name('get.restaurant.detail');
+    });
 
 });
 

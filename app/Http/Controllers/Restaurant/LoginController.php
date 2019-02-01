@@ -12,11 +12,11 @@ class LoginController extends Controller
     private  $restaurantService;
 
     public function __construct(RestaurantService $restaurantService) {
-        $this->middleware('guest:restaurant')->except('logout');
         $this->restaurantService = $restaurantService;
     }
 
     public function login (Request $request) {
+
 
         $rules = [
             'restaurant_id' => 'required|string|max:50',

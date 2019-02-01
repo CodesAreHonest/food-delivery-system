@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Restaurant;
 
+use App\Model\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Restaurant\RestaurantService;
+use Illuminate\Support\Facades\Session;
 
 class RestaurantController extends Controller
 {
@@ -33,7 +35,7 @@ class RestaurantController extends Controller
         $validation = $this->restaurantService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -49,17 +51,58 @@ class RestaurantController extends Controller
 
         switch ($detail['response_code']) {
             case 200:
-                return response()->json ($detail,200);
+                return response()->json ($detail);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function getRestaurant (Request $request) {
+
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'restaurant_id'         => 'required|string|max:50',
+        ];
+
+        $validation = $this->restaurantService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation, 422);
+        }
+
+        $restaurant = $this->restaurantService->getRestaurant($request);
+
+        switch ($restaurant['response_code']) {
+            case 200:
+                return response()->json ($restaurant);
+            case 404:
+                return response()->json ($restaurant);
+            default:
+                return response()->json ([
+                    'response_code' => 502,
+                    'response_msg'  => 'Bad gateway'
+                ], 502);
+        }
+    }
+
+    public function logout() {
+
+        Session::forget('restaurant_id');
+
+        return redirect('/restaurant/login');
     }
 
 }

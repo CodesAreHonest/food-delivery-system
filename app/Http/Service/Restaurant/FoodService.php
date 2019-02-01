@@ -6,6 +6,7 @@ namespace App\Http\Service\Restaurant;
 use App\Http\Service\BaseService;
 use App\Model\Food;
 use Carbon\Carbon;
+use Illuminate\Filesystem\Filesystem;
 
 class FoodService extends BaseService
 {
@@ -56,10 +57,13 @@ class FoodService extends BaseService
 
         $image = $request->file('food_image');
         $input['image_name'] = "food_preview." . $image->getClientOriginalExtension();
-        $destination_path = public_path('/images');
+        $destination_path = public_path('/preview');
         $image->move($destination_path, $input['image_name']);
 
         if ($image) {
+
+            $file = new Filesystem;
+            $file->cleanDirectory('resources/js/images/preview');
 
             return [
                 'response_code' => 200,
@@ -67,8 +71,9 @@ class FoodService extends BaseService
                 'msgType'       => 'success',
                 'msgTitle'      => 'Food Image Uploaded Successfully.',
                 'msg'           => '',
-                'data'          => "images/" . $input['image_name'],
+                'data'          => "preview/" . $input['image_name'],
             ];
+
         }
 
         return [
