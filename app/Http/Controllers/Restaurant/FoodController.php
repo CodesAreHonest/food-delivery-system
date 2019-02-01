@@ -72,4 +72,51 @@ class FoodController extends Controller
         }
 
     }
+
+    public function getFood(Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'restaurant_id'                 => 'required|string|max:50',
+            'category'                 => 'nullable|string|max:100',
+            'search_text'                 => 'nullable|string|max:100',
+            'order_by'                  =>'required|string|max:50'
+        ];
+
+        $validation = $this->foodService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation, 422);
+        }
+
+        /** ==========================================================================
+         *  Get Food
+         *  ==========================================================================
+         *  @return 200 success
+         *  @return 404 not found
+         *  @return 500 internal server error
+         *  @return 502 bad gateway
+         *  =========================================================================== */
+
+        $detail = $this->foodService->getFood($request);
+
+        switch ($detail['response_code']) {
+            case 200:
+                return response()->json ($detail,200);
+            case 404:
+                return response()->json ($detail, 404);
+            case 500:
+                return response()->json ($detail, 500);
+            default:
+                return response()->json ([
+                    'response_code' => 502,
+                    'response_msg'  => 'Bad gateway'
+                ], 502);
+        }
+    }
 }

@@ -32,3 +32,5 @@ Route::prefix('restaurant')->group (function() {
 
 });
 
+        Route::get('/get/food', 'Restaurant\FoodController@getFood');
+
