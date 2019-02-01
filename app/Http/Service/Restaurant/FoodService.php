@@ -86,4 +86,49 @@ class FoodService extends BaseService
 
 
     }
+
+    public function getFood($request) {
+
+        if ($request->has(['category']) AND $request->has(['search_text'])) {
+            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+                ->where('s_category',$request['category'])
+                ->where('s_name','LIKE', '%'.$request['search_text'].'%')
+                ->orderBy($request['order_by'])
+                ->paginate(8);
+        }else if ($request->has(['category'])) {
+            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+                ->where('s_category',$request['category'])
+                ->orderBy($request['order_by'])
+                ->paginate(8);
+        }elseif($request->has(['search_text'])){
+            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+                ->where('s_name','LIKE', '%'.$request['search_text'].'%')
+                ->orderBy($request['order_by'])
+                ->paginate(8);
+        }else{
+            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+                    ->orderBy($request['order_by'])
+                    ->paginate(8);
+        }
+
+        if (!$food) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Email',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Retrieve Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Retrieve Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Retrieve Successful',
+            'msg'           => '',
+            'food_list'          => $food
+        ];
+
+    }
 }
