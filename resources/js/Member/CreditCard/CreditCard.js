@@ -7,7 +7,8 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 import Sidebar from "../Sidebar/Sidebar";
 
 import {connect} from 'react-redux';
-import {get_user_profile} from "../EditProfile/EditMemberAction";
+import {get_user_profile, post_update_credit_card} from "../EditProfile/EditMemberAction";
+import Swal from "sweetalert2";
 
 class CreditCard extends Component {
     constructor(props){
@@ -22,6 +23,7 @@ class CreditCard extends Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -58,10 +60,73 @@ class CreditCard extends Component {
                 this.setState({alert});
             }
         }
+
+        if (prevProps.update_response !== this.props.update_response) {
+
+            const {msgType, msgTitle, msg, card_updated} = this.props.update_response.data;
+
+            if (card_updated) {
+                this.setState({alert: null});
+            }
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            });
+
+        }
     }
 
     onChange(e) {
         this.setState({[e.target.name]: e.target.value})
+    }
+
+    onSubmit(e) {
+
+        e.preventDefault();
+
+        let form = document.getElementById('update_credit_card_form');
+
+        if (!form.checkValidity()) { return false; }
+
+        Swal.fire({
+            type: 'warning',
+            title: 'Are you sure?',
+            text: '',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Update Credit Card (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+                this.props.post_update_credit_card(this.state);
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
+
+
     }
 
     render() {
@@ -83,7 +148,7 @@ class CreditCard extends Component {
 
                             {this.state.alert}
 
-                            <Form>
+                            <Form id="update_credit_card_form" onSubmit={this.onSubmit}>
                                 <Row>
                                     <Col md={4}>
                                         <Label>Card Name: </Label>
@@ -128,8 +193,8 @@ class CreditCard extends Component {
                                     <Col md={2}>
                                         <Label>CVC: </Label>
                                         <StringInput
-                                            name="CVC"
-                                            id="CVC"
+                                            name="cvc"
+                                            id="cvc"
                                             className="form-control"
                                             placeholder="133"
                                             maxLength="3"
@@ -139,9 +204,10 @@ class CreditCard extends Component {
                                         />
                                     </Col>
                                 </Row>
-                            </Form>
 
-                            <Button color="primary" type="submit" style={{marginTop: '20px'}}>Save Changes</Button>
+                                <Button color="primary" type="submit" style={{marginTop: '20px'}}>Save Changes</Button>
+
+                            </Form>
                         </div>
                     </section>
                 </div>
@@ -153,15 +219,19 @@ class CreditCard extends Component {
 
 CreditCard.propTypes = {
     detail: PropTypes.any,
-    get_user_profile: PropTypes.func.isRequired
+    get_user_profile: PropTypes.func.isRequired,
+    update_member_card_response: PropTypes.any,
+    post_update_credit_card: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-    detail: state.member.detail
+    detail: state.member.detail,
+    update_response: state.member.update_member_card_response
 });
 
 const mapDispatchToProps = {
-    get_user_profile
+    get_user_profile,
+    post_update_credit_card
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CreditCard);

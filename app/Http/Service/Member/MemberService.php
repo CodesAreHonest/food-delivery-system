@@ -146,7 +146,7 @@ class MemberService extends BaseService
 
     public function updateCreditCard($request) {
 
-        $member = Member::where('s_email', $request['email'])->first();
+        $member = Member::where('s_email', $request['member_email'])->first();
 
         if (!$member) {
             return [
@@ -158,31 +158,35 @@ class MemberService extends BaseService
             ];
         }
 
-        $member['s_card_name']      = $request['card_name'];
-        $member['s_card_number']    = $request['card_number'];
-        $member['s_expired_date']   = $request['card_expired_date'];
-        $member['n_cvc']            = $request['cvc'];
-        $member['created_at']       = Carbon::now()->toDateTimeString();
-        $member['updated_at']       = Carbon::now()->toDateTimeString();
+        $member->s_card_name        = $request['card_name'];
+        $member->s_card_number      = $request['card_number'];
+        $member->s_expired_date     = $request['card_expired_date'];
+        $member->n_cvc              = $request['cvc'];
 
         $result = $member->save();
 
         if (!$result) {
+
             return [
                 'response_code' => 500,
                 'response_msg'  => 'Internal Server Error',
                 'msgType'       => 'error',
                 'msgTitle'      => 'Update Unsuccessful',
-                'msg'           => ''
+                'msg'           => '',
+                'card_updated'  => false,
             ];
         }
+
+        Member::where('s_email', $request['member_email'])
+            ->update(['b_card_information' => 1]);
 
         return [
             'response_code' => 200,
             'response_msg'  => 'Update Successful',
             'msgType'       => 'success',
             'msgTitle'      => 'Update Successful',
-            'msg'           => ''
+            'msg'           => '',
+            'card_updated'  => true,
         ];
     }
 

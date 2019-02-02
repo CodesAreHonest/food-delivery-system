@@ -3,6 +3,7 @@ const LOGIN_MEMBER          = 'LOGIN_MEMBER';
 const GET_USER_PROFILE      = 'GET_USER_PROFILE';
 const UPDATE_USER_PROFILE   = 'UPDATE_USER_PROFILE';
 const UPDATE_USER_LOCATION  = 'UPDATE_USER_LOCATION';
+const UPDATE_CREDIT_CARD    = 'UPDATE_CREDIT_CARD';
 
 
 const initialState = {
@@ -39,6 +40,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 update_member_location_response: action.payload
+            };
+        case UPDATE_CREDIT_CARD:
+            return {
+                ...state,
+                update_member_card_response: action.payload
             };
         default:
             return state;

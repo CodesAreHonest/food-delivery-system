@@ -208,11 +208,11 @@ class MemberController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'email'                 => 'required|email|max:100',
+        	'member_email'              => 'required|email|max:100',
             'card_name'                 => 'required|string|max:50',
-            'card_number'              => 'required|digits:13',
-            'card_expired_date'               => 'required|string|max:5',
-            'cvc'              		 => 'required|string|max:3'
+            'card_number'               => 'required|digits:16',
+            'card_expired_date'         => 'required|string|max:5',
+            'cvc'              		    => 'required|string|max:3'
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);
