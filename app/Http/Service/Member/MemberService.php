@@ -108,7 +108,7 @@ class MemberService extends BaseService
 
     public function updateDetail($request) {
 
-        $member = Member::where('s_email', $request['email'])->first();
+        $member = Member::where('s_email', $request['member_email'])->first();
 
         if (!$member) {
             return [
@@ -120,11 +120,10 @@ class MemberService extends BaseService
             ];
         }
 
-        $member['s_username'] = $request['username'];
-        $member['s_address']  = $request['address'];
-        $member['s_password'] = $request['password'];
+        $params['s_username'] = $request['username'];
+        $params['s_password'] = Hash::make($request['password']);
 
-        $result = $member->save();
+        $result = $member->update($params);
 
         if (!$result) {
             return [
@@ -167,6 +166,48 @@ class MemberService extends BaseService
         $member['updated_at']       = Carbon::now()->toDateTimeString();
 
         $result = $member->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
+
+    public function updateLocation ($request) {
+
+        $member = Member::where('s_email', $request['email'])->first();
+
+        if (!$member) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'Data not found',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Member data not found',
+                'msg'           => ''
+            ];
+        }
+
+        $params = [
+            's_address'     => $request['address'],
+            's_city'        => $request['city'],
+            's_state'       => $request['state'],
+            's_country'     => $request['country'],
+        ];
+
+        $result = $member->update($params);
 
         if (!$result) {
             return [

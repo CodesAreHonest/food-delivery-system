@@ -11,7 +11,8 @@ Route::prefix('member')->group (function() {
     Route::middleware('member_auth')->group(function() {
 
         Route::get('/detail', 'Member\MemberController@getDetail')->name('post.member.getDetail');
-        Route::post('/update/detail', 'Member\MemberController@updateDetail')->name('post.member.updateDetail');
+        Route::post('/update/detail', 'Member\MemberController@updateDetail')->name('post.member.update.detail');
+        Route::post('/update/location', 'Member\MemberController@updateLocation')->name('post.member.update.location');
         Route::post('/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
     });
 

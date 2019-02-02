@@ -114,7 +114,7 @@ class MemberController extends Controller
 
         $rules = [
             'member_email'          => 'required|email|max:100',
-            'username'              => 'required|string|max:50|unique:member,s_username',
+            'username'              => 'required|string|max:50',
             'password'              => 'required|string|min:6|max:255',
             'confirm_password'      => 'required_with:password|same:password',
         ];
@@ -122,7 +122,7 @@ class MemberController extends Controller
         $validation = $this->memberService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -134,15 +134,63 @@ class MemberController extends Controller
          *  @return 502 bad gateway
          *  =========================================================================== */
 
-        $detail = $this->memberService->updateDetail($request);
+        $detail = $this->memberService->updateDetail ($request);
 
         switch ($detail['response_code']) {
             case 200:
                 return response()->json ($detail,200);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
+            default:
+                return response()->json ([
+                    'response_code' => 502,
+                    'response_msg'  => 'Bad gateway'
+                ], 502);
+        }
+    }
+
+    public function updateLocation (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'member_email'      => 'required|email|max:100',
+            'address'           => 'required|string|max:255',
+            'city'              => 'required|string|max:100',
+            'state'             => 'required|string|max:100',
+            'country'           => 'required|string|max:100',
+        ];
+
+        $validation = $this->memberService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        /** ==========================================================================
+         *  Update Member Location
+         *  ==========================================================================
+         *  @return 200 success
+         *  @return 404 not found
+         *  @return 500 internal server error
+         *  @return 502 bad gateway
+         *  =========================================================================== */
+
+        $detail = $this->memberService->updateLocation ($request);
+
+        switch ($detail['response_code']) {
+            case 200:
+                return response()->json ($detail,200);
+            case 404:
+                return response()->json ($detail);
+            case 500:
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,

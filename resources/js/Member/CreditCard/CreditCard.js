@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Row, Col, Label, Button, Form, Alert} from 'reactstrap';
+import {Row, Col, Label, Button, Form, UncontrolledAlert} from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import StringInput from "../../components/Input/StringInput";
@@ -52,13 +52,11 @@ class CreditCard extends Component {
             }
             else {
                 const alert = (
-                    <Alert color="info">We noticed you have yet to update your credit card information. </Alert>
+                    <UncontrolledAlert color="info">We noticed you have yet to update your credit card information. </UncontrolledAlert>
                 );
 
                 this.setState({alert});
             }
-
-
         }
     }
 
