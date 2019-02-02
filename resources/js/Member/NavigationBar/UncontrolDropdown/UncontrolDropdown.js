@@ -50,9 +50,6 @@ class UncontrolDropdown extends Component {
                         </DropdownItem>
                     </Link>
                     <DropdownItem>
-                        Order History
-                    </DropdownItem>
-                    <DropdownItem>
                         Favourites
                     </DropdownItem>
                     <DropdownItem divider />
