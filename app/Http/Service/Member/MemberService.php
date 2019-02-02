@@ -83,7 +83,7 @@ class MemberService extends BaseService
     public function getDetail($request) {
 
 
-        $member = Member::where('s_email', $request['email'])->first();
+        $member = Member::where('s_email', $request['member_email'])->first();
 
         if (!$member) {
             return [
@@ -101,7 +101,7 @@ class MemberService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Retrieve Successful',
             'msg'           => '',
-            'card_name'          => $member
+            'member_detail' => $member
         ];
 
     }
@@ -122,9 +122,7 @@ class MemberService extends BaseService
 
         $member['s_username'] = $request['username'];
         $member['s_address']  = $request['address'];
-        $member['s_city']  = $request['city'];
-        $member['s_state']  = $request['state'];
-        $member['s_country']  = $request['country'];
+        $member['s_password'] = $request['password'];
 
         $result = $member->save();
 

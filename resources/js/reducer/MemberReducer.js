@@ -1,10 +1,12 @@
-const REGISTER_MEMBER = 'REGISTER_MEMBER';
-const LOGIN_MEMBER = 'LOGIN_MEMBER';
+const REGISTER_MEMBER   = 'REGISTER_MEMBER';
+const LOGIN_MEMBER      = 'LOGIN_MEMBER';
+const GET_USER_PROFILE  = 'GET_USER_PROFILE';
 
 
 const initialState = {
     register_member_response: [],
-    login_member_response: []
+    login_member_response: [],
+    detail: []
 };
 
 export default function (state = initialState, action) {
@@ -18,6 +20,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 login_member_response: action.payload
+            };
+        case GET_USER_PROFILE:
+            return {
+                ...state,
+                detail: action.payload
             };
         default:
             return state;

@@ -23,13 +23,13 @@ class MemberController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'email'                 => 'required|email|max:100'
+            'member_email'                 => 'required|email|max:100'
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -47,9 +47,9 @@ class MemberController extends Controller
             case 200:
                 return response()->json ($detail,200);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,
@@ -58,7 +58,7 @@ class MemberController extends Controller
         }
     }
 
-    public function getCreaditCard(Request $request) {
+    public function getCreditCard(Request $request) {
 
         /** ==========================================================================
          *  Payload validation
@@ -113,12 +113,10 @@ class MemberController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'email'                 => 'required|email|max:100',
-            'username'              => 'required|string|max:50',
-            'address'               => 'required|string|max:255',
-            'city'               => 'required|string|max:100',
-            'state'               => 'required|string|max:100',
-            'country'               => 'required|string|max:100'
+            'member_email'          => 'required|email|max:100',
+            'username'              => 'required|string|max:50|unique:member,s_username',
+            'password'              => 'required|string|min:6|max:255',
+            'confirm_password'      => 'required_with:password|same:password',
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);
@@ -207,4 +205,5 @@ class MemberController extends Controller
 
         return redirect()->route('member.login');
     }
+
 }

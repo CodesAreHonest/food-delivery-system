@@ -29,7 +29,7 @@ const initialState = {
     food_name: '',
     food_price: '',
     food_image_preview: null,
-    food_image: null,
+    food_image: '',
     food_category: {label: 'Soup', value: 'soup'},
     food_description: ''
 };
@@ -62,7 +62,11 @@ class AddFood extends Component {
 
         if (prevProps.add_food_response !== this.props.add_food_response) {
 
-            let {msgType, msgTitle, msg} = this.props.add_food_response.data;
+            let {msgType, msgTitle, msg, response_code} = this.props.add_food_response.data;
+
+            if (response_code === 200) {
+                this.resetState();
+            }
 
             Swal.fire({
                 type: msgType,

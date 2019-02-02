@@ -29,9 +29,9 @@ Route::prefix('restaurant')->group (function() {
 
         Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.update.restaurant');
         Route::get('/detail', 'Restaurant\RestaurantController@getRestaurant')->name('get.restaurant.detail');
+
+        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
     });
 
 });
-
-Route::get('/get/food', 'Restaurant\FoodController@getFood');
 
