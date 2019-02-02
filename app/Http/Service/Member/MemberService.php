@@ -188,7 +188,7 @@ class MemberService extends BaseService
 
     public function updateLocation ($request) {
 
-        $member = Member::where('s_email', $request['email'])->first();
+        $member = Member::where('s_email', $request['member_email'])->first();
 
         if (!$member) {
             return [

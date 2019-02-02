@@ -38,19 +38,9 @@ export const post_update_profile = (data) => dispatch => {
 
 export const post_update_location = (data) => dispatch => {
 
-    const {
-        username,
-        password,
-        c_password: confirm_password
-    } = data;
-
-    const params = {
-        username, password, confirm_password
-    };
-
-    axios.post('/api/member/update/location', params)
+    axios.post('/api/member/update/location', data)
         .then (response => dispatch ({
-            type: UPDATE_USER_PROFILE,
+            type: UPDATE_USER_LOCATION,
             payload: response,
         })).catch (err => {
         console.warn (err);

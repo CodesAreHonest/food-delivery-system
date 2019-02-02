@@ -2,6 +2,7 @@ const REGISTER_MEMBER       = 'REGISTER_MEMBER';
 const LOGIN_MEMBER          = 'LOGIN_MEMBER';
 const GET_USER_PROFILE      = 'GET_USER_PROFILE';
 const UPDATE_USER_PROFILE   = 'UPDATE_USER_PROFILE';
+const UPDATE_USER_LOCATION  = 'UPDATE_USER_LOCATION';
 
 
 const initialState = {
@@ -9,6 +10,7 @@ const initialState = {
     login_member_response: [],
     detail: [],
     update_member_profile_response: [],
+    update_member_location_response: [],
 };
 
 export default function (state = initialState, action) {
@@ -32,6 +34,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 update_member_profile_response: action.payload
+            };
+        case UPDATE_USER_LOCATION:
+            return {
+                ...state,
+                update_member_location_response: action.payload
             };
         default:
             return state;
