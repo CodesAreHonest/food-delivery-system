@@ -11,7 +11,6 @@ class LoginController extends Controller
     private $memberService;
 
     public function __construct(MemberService $memberService) {
-        $this->middleware('guest:member')->except('logout');
         $this->memberService = $memberService;
     }
 
@@ -25,7 +24,7 @@ class LoginController extends Controller
         $validation = $this->memberService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         $login = $this->memberService->login ($request);
@@ -34,12 +33,12 @@ class LoginController extends Controller
             case 200:
                 return response()->json ($login, 200);
             case 401:
-                return response()->json ($login, 401);
+                return response()->json ($login);
             default:
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
-                ], 502);
+                ]);
         }
     }
 }

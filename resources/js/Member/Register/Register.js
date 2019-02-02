@@ -30,6 +30,13 @@ class Register extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.resetForm = this.resetForm.bind(this);
+
+        this.initialState = this.state;
+    }
+
+    resetForm() {
+        this.setState(this.initialState);
     }
 
     componentDidUpdate (prevProps) {
@@ -37,6 +44,10 @@ class Register extends Component {
         if (this.props.register_response !== prevProps.register_response) {
 
             let {msgType, msgTitle, msg, response_code} = this.props.register_response.data;
+
+            if (response_code === 200) {
+                this.resetForm();
+            }
 
             Swal.fire({
                 type: msgType,
@@ -47,11 +58,6 @@ class Register extends Component {
                 allowEnterKey: true,
                 confirmButtonText: 'Ok',
                 timer: 2000
-            }).then (() => {
-
-                // if (response_code === 200) {
-                //     this.resetForm();
-                // }
             })
 
         }

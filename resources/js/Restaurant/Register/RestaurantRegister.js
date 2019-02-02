@@ -133,6 +133,7 @@ class Register extends Component {
                                     id="register_restaurant_name"
                                     name="register_restaurant_name"
                                     placeholder="ABC Restaurant"
+                                    value={this.state.register_restaurant_name}
                                     onChange={this.onChange}
                                     required={true}
                                 />
@@ -144,6 +145,7 @@ class Register extends Component {
                                     id="register_password"
                                     name="register_password"
                                     placeholder="Minimum 6 characters"
+                                    value={this.state.register_password}
                                     onChange={this.onChange}
                                     required={true}
                                 />
@@ -155,6 +157,7 @@ class Register extends Component {
                                     id="register_c_password"
                                     name="register_c_password"
                                     placeholder="Required to be same with password"
+                                    value={this.state.register_c_password}
                                     onChange={this.onChange}
                                     required={true}
                                 />
@@ -167,6 +170,7 @@ class Register extends Component {
                                     style={{minWidth: '100%', minHeight: '40px', mfarginBottom: '20px'}}
                                     name="register_address"
                                     placeholder="552 Meadowbrook Ave. Florence, SC 29501"
+                                    value={this.state.register_address}
                                     onChange={this.onChange}
                                     required={true}
                                 />
