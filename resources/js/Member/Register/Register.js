@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Button, Col, Form, Label, Row} from "reactstrap";
 
 // Form Input
 import EmailInput from "../../components/Input/EmailInput";
 import PasswordInput from "../../components/Input/PasswordInput";
 import StringInput from "../../components/Input/StringInput";
-import TextArea from "../../components/Input/TextArea";
 
-import {Link} from 'react-router-dom';
 import ReactSelect from "../../components/Input/ReactSelect";
+
+import {connect} from 'react-redux';
+import {register_member} from "./RegisterAction";
+import Swal from "sweetalert2";
 
 class Register extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            register_user_name: '',
+            register_username: '',
             register_email: '',
             register_password: '',
             register_c_password: '',
@@ -26,17 +29,89 @@ class Register extends Component {
         };
 
         this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    componentDidUpdate (prevProps) {
+
+        if (this.props.register_response !== prevProps.register_response) {
+
+            let {msgType, msgTitle, msg, response_code} = this.props.register_response.data;
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            }).then (() => {
+
+                // if (response_code === 200) {
+                //     this.resetForm();
+                // }
+            })
+
+        }
     }
 
     onChange (e) {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    onSubmit (e) {
+
+        e.preventDefault();
+
+        let form = document.getElementById('member_register_form');
+
+        if (!form.checkValidity()) {
+            return false;
+        }
+
+        const data = new FormData(form);
+
+        Swal.fire({
+            type: 'question',
+            title: 'Are you sure?',
+            text: '',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Register (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+
+                this.props.register_member(data);
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
+
+    }
+
     render() {
         return (
             <div className="card">
                 <div className="card-body">
-                    <Form>
+                    <Form id="member_register_form" onSubmit={this.onSubmit}>
 
                         <h4 style={{textAlign: 'center'}}> Personal Information</h4>
 
@@ -45,11 +120,11 @@ class Register extends Component {
                         <Row>
 
                             <Col md={6}>
-                                <Label for="register_user_name">Username: </Label>
+                                <Label for="register_username">Username: </Label>
                                 <StringInput
-                                    id="register_user_name"
-                                    name="register_user_name"
-                                    value={this.state.register_user_name}
+                                    id="register_username"
+                                    name="register_username"
+                                    value={this.state.register_username}
                                     placeholder="Minimum 3 characters with no whitespace"
                                     onChange={this.onChange}
                                     required={true}
@@ -157,4 +232,16 @@ class Register extends Component {
     }
 }
 
-export default Register;
+Register.propTypes = {
+    register_member_response: PropTypes.any
+};
+
+const mapStateToProps = state => ({
+    register_response: state.member.register_member_response
+});
+
+const mapDispatchToProps = ({
+    register_member
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

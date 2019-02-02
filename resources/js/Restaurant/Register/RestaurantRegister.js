@@ -30,8 +30,6 @@ class Register extends Component {
         this.resetForm = this.resetForm.bind(this);
 
         this.defaultState = this.state;
-
-
     }
 
     resetForm() {

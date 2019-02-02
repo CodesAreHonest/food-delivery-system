@@ -16,10 +16,13 @@ class MemberService extends BaseService
     public function register($request) {
 
         $input = [
-            's_username'    => $request['username'],
-            's_email'       => $request['email'],
-            's_password'    => Hash::make($request['password']),
-            's_address'     => $request['address'],
+            's_username'    => $request['register_username'],
+            's_email'       => $request['register_email'],
+            's_password'    => Hash::make($request['register_password']),
+            's_address'     => $request['register_address'],
+            's_city'        => $request['register_city'],
+            's_state'       => $request['register_state'],
+            's_country'     => $request['register_country'],
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString(),
         ];

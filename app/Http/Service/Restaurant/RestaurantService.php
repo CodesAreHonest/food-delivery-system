@@ -15,6 +15,7 @@ class RestaurantService extends BaseService
 
     public function register($request) {
 
+
         $input = [
             's_restaurant_id'           => $request['restaurant_id'],
             's_restaurant_name'         => $request['restaurant_name'],
