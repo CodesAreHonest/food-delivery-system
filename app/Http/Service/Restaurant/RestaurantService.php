@@ -6,8 +6,6 @@ use App\Http\Service\BaseService;
 use App\Model\Restaurant;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Session;
 
 class RestaurantService extends BaseService
 {

@@ -8,9 +8,12 @@ Route::prefix('member')->group (function() {
     Route::post('/register', 'Member\RegisterController@register');
     Route::post('/login', 'Member\LoginController@login');
 
-    Route::get('/detail', 'Member\MemberController@getDetail')->name('post.member.getDetail');
-    Route::post('/update/detail', 'Member\MemberController@updateDetail')->name('post.member.updateDetail');
-    Route::post('/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
+    Route::middleware('member_auth')->group(function() {
+
+        Route::get('/detail', 'Member\MemberController@getDetail')->name('post.member.getDetail');
+        Route::post('/update/detail', 'Member\MemberController@updateDetail')->name('post.member.updateDetail');
+        Route::post('/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
+    });
 
 });
 

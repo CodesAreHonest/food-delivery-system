@@ -59,6 +59,9 @@ class MemberService extends BaseService
         $auth = Auth::guard('member')->attempt($input);
 
         if ($auth) {
+
+            $request->session()->put('member_email', $request['email']);
+
             return [
                 'response_code' => 200,
                 'response_msg' => 'success',

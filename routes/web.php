@@ -6,13 +6,18 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('member')->group(function() {
 
     Route::get('/login', 'FoodDeliveryController@index')->name('member.login');
-    Route::get('/', 'FoodDeliveryController@index')->name('member.home');
+    Route::get('/logout', 'Member\MemberController@logout')->name('post.member.logout');
 
-    // Edit Profile and Location Information
-    Route::get('/manage/account', 'FoodDeliveryController@index')->name('member.manage.account');
-    Route::get('/location/information', 'FoodDeliveryController@index')->name('restaurant.location.information');
+    Route::middleware('member_auth')->group(function() {
 
-    Route::get('/credit/card', 'FoodDeliveryController@index')->name('member.credit.card');
+        Route::get('/', 'FoodDeliveryController@index')->name('member.home');
+
+        // Edit Profile and Location Information
+        Route::get('/manage/account', 'FoodDeliveryController@index')->name('member.manage.account');
+        Route::get('/location/information', 'FoodDeliveryController@index')->name('restaurant.location.information');
+
+        Route::get('/credit/card', 'FoodDeliveryController@index')->name('member.credit.card');
+    });
 });
 
 Route::prefix('restaurant')->group(function() {

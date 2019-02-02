@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Member;
 use App\Http\Service\Member\MemberService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class MemberController extends Controller
 {
@@ -198,5 +199,12 @@ class MemberController extends Controller
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function logout() {
+
+        Session::forget('member_email');
+
+        return redirect()->route('member.login');
     }
 }
