@@ -1,17 +1,52 @@
 import React, {Component, Fragment} from 'react';
 import {Row, Col, Label, Button} from 'reactstrap';
+import PropTypes from 'prop-types';
 
 import StringInput from "../../components/Input/StringInput";
-import EmailInput from "../../components/Input/EmailInput";
-import TextArea from "../../components/Input/TextArea";
 import NavigationBar from "../NavigationBar/NavigationBar";
 import Sidebar from "../Sidebar/Sidebar";
-import PasswordInput from "../../components/Input/PasswordInput";
 import ReactSelect from "../../components/Input/ReactSelect";
+
+import {connect} from 'react-redux';
+import {get_user_profile} from "./EditMemberAction";
 
 class EditLocation extends Component {
     constructor(props){
         super(props);
+
+        this.state = {
+            address: '',
+            city: '',
+            state: '',
+            country: '',
+        };
+
+        this.onChange = this.onChange.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.get_user_profile();
+    }
+
+    componentDidUpdate(prevProps) {
+
+        if (prevProps.detail !== this.props.detail) {
+
+            const {
+                s_address: address,
+                s_city: city,
+                s_state: state,
+                s_country: country
+            } = this.props.detail;
+
+            this.setState({
+                address, city, state, country
+            });
+        }
+    }
+
+    onChange(e) {
+        this.setState({[e.target.name]: e.target.value});
     }
 
     render() {
@@ -37,7 +72,9 @@ class EditLocation extends Component {
                                     <StringInput
                                         id="address"
                                         name="address"
+                                        value={this.state.address}
                                         placeholder="75 Kg Sg Ramal Luar"
+                                        onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>
@@ -48,6 +85,8 @@ class EditLocation extends Component {
                                         id="city"
                                         name="city"
                                         placeholder="Kajang"
+                                        value={this.state.city}
+                                        onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>
@@ -58,6 +97,8 @@ class EditLocation extends Component {
                                         id="state"
                                         name="state"
                                         placeholder="Selangor"
+                                        value={this.state.state}
+                                        onChange={this.onChange}
                                         required={true}
                                     />
                                 </Col>
@@ -86,4 +127,17 @@ class EditLocation extends Component {
     }
 }
 
-export default EditLocation;
+EditLocation.propTypes = {
+    detail: PropTypes.any,
+    get_user_profile: PropTypes.func.isRequired
+};
+
+const mapStateToProps = state => ({
+    detail: state.member.detail
+});
+
+const mapDispatchToProps = {
+    get_user_profile
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditLocation);
