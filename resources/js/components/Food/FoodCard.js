@@ -6,6 +6,17 @@ import NumberInput from "../Input/NumberInput";
 class FoodCard extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            checkout_quantity: 1
+        };
+
+        this.quantityChange = this.quantityChange.bind(this);
+    }
+
+    quantityChange (e) {
+        if (e.target.value)
+        this.setState({checkout_quantity: Math.floor(e.target.value)});
     }
 
     render() {
@@ -31,6 +42,7 @@ class FoodCard extends Component {
                         <CardImg
                             top
                             width="100%"
+                            height="200px"
                             alt="Food Image"
                             src={this.props.image}
                         />}
@@ -50,10 +62,13 @@ class FoodCard extends Component {
                             <NumberInput
                                 name="checkout_quantity"
                                 id="checkout_quantity"
-                                onChange={this.props.quantity_changes}
-                                value={this.props.checkout_quantity}
-                                min={0}
+                                onChange={(e) => this.setState({checkout_quantity: e.target.value})}
+                                value={this.state.checkout_quantity}
+                                min={1}
+                                max={9}
+                                pattern="[0-9]"
                                 disabled={this.props.quantity_disabled}
+                                required
                             />
                         </Col>
 
@@ -80,16 +95,13 @@ FoodCard.propTypes = {
     food_price: PropTypes.any,
     food_description: PropTypes.string,
     className: PropTypes.string,
-    checkout_quantity: PropTypes.any,
     quantity_disabled: PropTypes.bool,
     cart_disabled: PropTypes.bool,
     image: PropTypes.string,
     category_name: PropTypes.string,
-    quantity_changes: PropTypes.func,
 };
 
 FoodCard.defaultProps = {
-    checkout_quantity: 1,
     quantity_disabled: true,
     cart_disabled: true,
 };

@@ -98,8 +98,8 @@ class FoodService extends BaseService
         }
 
         if ($request->has('search_text')) {
-            if ($request['search_text'] !== '') {
-                $food->where('s_name', 'LIKE', "%{$request['category']}%");
+            if ($request['search_text'] != '') {
+                $food->where('s_name', 'LIKE', "%{$request['search_text']}%");
             }
         }
 

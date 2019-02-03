@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import {Container, Row, Col, Pagination, PaginationItem, PaginationLink} from 'reactstrap';
+import {Container, Row, Col, Pagination, PaginationItem, PaginationLink, Spinner} from 'reactstrap';
 
 import NavigationBar from "../NavigationBar/NavigationBar";
 import SearchInput from "../../components/Input/SearchInput";
@@ -29,16 +29,26 @@ class Home extends Component {
             category: {label: 'All', value: 'all'},
             page: 1,
             limit: 3,
-            total_records: 0
+            total_records: 0,
+            search: ''
         };
 
         this.onChange = this.onChange.bind(this);
         this.onSelectChange = this.onSelectChange.bind(this);
         this.renderFood = this.renderFood.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.searchFood = this.searchFood.bind(this);
     }
 
     componentDidMount() {
+
+        this.setState({spinner: (
+                <div className="text-center">
+                    <Spinner color="primary" style={{ width: '5rem', height: '5rem' }}/>
+                </div>
+            )
+        });
+
         this.props.get_food_menu(this.state);
     }
 
@@ -81,12 +91,15 @@ class Home extends Component {
             limit: per_page,
             total_records: to,
             pageSize: last_page,
+            spinner: null
         });
 
     }
 
     onSelectChange(category) {
-        this.setState({category});
+        this.setState({category}, () => {
+            this.props.get_food_menu(this.state);
+        });
     }
 
     onChange(e) {
@@ -100,6 +113,12 @@ class Home extends Component {
         this.setState({page}, () => {
             this.props.get_food_menu(this.state);
         });
+    }
+
+    searchFood (search) {
+        this.setState({search}, () => {
+            this.props.get_food_menu(this.state);
+        })
     }
 
     render() {
@@ -123,7 +142,7 @@ class Home extends Component {
                             </Col>
 
                             <Col md={8}>
-                                <SearchInput/>
+                                <SearchInput onSearchClick={this.searchFood}/>
                             </Col>
 
                             <Col md={1}>
@@ -145,6 +164,9 @@ class Home extends Component {
 
                 <Container>
                     <div style={{marginTop: '10px'}}>
+
+                        {this.state.spinner}
+
                         <Row>
                             {this.state.food}
                         </Row>
@@ -153,7 +175,7 @@ class Home extends Component {
                     <hr />
 
                     <div>
-                        <Pagination aria-label="Food Navigation">
+                        <Pagination aria-label="Food Pagination">
 
                             <PaginationItem disabled={this.state.page <= 1}>
 

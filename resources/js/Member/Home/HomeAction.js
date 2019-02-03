@@ -7,6 +7,7 @@ export const get_food_menu = (data) => dispatch => {
     const {
         page,
         limit,
+        search: search_text
     } = data;
 
     const category = data.category.value;
@@ -14,7 +15,8 @@ export const get_food_menu = (data) => dispatch => {
     const params = {
         page,
         limit,
-        category
+        category,
+        search_text
     };
 
     axios.get('/api/member/get/food', {params})
