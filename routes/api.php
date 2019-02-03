@@ -45,4 +45,5 @@ Route::prefix('restaurant')->group (function() {
 
     Route::post('/admin/register', 'Admin\RegisterController@register')->name('post.admin.register');
     Route::post('/admin/login', 'Admin\LoginController@login')->name('post.admin.login');
+    Route::post('/admin/block/user', 'Member\MemberController@updateBlockUser');
 

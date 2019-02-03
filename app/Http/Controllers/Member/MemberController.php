@@ -247,6 +247,50 @@ class MemberController extends Controller
         }
     }
 
+    public function updateBlockUser(Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'member_email'          => 'required|email|max:100',
+        ];
+
+        $validation = $this->memberService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        /** ==========================================================================
+         *  Update Member Blockage
+         *  ==========================================================================
+         *  @return 200 success
+         *  @return 404 not found
+         *  @return 500 internal server error
+         *  @return 502 bad gateway
+         *  =========================================================================== */
+
+        $detail = $this->memberService->updateBlockUser($request);
+
+        switch ($detail['response_code']) {
+            case 200:
+                return response()->json ($detail,200);
+            case 404:
+                return response()->json ($detail);
+            case 500:
+                return response()->json ($detail);
+            default:
+                return response()->json ([
+                    'response_code' => 502,
+                    'response_msg'  => 'Bad gateway'
+                ], 502);
+        }
+    }
+
     public function logout() {
 
         Session::forget('member_email');
