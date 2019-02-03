@@ -82,16 +82,16 @@ class FoodController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'restaurant_id'                 => 'required|string|max:50',
+            'page'                     => 'required|numeric|min:1',
+            'limit'                    => 'required|numeric|min:1',
             'category'                 => 'nullable|string|max:100',
-            'search_text'                 => 'nullable|string|max:100',
-            'order_by'                  =>'required|string|max:50'
+            'search_text'              => 'nullable|string|max:100',
         ];
 
         $validation = $this->foodService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -109,9 +109,9 @@ class FoodController extends Controller
             case 200:
                 return response()->json ($detail,200);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,

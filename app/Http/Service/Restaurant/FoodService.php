@@ -23,7 +23,7 @@ class FoodService extends BaseService
             's_name'            => $request['food_name'],
             'f_price'           => $request['food_price'],
             's_category'        => $request['food_category'],
-            's_image'           => "image/{$input['image_name']}",
+            's_image'           => "images/{$input['image_name']}",
             's_description'     => $request['food_description'],
             's_restaurant_id'   => $request['restaurant_id'],
             'created_at'        => Carbon::now()->toDateTimeString(),
@@ -89,37 +89,21 @@ class FoodService extends BaseService
 
     public function getFood($request) {
 
-        if ($request->has(['category']) AND $request->has(['search_text'])) {
-            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
-                ->where('s_category',$request['category'])
-                ->where('s_name','LIKE', '%'.$request['search_text'].'%')
-                ->orderBy($request['order_by'])
-                ->paginate(8);
-        }else if ($request->has(['category'])) {
-            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
-                ->where('s_category',$request['category'])
-                ->orderBy($request['order_by'])
-                ->paginate(8);
-        }elseif($request->has(['search_text'])){
-            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
-                ->where('s_name','LIKE', '%'.$request['search_text'].'%')
-                ->orderBy($request['order_by'])
-                ->paginate(8);
-        }else{
-            $food = Food::where('s_restaurant_id', $request['restaurant_id'])
-                    ->orderBy($request['order_by'])
-                    ->paginate(8);
+        $food = Food::orderBy('created_at', 'desc');
+
+        if ($request->has('category')) {
+            if ($request['category'] !== 'all') {
+                $food->where('s_category', $request['category']);
+            }
         }
 
-        if (!$food) {
-            return [
-                'response_code' => 404,
-                'response_msg'  => 'No Matched Email',
-                'msgType'       => 'error',
-                'msgTitle'      => 'Retrieve Unsuccessful',
-                'msg'           => ''
-            ];
+        if ($request->has('search_text')) {
+            if ($request['search_text'] !== '') {
+                $food->where('s_name', 'LIKE', "%{$request['category']}%");
+            }
         }
+
+        $result = $food->paginate($request['limit']);
 
         return [
             'response_code' => 200,
@@ -127,7 +111,7 @@ class FoodService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Retrieve Successful',
             'msg'           => '',
-            'food_list'          => $food
+            'food_list'     => $result
         ];
 
     }

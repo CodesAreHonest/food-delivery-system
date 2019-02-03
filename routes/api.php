@@ -16,6 +16,8 @@ Route::prefix('member')->group (function() {
         Route::post('/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
     });
 
+    Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
+
 });
 
 Route::prefix('restaurant')->group (function() {
@@ -31,7 +33,7 @@ Route::prefix('restaurant')->group (function() {
         Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.update.restaurant');
         Route::get('/detail', 'Restaurant\RestaurantController@getRestaurant')->name('get.restaurant.detail');
 
-        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
+//        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
     });
 
 });
