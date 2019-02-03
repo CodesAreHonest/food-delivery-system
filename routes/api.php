@@ -40,6 +40,8 @@ Route::prefix('restaurant')->group (function() {
 
     Route::post('/delivery/register', 'Delivery\RegisterController@register')->name('post.delivery.register');
     Route::post('/delivery/login', 'Delivery\LoginController@login')->name('post.delivery.login');
+    Route::post('/delivery/update', 'Delivery\DeliveryController@updateDelivery')->name('post.delivery.update');
+    Route::get('/delivery/get/detail', 'Delivery\DeliveryController@getDelivery')->name('get.delivery.detail');
 
     Route::post('/admin/register', 'Admin\RegisterController@register')->name('post.admin.register');
     Route::post('/admin/login', 'Admin\LoginController@login')->name('post.admin.login');

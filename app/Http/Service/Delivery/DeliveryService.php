@@ -71,4 +71,63 @@ class DeliveryService extends BaseService
             'msg' => 'Invalid username or password'
         ];
     }
+
+    public function getDelivery ($request) {
+
+    $delivery = Delivery::where('s_username', $request['username'])->first();
+        if ($delivery) {
+
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'success',
+                'restaurant'    => $delivery,
+            ];
+        }
+
+        return [
+            'response_code'     => 404,
+            'response_msg'      => 'Not Found'
+        ];
+    }
+
+    public function updateDelivery($request) 
+    {
+
+        $delivery = Delivery::where('s_username', $request['username'])->first();
+
+        if (!$delivery) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Delivery Username',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        $delivery['s_name'] = $request['delivery_name'];
+        $delivery['s_address']        = $request['address'];
+        $delivery['s_com_description']        = $request['description'];
+
+
+        $result = $delivery->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
 }
