@@ -61,7 +61,12 @@
 }
 
 .checkout-division {
+  padding: 5px;
   margin-top: 10px;
   background-color: white;
   border: 1px solid lightgray;
+
+  .order-summary-text {
+    text-align: center;
+  }
 }

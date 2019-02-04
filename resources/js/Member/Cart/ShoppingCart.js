@@ -15,7 +15,7 @@ class ShoppingCart extends Component {
 
                 <Container>
                     <Row>
-                        <Col md={9}>
+                        <Col md={8}>
                             <Row className="cart-division">
                                 <Col md={2} className="cart-food-division">
                                     <div className="cart-food">
@@ -61,9 +61,11 @@ class ShoppingCart extends Component {
                             </Row>
                         </Col>
 
-                        <Col md={3}>
+                        <Col md={4}>
                             <div className="checkout-division">
-                                123
+                                <div className="order-summary-text">
+                                    <h5>Order Summary</h5>
+                                </div>
                             </div>
                         </Col>
                     </Row>
