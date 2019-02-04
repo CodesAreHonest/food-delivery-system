@@ -5,6 +5,7 @@ namespace App\Http\Service\Cart;
 use App\Http\Service\BaseService;
 use App\Model\ShoppingCart;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class CartService extends BaseService
 {
@@ -55,20 +56,37 @@ class CartService extends BaseService
             'f_total_price',
             's_name',
             's_image',
+            'restaurant.s_restaurant_name',
+            's_delivery_fee'
         ];
 
         $cart = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
+            ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
             ->where('s_member_email', $member_email)
             ->where('b_checked_out', 0)
             ->where('b_paid', 0);
 
         $cart_amount = $cart->count();
 
+        $sum_columns = [
+            DB::raw('sum(f_total_price) as cart_total_price'),
+            DB::raw('sum(s_delivery_fee) as total_delivery_fee'),
+        ];
+
+        $sum = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
+            ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
+            ->where('s_member_email', $member_email)
+            ->where('b_checked_out', 0)
+            ->where('b_paid', 0)
+            ->select($sum_columns)->first();
+
         $data = $cart->select($columns)->get();
 
         return [
-            'cart_details'  => $data,
-            'cart_amount'   => $cart_amount
+            'cart_amount'               => $cart_amount,
+            'cart_total_fee'            => $sum['cart_total_price'],
+            'cart_total_delivery_fee'   => $sum['total_delivery_fee'],
+            'cart_details'              => $data,
         ];
     }
 }

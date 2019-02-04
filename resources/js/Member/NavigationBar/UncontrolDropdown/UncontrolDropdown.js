@@ -49,9 +49,6 @@ class UncontrolDropdown extends Component {
                             Manage Account
                         </DropdownItem>
                     </Link>
-                    <DropdownItem>
-                        Favourites
-                    </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem href="/member/logout">
                         Sign Out

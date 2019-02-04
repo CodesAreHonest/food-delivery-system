@@ -1,14 +1,74 @@
 import React, {Component, Fragment} from 'react';
+import PropTypes from 'prop-types';
 import NavigationBar from "../NavigationBar/NavigationBar";
 
 import {Container, Row, Col} from 'reactstrap';
+import CartItem from "./CartItem";
+import OrderSummary from "./OrderSummary";
+
+import {connect} from 'react-redux';
+import {get_cart} from "../../components/Cart/CartAction";
 
 class ShoppingCart extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            cart: '',
+            cart_total_delivery_fee: '',
+            checkout_amount: '',
+            cart_total_fee: '',
+        }
+    }
+
+    componentDidMount() {
+        this.props.get_cart();
+    }
+
+    componentDidUpdate(prevProps) {
+
+        if (this.props.cart_response !== prevProps.cart_response) {
+
+            const {data} = this.props.cart_response;
+
+            const {cart_details, cart_total_delivery_fee, cart_total_fee} = data;
+
+            const cart = cart_details.map((value, index) => {
+
+                const {
+                    n_quantity,
+                    f_price,
+                    f_total_price,
+                    s_name,
+                    s_image,
+                    s_restaurant_name
+                } = value;
+
+                return (
+                    <CartItem
+                        key={index}
+                        image={s_image}
+                        food_name={s_name}
+                        restaurant_name={s_restaurant_name}
+                        price={f_price}
+                        quantity={n_quantity}
+                        total_price={f_total_price}
+                    />
+                );
+            });
+
+            const checkout_amount = cart_total_delivery_fee * cart_total_fee;
+
+            this.setState({
+                cart, cart_total_fee, cart_total_delivery_fee, checkout_amount
+            });
+        }
     }
 
     render() {
+
+        const {cart_total_fee, cart_total_delivery_fee, checkout_amount} = this.state;
+
         return (
             <Fragment>
                 <NavigationBar />
@@ -16,57 +76,15 @@ class ShoppingCart extends Component {
                 <Container>
                     <Row>
                         <Col md={8}>
-                            <Row className="cart-division">
-                                <Col md={2} className="cart-food-division">
-                                    <div className="cart-food">
-                                        <img
-                                            src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png"
-                                            alt="Food Image"
-                                            className="cart-food-image"
-                                        />
-                                    </div>
-                                </Col>
-
-                                <Col md={7} className="cart-information-division">
-
-                                    <div className="cart-food-name">
-                                        <h5>Food Name</h5>
-                                    </div>
-
-                                    <div className="cart-restaurant-name">
-                                        Restaurant Name
-                                    </div>
-                                </Col>
-
-                                <Col md={3} className="cart-price-division">
-
-                                    <div className="cart-price">
-                                        <table>
-                                            <tr>
-                                                <td><b>Price</b></td>
-                                                <td>12.00</td>
-                                            </tr>
-                                            <tr>
-                                                <td><b>Quantity</b></td>
-                                                <td>1</td>
-                                            </tr>
-                                            <tr className="total-row">
-                                                <td><b>Total</b></td>
-                                                <td>12.00</td>
-                                            </tr>
-                                        </table>
-                                    </div>
-
-                                </Col>
-                            </Row>
+                            {this.state.cart}
                         </Col>
 
                         <Col md={4}>
-                            <div className="checkout-division">
-                                <div className="order-summary-text">
-                                    <h5>Order Summary</h5>
-                                </div>
-                            </div>
+                            <OrderSummary
+                                item_price = {cart_total_fee}
+                                delivery_fee = {cart_total_delivery_fee}
+                                total_price={checkout_amount}
+                            />
                         </Col>
                     </Row>
 
@@ -76,4 +94,18 @@ class ShoppingCart extends Component {
     }
 }
 
-export default ShoppingCart;
+ShoppingCart.propTypes = {
+    get_cart: PropTypes.func.isRequired,
+    cart_response: PropTypes.any
+
+};
+
+const mapStateToProps = state => ({
+   cart_response: state.cart.cart_detail,
+});
+
+const mapDispatchToProps = {
+    get_cart
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShoppingCart);

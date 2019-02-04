@@ -23,7 +23,7 @@ class FoodService extends BaseService
             's_name'            => $request['food_name'],
             'f_price'           => $request['food_price'],
             's_category'        => $request['food_category'],
-            's_image'           => "images/{$input['image_name']}",
+            's_image'           => "/images/{$input['image_name']}",
             's_description'     => $request['food_description'],
             's_restaurant_id'   => $request['restaurant_id'],
             'created_at'        => Carbon::now()->toDateTimeString(),

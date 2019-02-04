@@ -22,6 +22,7 @@ Route::prefix('member')->group (function() {
 
     });
 
+
 });
 
 Route::prefix('restaurant')->group (function() {

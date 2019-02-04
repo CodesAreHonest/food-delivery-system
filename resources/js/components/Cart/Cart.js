@@ -54,7 +54,7 @@ const cartStyle = {
 };
 
 const mapStateToProps = state => ({
-    item_amount: state.cart.cart_amount,
+    item_amount: state.cart.cart_detail,
     item_response: state.cart.add_cart_response,
 });
 

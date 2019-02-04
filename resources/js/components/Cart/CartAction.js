@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const get_cart = () => dispatch => {
 
-    axios.get('api/member/get/cart')
+    axios.get('/api/member/get/cart')
         .then(response => dispatch ({
             type: GET_CART,
             payload: response
