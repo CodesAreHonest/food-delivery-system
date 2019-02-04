@@ -12,6 +12,7 @@ import {category_options} from "./MenuType";
 import {connect} from 'react-redux';
 import {get_food_menu} from "./HomeAction";
 import FoodCard from "../../components/Food/FoodCard";
+import Cart from "../../components/Cart";
 
 const cartStyle = {
     backgroundColor: 'white',
@@ -146,15 +147,7 @@ class Home extends Component {
                             </Col>
 
                             <Col md={1}>
-                                <button style={cartStyle}>
-                                    <div>
-                                        <img
-                                            src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png"
-                                            width={30}
-                                            height={30}
-                                        />
-                                    </div>
-                                </button>
+                                <Cart />
                             </Col>
                         </Row>
 

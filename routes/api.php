@@ -14,9 +14,10 @@ Route::prefix('member')->group (function() {
         Route::post('/update/detail', 'Member\MemberController@updateDetail')->name('post.member.update.detail');
         Route::post('/update/location', 'Member\MemberController@updateLocation')->name('post.member.update.location');
         Route::post('/update/credit/card', 'Member\MemberController@updateCreditCard')->name('post.member.updateCreditCard');
-    });
 
-    Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
+        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
+
+    });
 
 });
 

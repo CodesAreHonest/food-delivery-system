@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Card, CardBody, CardImg, CardFooter, Col, Row, Label, Button, Badge} from "reactstrap";
+import {Card, CardBody, CardImg, CardFooter, Col, Row, Label, Button, Form} from "reactstrap";
 import NumberInput from "../Input/NumberInput";
+import {CartLogo} from "../Logo/CartLogo";
 
 class FoodCard extends Component {
     constructor(props) {
@@ -12,11 +13,22 @@ class FoodCard extends Component {
         };
 
         this.quantityChange = this.quantityChange.bind(this);
+        this.addCart = this.addCart.bind(this);
     }
 
     quantityChange (e) {
         if (e.target.value)
         this.setState({checkout_quantity: Math.floor(e.target.value)});
+    }
+
+    addCart(e) {
+        e.preventDefault();
+
+        const form = document.getElementById(e.target.id);
+
+        if (!form.checkValidity()) {
+            return false;
+        }
     }
 
     render() {
@@ -50,15 +62,16 @@ class FoodCard extends Component {
                     <hr />
 
                     <div style={{marginTop: '5px'}}>
-                        {this.props.food_description}
+                        <p style={{fontSize: '12px'}}>{this.props.food_description}</p>
                     </div>
 
                 </CardBody>
 
                 <CardFooter>
+                    <Form id={this.props.id} onSubmit={this.addCart}>
                     <Row>
                         <Label md={3}>Quantity </Label>
-                        <Col md={3}>
+                        <Col md={4}>
                             <NumberInput
                                 name="checkout_quantity"
                                 id="checkout_quantity"
@@ -72,17 +85,20 @@ class FoodCard extends Component {
                             />
                         </Col>
 
-                        <Col md={6} className="text-right">
+                        <Col md={5} className="text-right">
                             <Button
-                                id={this.props.id}
+                                type="submit"
                                 color="success"
                                 disabled={this.props.cart_disabled}
-                            >Add to Cart</Button>
+                                outline
+                            >
+                                <CartLogo width={25} height={25} />
+                            </Button>
                         </Col>
                     </Row>
+                    </Form>
 
                 </CardFooter>
-
             </Card>
 
         )
