@@ -1,0 +1,67 @@
+.cart-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+  text-align: center;
+
+  .cart-food-division {
+
+    padding: 0;
+
+    .cart-food {
+      padding: 5px;
+
+      .cart-food-image {
+        width: 100%;
+      }
+    }
+  }
+
+  .cart-information-division {
+    padding: 20px;
+    border-right: 1px solid lightgray;
+
+    .cart-food-name {
+      width: 100%;
+      word-wrap: break-word;
+    }
+
+    .cart-restaurant-name {
+      margin-top: 3px;
+      color: #757575;
+      width: 100%;
+      word-wrap: break-word;
+    }
+  }
+
+  .cart-price-division {
+    padding: 0;
+
+    .cart-price {
+      margin: 10px;
+
+      table {
+        width: 100%;
+      }
+
+      td {
+        width: 50%;
+        padding: 5px;
+        text-align: right;
+      }
+
+      .total-row {
+        border-top: 1px solid lightgray;
+        border-bottom: 1px solid lightgray;
+      }
+    }
+
+  }
+
+}
+
+.checkout-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+}

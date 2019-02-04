@@ -49,13 +49,22 @@ class CartService extends BaseService
 
     public function getCart ($member_email) {
 
-        $cart = ShoppingCart::where('s_member_email', $member_email)
+        $columns = [
+            'n_quantity',
+            'shopping_cart.f_price',
+            'f_total_price',
+            's_name',
+            's_image',
+        ];
+
+        $cart = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
+            ->where('s_member_email', $member_email)
             ->where('b_checked_out', 0)
             ->where('b_paid', 0);
 
         $cart_amount = $cart->count();
 
-        $data = $cart->get();
+        $data = $cart->select($columns)->get();
 
         return [
             'cart_details'  => $data,

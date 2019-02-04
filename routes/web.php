@@ -17,6 +17,8 @@ Route::prefix('member')->group(function() {
         Route::get('/location/information', 'FoodDeliveryController@index')->name('restaurant.location.information');
 
         Route::get('/credit/card', 'FoodDeliveryController@index')->name('member.credit.card');
+
+        Route::get('/cart', 'FoodDeliveryController@index')->name('member.credit.card');
     });
 });
 

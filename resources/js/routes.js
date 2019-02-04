@@ -5,6 +5,7 @@ import Home         from './Member/Home/Home';
 import CreditCard   from "./Member/CreditCard/CreditCard";
 import EditProfile  from "./Member/EditProfile/EditProfile";
 import EditLocation from "./Member/EditProfile/EditLocation";
+import ShoppingCart from "./Member/Cart/ShoppingCart";
 
 // Restaurant
 import RestaurantHome   from './Restaurant/Home/RestaurantHome';
@@ -26,9 +27,12 @@ export const routes = [{
 }, {
     path: '/member/credit/card',
     component: CreditCard
-},{
+}, {
     path: '/member/location/information',
     component: EditLocation
+}, {
+    path: '/member/cart',
+    component: ShoppingCart
 }, {
     path: '/restaurant/login',
     component: RestaurantLogin

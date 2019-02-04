@@ -14,13 +14,7 @@ import {get_food_menu} from "./HomeAction";
 import FoodCard from "../../components/Food/FoodCard";
 import Cart from "../../components/Cart/Cart";
 
-const cartStyle = {
-    backgroundColor: 'white',
-    padding: '2px 3px',
-    maxWidth: '40px',
-    borderRadius: '10px',
-    border: '1px solid darkgrey'
-};
+import {Link} from 'react-router-dom';
 
 class Home extends Component {
     constructor(props) {
@@ -147,7 +141,9 @@ class Home extends Component {
                             </Col>
 
                             <Col md={2}>
-                                <Cart />
+                                <Link to="member/cart">
+                                    <Cart />
+                                </Link>
                             </Col>
                         </Row>
 
@@ -195,7 +191,6 @@ class Home extends Component {
                                 />
 
                             </PaginationItem>
-
                         </Pagination>
                     </div>
                 </Container>

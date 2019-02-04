@@ -10565,6 +10565,43 @@ a.text-dark:focus {
   padding: 30px;
 }
 
+.cart-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.cart-division .cart-food-division {
+  border-right: 1px solid lightgray;
+}
+
+.cart-division .cart-food-division .cart-food-image {
+  width: 100%;
+  height: 100%;
+  padding: 3px;
+}
+
+.cart-division .card-information-division {
+  padding: 5px;
+  border-right: 1px solid lightgray;
+}
+
+.cart-division .card-information-division .card-food-name {
+  margin-top: 3px;
+}
+
+.cart-division .card-information-division .card-restaurant-name {
+  margin-top: 3px;
+  color: #757575;
+}
+
+.checkout-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
 .p-0 {
   padding: 0 !important;
 }
