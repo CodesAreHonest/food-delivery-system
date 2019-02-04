@@ -57,7 +57,8 @@ class ShoppingCart extends Component {
                 );
             });
 
-            const checkout_amount = cart_total_delivery_fee * cart_total_fee;
+            const total_checkout_amount = parseFloat(cart_total_delivery_fee) + parseFloat(cart_total_fee);
+            const checkout_amount = total_checkout_amount.toFixed(2);
 
             this.setState({
                 cart, cart_total_fee, cart_total_delivery_fee, checkout_amount
@@ -79,7 +80,7 @@ class ShoppingCart extends Component {
                             {this.state.cart}
                         </Col>
 
-                        <Col md={4}>
+                        <Col md={4} style={{marginBottom: '10px'}}>
                             <OrderSummary
                                 item_price = {cart_total_fee}
                                 delivery_fee = {cart_total_delivery_fee}

@@ -20,15 +20,15 @@ class OrderSummary extends Component {
                         <tbody>
                         <tr>
                             <td align="left"><b>Price</b></td>
-                            <td align="right">12.00</td>
+                            <td align="right">{this.props.item_price}</td>
                         </tr>
                         <tr>
                             <td align="left"><b>Delivery Fees</b></td>
-                            <td align="right">1</td>
+                            <td align="right">{this.props.delivery_fee}</td>
                         </tr>
                         <tr className="total-row">
                             <td align="left"><b>Total</b></td>
-                            <td align="right"><b>12.00</b></td>
+                            <td align="right"><b>{this.props.total_price}</b></td>
                         </tr>
                         </tbody>
                     </table>
@@ -46,9 +46,9 @@ class OrderSummary extends Component {
 }
 
 OrderSummary.propTypes = {
-    item_price: PropTypes.string.isRequired,
-    delivery_fee: PropTypes.string.isRequired,
-    total_price: PropTypes.number.isRequired,
+    item_price: PropTypes.any.isRequired,
+    delivery_fee: PropTypes.any.isRequired,
+    total_price: PropTypes.any.isRequired,
 };
 
 export default OrderSummary;
