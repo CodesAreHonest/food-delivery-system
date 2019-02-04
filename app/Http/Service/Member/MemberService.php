@@ -4,6 +4,7 @@ namespace App\Http\Service\Member;
 
 use App\Http\Service\BaseService;
 use App\Model\Member;
+use App\Model\ShoppingCart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -228,6 +229,46 @@ class MemberService extends BaseService
             'response_msg'  => 'Update Successful',
             'msgType'       => 'success',
             'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
+
+    public function check_out ($member_email) {
+
+        $credit_card_availability = Member::check_credit_card ($member_email);
+
+        if (!$credit_card_availability) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'Not Found',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Credit Card Information not found.',
+                'msg'           => ''
+            ];
+        }
+
+        $check_out = ShoppingCart::where('b_paid', 0)
+            ->update([
+                'b_paid'            => 1,
+                'dt_paid'           => Carbon::now()->toDateTimeString(),
+                's_delivery_status' => 'paid'
+            ]);
+
+        if ($check_out) {
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Check Out successfully.',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Internal Server Error',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Check Out Unsuccessful',
             'msg'           => ''
         ];
     }

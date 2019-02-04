@@ -52,4 +52,35 @@ class CartController extends Controller
 
         return response()->json ($getCart);
     }
+
+    public function checkOut (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'member_email'              => 'required|email|max:100',
+        ];
+
+        $validation = $this->cartService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation, 422);
+        }
+
+        $check_out = $this->cartService->check_out($request['member_email']);
+
+        switch ($check_out['response_code']) {
+            case 200:
+                return response()->json ($check_out);
+            case 404:
+                return response()->json ($check_out);
+            case 500:
+                return response()->json ($check_out);
+        }
+
+    }
 }

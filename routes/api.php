@@ -20,9 +20,9 @@ Route::prefix('member')->group (function() {
         Route::post('/add/cart', 'Cart\CartController@addCart')->name('member.post.add.cart');
         Route::get('/get/cart', 'Cart\CartController@getCart')->name('member.get.cart');
 
+        Route::post ('/cart/checkout', 'Cart\CartController@checkOut')->name('member.post.check.out');
+
     });
-
-
 });
 
 Route::prefix('restaurant')->group (function() {

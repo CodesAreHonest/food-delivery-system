@@ -3,6 +3,7 @@
 namespace App\Http\Service\Cart;
 
 use App\Http\Service\BaseService;
+use App\Model\Member;
 use App\Model\ShoppingCart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -63,7 +64,6 @@ class CartService extends BaseService
         $cart = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
             ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
             ->where('s_member_email', $member_email)
-            ->where('b_checked_out', 0)
             ->where('b_paid', 0);
 
         $cart_amount = $cart->count();
@@ -76,7 +76,6 @@ class CartService extends BaseService
         $sum = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
             ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
             ->where('s_member_email', $member_email)
-            ->where('b_checked_out', 0)
             ->where('b_paid', 0)
             ->select($sum_columns)->first();
 
@@ -87,6 +86,47 @@ class CartService extends BaseService
             'cart_total_fee'            => $sum['cart_total_price'],
             'cart_total_delivery_fee'   => $sum['total_delivery_fee'],
             'cart_details'              => $data,
+        ];
+    }
+
+    public function check_out ($member_email) {
+
+        $credit_card_availability = Member::check_credit_card ($member_email);
+
+        if (!$credit_card_availability) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'Not Found',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Credit Card Information not found.',
+                'msg'           => 'Please update your credit card information. '
+            ];
+        }
+
+        $check_out = ShoppingCart::where('b_paid', 0)
+            ->where('s_member_email', $member_email)
+            ->update([
+                'b_paid'            => 1,
+                'dt_paid'           => Carbon::now()->toDateTimeString(),
+                's_delivery_status' => 'paid'
+            ]);
+
+        if ($check_out) {
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Check Out successfully.',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Internal Server Error',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Check Out Unsuccessful',
+            'msg'           => ''
         ];
     }
 }
