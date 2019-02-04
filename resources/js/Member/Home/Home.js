@@ -12,7 +12,7 @@ import {category_options} from "./MenuType";
 import {connect} from 'react-redux';
 import {get_food_menu} from "./HomeAction";
 import FoodCard from "../../components/Food/FoodCard";
-import Cart from "../../components/Cart";
+import Cart from "../../components/Cart/Cart";
 
 const cartStyle = {
     backgroundColor: 'white',
@@ -142,11 +142,11 @@ class Home extends Component {
                                 />
                             </Col>
 
-                            <Col md={8}>
+                            <Col md={7}>
                                 <SearchInput onSearchClick={this.searchFood}/>
                             </Col>
 
-                            <Col md={1}>
+                            <Col md={2}>
                                 <Cart />
                             </Col>
                         </Row>

@@ -17,6 +17,9 @@ Route::prefix('member')->group (function() {
 
         Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
 
+        Route::post('/add/cart', 'Cart\CartController@addCart')->name('member.post.add.cart');
+        Route::get('/get/cart', 'Cart\CartController@getCart')->name('member.get.cart');
+
     });
 
 });

@@ -4,6 +4,9 @@ import {Card, CardBody, CardImg, CardFooter, Col, Row, Label, Button, Form} from
 import NumberInput from "../Input/NumberInput";
 import {CartLogo} from "../Logo/CartLogo";
 
+import {connect} from 'react-redux';
+import {add_cart} from "../../Member/Home/HomeAction";
+
 class FoodCard extends Component {
     constructor(props) {
         super(props);
@@ -29,6 +32,14 @@ class FoodCard extends Component {
         if (!form.checkValidity()) {
             return false;
         }
+
+        const data = {
+            food_id: e.target.id,
+            quantity: this.state.checkout_quantity,
+            food_price: this.props.food_price
+        };
+
+        this.props.add_cart(data);
     }
 
     render() {
@@ -115,6 +126,9 @@ FoodCard.propTypes = {
     cart_disabled: PropTypes.bool,
     image: PropTypes.string,
     category_name: PropTypes.string,
+
+    add_cart_response: PropTypes.any,
+    add_cart: PropTypes.func.isRequired,
 };
 
 FoodCard.defaultProps = {
@@ -122,4 +136,12 @@ FoodCard.defaultProps = {
     cart_disabled: true,
 };
 
-export default FoodCard;
+const mapStateToProps = state => ({
+    add_cart_response: state.cart.add_cart_response,
+});
+
+const mapDispatchToProps = {
+    add_cart
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodCard);

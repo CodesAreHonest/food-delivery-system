@@ -75,8 +75,6 @@ class FoodController extends Controller
 
     public function getFood(Request $request) {
 
-//        var_dump ($request->all()); exit();
-
         /** ==========================================================================
          *  Payload validation
          *  ==========================================================================
