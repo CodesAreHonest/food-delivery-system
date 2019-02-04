@@ -95,4 +95,11 @@ class DeliveryController extends Controller
                 ], 502);
         }
     }
+
+    public function logout() {
+
+        Session::forget('delivery_username');
+
+        return redirect()->route('delivery.login');
+    }
 }

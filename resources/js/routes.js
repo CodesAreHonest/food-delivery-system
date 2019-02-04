@@ -14,6 +14,9 @@ import DeliveryList     from "./Restaurant/DeliveryList/DeliveryList";
 import DeliveryTeam     from "./Restaurant/DeliveryList/DeliveryTeam";
 import AddFood          from "./Restaurant/AddFood/AddFood";
 
+//Delivery
+import DeliveryLogin from "./FoodDelivery/DeliveryLogin";
+
 export const routes = [{
     path: '/member/login',
     component: MemberLogin
@@ -44,4 +47,7 @@ export const routes = [{
 }, {
     path: '/restaurant/delivery/team',
     component: DeliveryTeam
+},{
+    path: '/delivery/login',
+    component: DeliveryLogin
 }];

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 use App\Http\Middleware\Restaurant\RestaurantAuth;
 use App\Http\Middleware\Member\MemberAuth;
+use App\Http\Middleware\Delivery\DeliveryAuth;
 
 class Kernel extends HttpKernel
 {
@@ -69,6 +70,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'restaurant_auth'   => RestaurantAuth::class,
         'member_auth'   => MemberAuth::class,
+        'delivery_auth' => DeliveryAuth::class,
     ];
 
     /**

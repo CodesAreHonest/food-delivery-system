@@ -59207,6 +59207,337 @@ module.exports = function(originalModule) {
 
 /***/ }),
 
+/***/ "./resources/js/Delivery/Login/DeliveryLogin.js":
+/*!******************************************************!*\
+  !*** ./resources/js/Delivery/Login/DeliveryLogin.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _components_Input_PasswordInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/Input/PasswordInput */ "./resources/js/components/Input/PasswordInput.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _components_Input_StringInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Input/StringInput */ "./resources/js/components/Input/StringInput.js");
+/* harmony import */ var _DeliveryLoginAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./DeliveryLoginAction */ "./resources/js/Delivery/Login/DeliveryLoginAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+
+
+
+var DeliveryLogin =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(DeliveryLogin, _Component);
+
+  function DeliveryLogin(props) {
+    var _this;
+
+    _classCallCheck(this, DeliveryLogin);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeliveryLogin).call(this, props));
+    _this.state = {
+      delivery_username: '',
+      delivery_password: '',
+      alert: null
+    };
+    _this.onSubmit = _this.onSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.postLogin = _this.postLogin.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(DeliveryLogin, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (prevProps.login_response !== this.props.login_response) {
+        var response = this.props.login_response.data;
+        this.postLogin(response);
+      }
+    }
+  }, {
+    key: "postLogin",
+    value: function postLogin(login_response) {
+      var msg = login_response.msg,
+          response_code = login_response.response_code;
+
+      if (response_code === 200) {
+        window.location.href = '/delivery/';
+      } else {
+        var alert = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Alert"], {
+          color: "danger"
+        }, msg);
+        this.setState({
+          alert: alert
+        });
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: "onSubmit",
+    value: function onSubmit(e) {
+      e.preventDefault();
+      var form = document.getElementById('delivery_login_form');
+
+      if (!form.checkValidity()) {
+        return false;
+      }
+
+      this.props.login_delivery(this.state);
+      var response = this.props.login_response.data;
+      this.postLogin(response);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Form"], {
+        id: "delivery_login_form",
+        onSubmit: this.onSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], {
+        row: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        for: "delivery_username",
+        md: 3
+      }, "Delivery Username: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+        md: 9
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_StringInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        id: "delivery_username",
+        name: "delivery_username",
+        value: this.state.delivery_username,
+        onChange: this.onChange,
+        placeholder: "Ying Hua ",
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["FormGroup"], {
+        row: true
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Label"], {
+        for: "password",
+        md: 3
+      }, "Password: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Col"], {
+        md: 9
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_PasswordInput__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        id: "delivery_password",
+        name: "delivery_password",
+        value: this.state.password,
+        onChange: this.onChange,
+        placeholder: "Minimum 6 characters",
+        required: true
+      }))), this.state.alert, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Button"], {
+        color: "primary",
+        type: "submit",
+        block: true
+      }, "Login"))));
+    }
+  }]);
+
+  return DeliveryLogin;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+DeliveryLogin.propTypes = {
+  login_delivery: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.func.isRequired,
+  login_response: prop_types__WEBPACK_IMPORTED_MODULE_3___default.a.any
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    login_response: state.delivery.login_delivery_response
+  };
+};
+
+var mapDispatchToProps = {
+  login_delivery: _DeliveryLoginAction__WEBPACK_IMPORTED_MODULE_5__["login_delivery"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps, mapDispatchToProps)(DeliveryLogin));
+
+/***/ }),
+
+/***/ "./resources/js/Delivery/Login/DeliveryLoginAction.js":
+/*!************************************************************!*\
+  !*** ./resources/js/Delivery/Login/DeliveryLoginAction.js ***!
+  \************************************************************/
+/*! exports provided: login_delivery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "login_delivery", function() { return login_delivery; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+var LOGIN_DELIVERY = 'LOGIN_DELIVERY';
+
+var login_delivery = function login_delivery(data) {
+  return function (dispatch) {
+    var delivery_username = data.delivery_username,
+        delivery_password = data.delivery_password;
+    var params = {
+      'username': delivery_username,
+      'password': delivery_password
+    };
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/delivery/login', params).then(function (response) {
+      return dispatch({
+        type: LOGIN_DELIVERY,
+        payload: response
+      });
+    }).catch(function (err) {
+      console.warn(err);
+    });
+  };
+};
+
+/***/ }),
+
+/***/ "./resources/js/FoodDelivery/DeliveryLogin.js":
+/*!****************************************************!*\
+  !*** ./resources/js/FoodDelivery/DeliveryLogin.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _Delivery_Login_DeliveryLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Delivery/Login/DeliveryLogin */ "./resources/js/Delivery/Login/DeliveryLogin.js");
+/* harmony import */ var _Restaurant_Register_RestaurantRegister__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Restaurant/Register/RestaurantRegister */ "./resources/js/Restaurant/Register/RestaurantRegister.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+
+
+var MemberLogin =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(MemberLogin, _Component);
+
+  function MemberLogin(props) {
+    var _this;
+
+    _classCallCheck(this, MemberLogin);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MemberLogin).call(this, props));
+    _this.state = {
+      activeTab: 'login'
+    };
+    _this.toggle = _this.toggle.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(MemberLogin, [{
+    key: "toggle",
+    value: function toggle(tab) {
+      if (this.state.activeTab !== tab) {
+        this.setState({
+          activeTab: tab
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "container",
+        style: {
+          marginTop: '30px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row justify-content-center"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-md-8"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        style: {
+          textAlign: 'center',
+          marginBottom: '20px'
+        }
+      }, "GOGO Delivery Login"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["Nav"], {
+        tabs: true,
+        className: "nav-tabs-custom"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], {
+        className: "col-sm-6 p-0 white-bg"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        className: this.state.activeTab === 'login' ? "active" : "",
+        onClick: function onClick() {
+          return _this2.toggle('login');
+        }
+      }, "Login")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavItem"], {
+        className: "col-sm-6 p-0 white-bg"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+        className: this.state.activeTab === 'register' ? "active" : "",
+        onClick: function onClick() {
+          return _this2.toggle('register');
+        }
+      }, "Register"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["TabContent"], {
+        activeTab: this.state.activeTab
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["TabPane"], {
+        tabId: "login"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Delivery_Login_DeliveryLogin__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["TabPane"], {
+        tabId: "register"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Restaurant_Register_RestaurantRegister__WEBPACK_IMPORTED_MODULE_3__["default"], null)))))));
+    }
+  }]);
+
+  return MemberLogin;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (MemberLogin);
+
+/***/ }),
+
 /***/ "./resources/js/FoodDelivery/FoodDelivery.js":
 /*!***************************************************!*\
   !*** ./resources/js/FoodDelivery/FoodDelivery.js ***!
@@ -64184,6 +64515,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _reducer_FoodReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./reducer/FoodReducer */ "./resources/js/reducer/FoodReducer.js");
 /* harmony import */ var _reducer_RestaurantReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./reducer/RestaurantReducer */ "./resources/js/reducer/RestaurantReducer.js");
 /* harmony import */ var _reducer_MemberReducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./reducer/MemberReducer */ "./resources/js/reducer/MemberReducer.js");
+/* harmony import */ var _reducer_DeliveryReducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./reducer/DeliveryReducer */ "./resources/js/reducer/DeliveryReducer.js");
+
 
 
 
@@ -64191,8 +64524,50 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   food: _reducer_FoodReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   restaurant: _reducer_RestaurantReducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  member: _reducer_MemberReducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  member: _reducer_MemberReducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  delivery: _reducer_DeliveryReducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 }));
+
+/***/ }),
+
+/***/ "./resources/js/reducer/DeliveryReducer.js":
+/*!*************************************************!*\
+  !*** ./resources/js/reducer/DeliveryReducer.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var REGISTER_DELIVERY = 'REGISTER_DELIVERY';
+var LOGIN_DELIVERY = 'LOGIN_DELIVERY';
+var initialState = {
+  register_delivery_response: [],
+  login_delivery_response: []
+};
+/* harmony default export */ __webpack_exports__["default"] = (function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case REGISTER_DELIVERY:
+      return _objectSpread({}, state, {
+        register_delivery_response: action.payload
+      });
+
+    case LOGIN_DELIVERY:
+      return _objectSpread({}, state, {
+        login_delivery_response: action.payload
+      });
+
+    default:
+      return state;
+  }
+});
 
 /***/ }),
 
@@ -64375,6 +64750,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Restaurant_DeliveryList_DeliveryList__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Restaurant/DeliveryList/DeliveryList */ "./resources/js/Restaurant/DeliveryList/DeliveryList.js");
 /* harmony import */ var _Restaurant_DeliveryList_DeliveryTeam__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Restaurant/DeliveryList/DeliveryTeam */ "./resources/js/Restaurant/DeliveryList/DeliveryTeam.js");
 /* harmony import */ var _Restaurant_AddFood_AddFood__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./Restaurant/AddFood/AddFood */ "./resources/js/Restaurant/AddFood/AddFood.js");
+/* harmony import */ var _FoodDelivery_DeliveryLogin__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./FoodDelivery/DeliveryLogin */ "./resources/js/FoodDelivery/DeliveryLogin.js");
 // Member
 
 
@@ -64386,6 +64762,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+ //Delivery
 
 
 var routes = [{
@@ -64418,6 +64796,9 @@ var routes = [{
 }, {
   path: '/restaurant/delivery/team',
   component: _Restaurant_DeliveryList_DeliveryTeam__WEBPACK_IMPORTED_MODULE_9__["default"]
+}, {
+  path: '/delivery/login',
+  component: _FoodDelivery_DeliveryLogin__WEBPACK_IMPORTED_MODULE_11__["default"]
 }];
 
 /***/ }),

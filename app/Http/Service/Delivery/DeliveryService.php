@@ -54,6 +54,9 @@ class DeliveryService extends BaseService
         $auth = Auth::guard('delivery')->attempt($input);
 
         if ($auth) {
+
+            $request->session()->put('delivery_username', $request['username']);
+
             return [
                 'response_code' => 200,
                 'response_msg' => 'success',

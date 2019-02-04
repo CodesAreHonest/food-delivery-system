@@ -37,3 +37,9 @@ Route::prefix('restaurant')->group(function() {
     });
 
 });
+
+Route::prefix('delivery')->group(function() {
+
+    Route::get('/login', 'FoodDeliveryController@index')->name('delivery.login');
+
+});
