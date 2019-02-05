@@ -6,7 +6,7 @@ const UPDATE_USER_PROFILE   = 'UPDATE_USER_PROFILE';
 const UPDATE_USER_LOCATION  = 'UPDATE_USER_LOCATION';
 const UPDATE_CREDIT_CARD    = 'UPDATE_CREDIT_CARD';
 
-const GET_FOOD_MENU = 'GET_FOOD_MENU';
+const GET_USERNAME = 'GET_USERNAME';
 
 
 const initialState = {
@@ -16,7 +16,7 @@ const initialState = {
     update_member_profile_response: [],
     update_member_location_response: [],
     update_member_card_response: [],
-    food_detai: [],
+    username: '',
 };
 
 export default function (state = initialState, action) {
@@ -50,6 +50,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 update_member_card_response: action.payload
+            };
+        case GET_USERNAME:
+            return {
+                ...state,
+                username: action.payload
             };
         default:
             return state;

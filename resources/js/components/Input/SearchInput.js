@@ -32,7 +32,7 @@ class SearchInput extends Component {
                 <StringInput
                     id="search_food_restaurant"
                     name="search_food_restaurant"
-                    placeholder="Search food or restaurant"
+                    placeholder="Search Food"
                     onChange={this.onChange}
                     value={this.state.search_string}
                 />

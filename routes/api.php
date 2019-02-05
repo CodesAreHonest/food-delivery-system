@@ -21,6 +21,7 @@ Route::prefix('member')->group (function() {
         Route::get('/get/cart', 'Cart\CartController@getCart')->name('member.get.cart');
 
         Route::post ('/cart/checkout', 'Cart\CartController@checkOut')->name('member.post.check.out');
+        Route::get ('/username', 'Member\MemberController@getUserName')->name('get.user.name');
 
     });
 });

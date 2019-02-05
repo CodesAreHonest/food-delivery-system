@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Service\Member\MemberService;
+use App\Model\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -245,6 +246,14 @@ class MemberController extends Controller
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function getUserName() {
+
+        $user = Member::where('s_email', Session::get('member_email'))
+            ->first(['s_username']);
+
+        return $user ? $user['s_username'] : 'User';
     }
 
     public function logout() {
