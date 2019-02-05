@@ -31,7 +31,7 @@ class CartController extends Controller
         $validation = $this->cartService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -68,8 +68,16 @@ class CartController extends Controller
         $validation = $this->cartService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
+
+        /** ==========================================================================
+         *  Check Out
+         *  ==========================================================================
+         *  @return 200 Success
+         *  @return 404 Not Found
+         *  @return 500 Internal Server Error
+         *  =========================================================================== */
 
         $check_out = $this->cartService->check_out($request['member_email']);
 
@@ -80,6 +88,26 @@ class CartController extends Controller
                 return response()->json ($check_out);
             case 500:
                 return response()->json ($check_out);
+        }
+
+    }
+
+    public function order_summary (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'member_email'              => 'required|email|max:100',
+        ];
+
+        $validation = $this->cartService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
         }
 
     }

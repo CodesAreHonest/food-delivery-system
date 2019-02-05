@@ -19,6 +19,9 @@ Route::prefix('member')->group(function() {
         Route::get('/credit/card', 'FoodDeliveryController@index')->name('member.credit.card');
 
         Route::get('/cart', 'FoodDeliveryController@index')->name('member.credit.card');
+
+        Route::get('/order/history', 'FoodDeliveryController@index')->name('member.order.history');
+
     });
 });
 

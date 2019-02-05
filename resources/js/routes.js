@@ -8,12 +8,12 @@ import EditLocation from "./Member/EditProfile/EditLocation";
 import ShoppingCart from "./Member/Cart/ShoppingCart";
 
 // Restaurant
-import RestaurantHome   from './Restaurant/Home/RestaurantHome';
 import RestaurantLogin  from './FoodDelivery/RestaurantLogin';
 import EditRestaurant   from "./Restaurant/EditRestaurant/EditRestaurant";
 import DeliveryList     from "./Restaurant/DeliveryList/DeliveryList";
 import DeliveryTeam     from "./Restaurant/DeliveryList/DeliveryTeam";
 import AddFood          from "./Restaurant/AddFood/AddFood";
+import OrderHistory from "./Member/OrderHistory/OrderHistory";
 
 export const routes = [{
     path: '/member/login',
@@ -33,6 +33,9 @@ export const routes = [{
 }, {
     path: '/member/cart',
     component: ShoppingCart
+}, {
+    path: '/member/order/history',
+    component: OrderHistory
 }, {
     path: '/restaurant/login',
     component: RestaurantLogin

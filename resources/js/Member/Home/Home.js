@@ -123,7 +123,7 @@ class Home extends Component {
 
                 <div className="search-division">
                     <Container>
-                        <Row style={{marginBottom: '10px'}}>
+                        <Row>
                             <Col md={3}>
                                 <ReactSelect
                                     name="category"

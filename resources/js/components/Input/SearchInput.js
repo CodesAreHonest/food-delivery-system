@@ -32,7 +32,7 @@ class SearchInput extends Component {
                 <StringInput
                     id="search_food_restaurant"
                     name="search_food_restaurant"
-                    placeholder="Search Food"
+                    placeholder={this.props.placeholder}
                     onChange={this.onChange}
                     value={this.state.search_string}
                 />
@@ -48,6 +48,10 @@ class SearchInput extends Component {
 
 SearchInput.propTypes = {
     onSearchClick: PropTypes.func.isRequired
+};
+
+SearchInput.defaultProps = {
+    placeholder: 'Search Food'
 };
 
 export default SearchInput;
