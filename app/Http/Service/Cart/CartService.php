@@ -129,4 +129,25 @@ class CartService extends BaseService
             'msg'           => ''
         ];
     }
+
+    public function order_summary ($request) {
+
+        $columns = [
+            's_restaurant_name',
+            's_image',
+            'food.s_name',
+            'dt_paid',
+            DB::raw('sum(n_quantity) as total_quantity'),
+        ];
+
+        $data = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
+            ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
+            ->where('s_member_email', $request['member_email'])
+            ->where('b_paid', 1)
+            ->select($columns)
+            ->groupBy('s_image', 'food.s_name')
+            ->get();
+
+        return $data;
+    }
 }

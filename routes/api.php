@@ -23,7 +23,10 @@ Route::prefix('member')->group (function() {
         Route::post ('/cart/checkout', 'Cart\CartController@checkOut')->name('member.post.check.out');
         Route::get ('/username', 'Member\MemberController@getUserName')->name('get.user.name');
 
+        Route::get('/order/summary', 'Cart\CartController@getOrderSummary')->name('member.get.order.summary');
+
     });
+
 });
 
 Route::prefix('restaurant')->group (function() {

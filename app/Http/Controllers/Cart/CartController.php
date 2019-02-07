@@ -92,7 +92,7 @@ class CartController extends Controller
 
     }
 
-    public function order_summary (Request $request) {
+    public function getOrderSummary (Request $request) {
 
         /** ==========================================================================
          *  Payload validation
@@ -110,5 +110,8 @@ class CartController extends Controller
             return response()->json ($validation);
         }
 
+        $order_summary = $this->cartService->order_summary($request);
+
+        return $order_summary;
     }
 }
