@@ -77,13 +77,13 @@ class DeliveryService extends BaseService
 
     public function getDelivery ($request) {
 
-    $delivery = Delivery::where('s_username', $request['username'])->first();
+    $delivery = Delivery::where('s_username', $request['delivery_username'])->first();
         if ($delivery) {
 
             return [
                 'response_code' => 200,
                 'response_msg'  => 'success',
-                'restaurant'    => $delivery,
+                'delivery'    => $delivery,
             ];
         }
 
@@ -96,7 +96,7 @@ class DeliveryService extends BaseService
     public function updateDelivery($request) 
     {
 
-        $delivery = Delivery::where('s_username', $request['username'])->first();
+        $delivery = Delivery::where('s_username', $request['delivery_username'])->first();
 
         if (!$delivery) {
             return [

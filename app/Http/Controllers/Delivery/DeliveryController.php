@@ -12,7 +12,6 @@ class DeliveryController extends Controller
       private  $deliveryService;
 
     public function __construct(DeliveryService $deliveryService) {
-        $this->middleware('auth:delivery');
         $this->deliveryService = $deliveryService;
     }
 
@@ -25,7 +24,7 @@ class DeliveryController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'username'         => 'required|string|max:50',
+        	'delivery_username'         => 'required|string|max:50',
             'delivery_name'       => 'required|string|max:100',
             'address'               => 'required|string|max:255',
             'description'               => 'required|string|max:255',
@@ -73,7 +72,7 @@ class DeliveryController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'username'         => 'required|string|max:50',
+            'delivery_username'         => 'required|string|max:50',
         ];
 
         $validation = $this->deliveryService->validator($request->all(), $rules);

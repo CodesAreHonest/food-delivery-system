@@ -16,6 +16,8 @@ import AddFood          from "./Restaurant/AddFood/AddFood";
 
 //Delivery
 import DeliveryLogin from "./FoodDelivery/DeliveryLogin";
+import DeliveryHome from "./Delivery/CheckDelivery/DeliveryHome";
+import EditDelivery from "./Delivery/EditDelivery/EditDelivery"
 
 export const routes = [{
     path: '/member/login',
@@ -50,4 +52,10 @@ export const routes = [{
 },{
     path: '/delivery/login',
     component: DeliveryLogin
+},{
+    path: '/delivery',
+    component: DeliveryHome
+},{
+    path: '/delivery/manage/account',
+    component: EditDelivery
 }];
