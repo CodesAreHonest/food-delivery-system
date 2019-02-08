@@ -23,6 +23,7 @@ class OrderHistory extends Component {
         };
 
         this.renderLayout = this.renderLayout.bind(this);
+        this.searchOrder = this.searchOrder.bind(this);
     }
 
     componentDidMount() {
@@ -34,6 +35,10 @@ class OrderHistory extends Component {
         if (prevProps.summary_detail !== this.props.summary_detail) {
             this.renderLayout(this.props.summary_detail)
         }
+    }
+
+    searchOrder() {
+
     }
 
     renderLayout(summary_detail) {

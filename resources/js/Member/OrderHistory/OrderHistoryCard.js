@@ -6,6 +6,27 @@ import OrderHistoryProgress from "./OrderHistoryProgress";
 class OrderHistoryCard extends Component {
     constructor(props) {
         super (props);
+
+        this.state = {
+            color: ''
+        }
+    }
+
+    componentDidMount() {
+
+        const {delivery_status} = this.props;
+
+        switch (delivery_status) {
+            case 'paid':
+                this.setState({color: 'info', value: 35});
+                break;
+            case 'shipped':
+                this.setState({color: 'primary', value: 70});
+                break;
+            case 'delivered':
+                this.setState({color: 'success', value: 100});
+                break;
+        }
     }
 
     render() {
@@ -14,7 +35,7 @@ class OrderHistoryCard extends Component {
 
         return (
 
-            <div id="order-summary" className="order-summary-division">
+            <div id="order-summary" className="order-summary-division card-shadow">
                 <Row>
                     <Col md={12} className="order-restaurant-name">
                         <Row>
@@ -24,13 +45,15 @@ class OrderHistoryCard extends Component {
                             <Col md={5} className="border-bottom">
                                 <OrderHistoryProgress
                                     animated={true}
-                                    status={delivery_status}
-                                    value={25}
+                                    color={this.state.color}
+                                    value={this.state.value}
                                     style={{marginTop: '5px'}}
                                 />
                             </Col>
                             <Col md={1} style={{textAlign: 'right'}} className="border-bottom">
-                                <h5 style={{color: 'white'}}><Badge color="info">{delivery_status}</Badge></h5>
+                                <h5 style={{color: 'white'}}>
+                                    <Badge color={this.state.color}>{delivery_status}</Badge>
+                                </h5>
                             </Col>
                         </Row>
                     </Col>
@@ -52,9 +75,12 @@ class OrderHistoryCard extends Component {
 
                         </div>
 
-                        <div className="order-accept-division">
-                            <Button color="success">Delivery Received</Button>
-                        </div>
+                        {
+                            this.props.delivery_status === 'shipped' &&
+                            <div className="order-accept-division">
+                                <Button color="success">Delivery Received</Button>
+                            </div>
+                        }
                     </Col>
 
                     <Col md={2} className="order-quantity-information">
