@@ -1,0 +1,74 @@
+.order-summary-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+
+  .order-restaurant-name {
+    padding: 10px 30px;
+
+    .border-bottom {
+      border-bottom: 1px solid lightgray;
+    }
+  }
+
+
+  .food-items {
+    margin: 5px 10px;
+    text-align: center;
+
+    .order-food-division {
+      text-align: center;
+      padding: 5px;
+      border: 1px solid lightgray;
+
+      .order-food-image {
+        width: 130px;
+      }
+    }
+
+    .order-food-information {
+      padding: 0;
+      border-top: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+      border-bottom: 1px solid lightgray;
+
+      .order-food-name {
+        width: 100%;
+        word-wrap: break-word;
+        margin-top: 10px;
+        text-align: center;
+
+        p {
+          color: gray;
+        }
+      }
+
+      .order-accept-division {
+        padding: 10px;
+        border-top: 1px solid lightgray;
+        text-align: center;
+      }
+    }
+
+    .order-quantity-information {
+      padding: 0;
+      border-bottom: 1px solid lightgray;
+      border-top: 1px solid lightgray;
+      border-right: 1px solid lightgray;
+
+      .order-quantity-division {
+        text-align: center;
+        padding: 20px;
+
+        h6 {
+          margin-top: 5px;
+        }
+
+        h4 {
+          margin-top: 5px;
+        }
+      }
+    }
+  }
+
+}

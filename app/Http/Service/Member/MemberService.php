@@ -4,6 +4,7 @@ namespace App\Http\Service\Member;
 
 use App\Http\Service\BaseService;
 use App\Model\Member;
+use App\Model\ShoppingCart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -147,7 +148,7 @@ class MemberService extends BaseService
 
     public function updateCreditCard($request) {
 
-        $member = Member::where('s_email', $request['email'])->first();
+        $member = Member::where('s_email', $request['member_email'])->first();
 
         if (!$member) {
             return [
@@ -159,31 +160,35 @@ class MemberService extends BaseService
             ];
         }
 
-        $member['s_card_name']      = $request['card_name'];
-        $member['s_card_number']    = $request['card_number'];
-        $member['s_expired_date']   = $request['card_expired_date'];
-        $member['n_cvc']            = $request['cvc'];
-        $member['created_at']       = Carbon::now()->toDateTimeString();
-        $member['updated_at']       = Carbon::now()->toDateTimeString();
+        $member->s_card_name        = $request['card_name'];
+        $member->s_card_number      = $request['card_number'];
+        $member->s_expired_date     = $request['card_expired_date'];
+        $member->n_cvc              = $request['cvc'];
 
         $result = $member->save();
 
         if (!$result) {
+
             return [
                 'response_code' => 500,
                 'response_msg'  => 'Internal Server Error',
                 'msgType'       => 'error',
                 'msgTitle'      => 'Update Unsuccessful',
-                'msg'           => ''
+                'msg'           => '',
+                'card_updated'  => false,
             ];
         }
+
+        Member::where('s_email', $request['member_email'])
+            ->update(['b_card_information' => 1]);
 
         return [
             'response_code' => 200,
             'response_msg'  => 'Update Successful',
             'msgType'       => 'success',
             'msgTitle'      => 'Update Successful',
-            'msg'           => ''
+            'msg'           => '',
+            'card_updated'  => true,
         ];
     }
 
@@ -233,17 +238,17 @@ class MemberService extends BaseService
 
         $member = Member::where('s_email', $request['member_email'])->first();
 
+
         if (!$member) {
             return [
                 'response_code' => 404,
                 'response_msg'  => 'No Matched Email',
                 'msgType'       => 'error',
                 'msgTitle'      => 'Update Unsuccessful',
-                'msg'           => ''
+                'msg'           => 'Update Unsuccessful'
             ];
         }
 
-        var_dump($member['s_status']);
         if ($member['s_status'] === 1) {
             $member['s_status'] = 0;
         }else{
@@ -259,7 +264,7 @@ class MemberService extends BaseService
                 'response_msg'  => 'Internal Server Error',
                 'msgType'       => 'error',
                 'msgTitle'      => 'Update Unsuccessful',
-                'msg'           => ''
+                'msg'           => 'Update Unsuccessful'
             ];
         }
 
@@ -272,4 +277,42 @@ class MemberService extends BaseService
         ];
     }
 
+
+    public function check_out ($member_email) {
+
+        $credit_card_availability = Member::check_credit_card ($member_email);
+
+        if (!$credit_card_availability) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'Not Found',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Credit Card Information not found.',
+                'msg'           => ''
+            ];
+        }
+        $check_out = ShoppingCart::where('b_paid', 0)
+            ->update([
+                'b_paid'            => 1,
+                'dt_paid'           => Carbon::now()->toDateTimeString(),
+                's_delivery_status' => 'paid'
+            ]);
+
+        if ($check_out) {
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Check Out successfully.',
+                'msg'           => ''
+            ];
+        }
+        return[
+            'response_code' => 500,
+            'response_msg'  => 'Internal Server Error',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Check Out Unsuccessful',
+            'msg'           => ''
+        ];
+    }
 }

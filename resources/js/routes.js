@@ -5,14 +5,15 @@ import Home         from './Member/Home/Home';
 import CreditCard   from "./Member/CreditCard/CreditCard";
 import EditProfile  from "./Member/EditProfile/EditProfile";
 import EditLocation from "./Member/EditProfile/EditLocation";
+import ShoppingCart from "./Member/Cart/ShoppingCart";
 
 // Restaurant
-import RestaurantHome   from './Restaurant/Home/RestaurantHome';
 import RestaurantLogin  from './FoodDelivery/RestaurantLogin';
 import EditRestaurant   from "./Restaurant/EditRestaurant/EditRestaurant";
 import DeliveryList     from "./Restaurant/DeliveryList/DeliveryList";
 import DeliveryTeam     from "./Restaurant/DeliveryList/DeliveryTeam";
 import AddFood          from "./Restaurant/AddFood/AddFood";
+import OrderHistory from "./Member/OrderHistory/OrderHistory";
 
 //Delivery
 import DeliveryLogin from "./FoodDelivery/DeliveryLogin";
@@ -31,9 +32,15 @@ export const routes = [{
 }, {
     path: '/member/credit/card',
     component: CreditCard
-},{
+}, {
     path: '/member/location/information',
     component: EditLocation
+}, {
+    path: '/member/cart',
+    component: ShoppingCart
+}, {
+    path: '/member/order/history',
+    component: OrderHistory
 }, {
     path: '/restaurant/login',
     component: RestaurantLogin

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Member;
 
 use App\Http\Service\Member\MemberService;
+use App\Model\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
@@ -195,7 +196,7 @@ class MemberController extends Controller
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
-                ], 502);
+                ]);
         }
     }
 
@@ -208,11 +209,11 @@ class MemberController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'email'                 => 'required|email|max:100',
+        	'member_email'              => 'required|email|max:100',
             'card_name'                 => 'required|string|max:50',
-            'card_number'              => 'required|digits:13',
-            'card_expired_date'               => 'required|string|max:5',
-            'cvc'              		 => 'required|string|max:3'
+            'card_number'               => 'required|digits:16',
+            'card_expired_date'         => 'required|string|max:5',
+            'cvc'              		    => 'required|string|max:3'
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);
@@ -234,16 +235,16 @@ class MemberController extends Controller
 
         switch ($detail['response_code']) {
             case 200:
-                return response()->json ($detail,200);
+                return response()->json ($detail);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
-                ], 502);
+                ]);
         }
     }
 
@@ -278,7 +279,7 @@ class MemberController extends Controller
 
         switch ($detail['response_code']) {
             case 200:
-                return response()->json ($detail,200);
+                return response()->json ($detail);
             case 404:
                 return response()->json ($detail);
             case 500:
@@ -289,6 +290,14 @@ class MemberController extends Controller
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+    
+    public function getUserName() {
+
+        $user = Member::where('s_email', Session::get('member_email'))
+            ->first(['s_username']);
+
+        return $user ? $user['s_username'] : 'User';
     }
 
     public function logout() {

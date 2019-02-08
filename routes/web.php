@@ -14,9 +14,14 @@ Route::prefix('member')->group(function() {
 
         // Edit Profile and Location Information
         Route::get('/manage/account', 'FoodDeliveryController@index')->name('member.manage.account');
-        Route::get('/location/information', 'FoodDeliveryController@index')->name('restaurant.location.information');
+        Route::get('/location/information', 'FoodDeliveryCoapintroller@index')->name('restaurant.location.information');
 
         Route::get('/credit/card', 'FoodDeliveryController@index')->name('member.credit.card');
+
+        Route::get('/cart', 'FoodDeliveryController@index')->name('member.credit.card');
+
+        Route::get('/order/history', 'FoodDeliveryController@index')->name('member.order.history');
+
     });
 });
 

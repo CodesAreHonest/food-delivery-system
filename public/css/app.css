@@ -10565,6 +10565,170 @@ a.text-dark:focus {
   padding: 30px;
 }
 
+.cart-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+  text-align: center;
+}
+
+.cart-division .cart-food-division {
+  padding: 0;
+}
+
+.cart-division .cart-food-division .cart-food {
+  padding: 5px;
+}
+
+.cart-division .cart-food-division .cart-food .cart-food-image {
+  width: 100%;
+}
+
+.cart-division .cart-information-division {
+  padding: 20px;
+  border-right: 1px solid lightgray;
+}
+
+.cart-division .cart-information-division .cart-food-name {
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.cart-division .cart-information-division .cart-restaurant-name {
+  margin-top: 3px;
+  color: #757575;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.cart-division .cart-price-division {
+  padding: 0;
+}
+
+.cart-division .cart-price-division .cart-price {
+  margin: 10px;
+}
+
+.cart-division .cart-price-division .cart-price table {
+  width: 100%;
+}
+
+.cart-division .cart-price-division .cart-price td {
+  width: 50%;
+  padding: 5px;
+}
+
+.cart-division .cart-price-division .cart-price .total-row {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkout-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+  position: fixed;
+  width: 340px;
+}
+
+.checkout-division .order-summary-text {
+  margin-top: 5px;
+  text-align: center;
+  border-bottom: 1px solid lightgray;
+}
+
+.checkout-division .summary-price {
+  padding: 5px;
+  margin: 10px;
+}
+
+.checkout-division .summary-price table {
+  width: 100%;
+}
+
+.checkout-division .summary-price td {
+  width: 50%;
+  padding: 5px;
+}
+
+.checkout-division .summary-price .total-row {
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.order-summary-division {
+  margin-top: 10px;
+  background-color: white;
+  border: 1px solid lightgray;
+}
+
+.order-summary-division .order-restaurant-name {
+  padding: 10px 30px;
+}
+
+.order-summary-division .order-restaurant-name .border-bottom {
+  border-bottom: 1px solid lightgray;
+}
+
+.order-summary-division .food-items {
+  margin: 5px 10px;
+  text-align: center;
+}
+
+.order-summary-division .food-items .order-food-division {
+  text-align: center;
+  padding: 5px;
+  border: 1px solid lightgray;
+}
+
+.order-summary-division .food-items .order-food-division .order-food-image {
+  width: 130px;
+}
+
+.order-summary-division .food-items .order-food-information {
+  padding: 0;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.order-summary-division .food-items .order-food-information .order-food-name {
+  width: 100%;
+  word-wrap: break-word;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.order-summary-division .food-items .order-food-information .order-food-name p {
+  color: gray;
+}
+
+.order-summary-division .food-items .order-food-information .order-accept-division {
+  padding: 10px;
+  border-top: 1px solid lightgray;
+  text-align: center;
+}
+
+.order-summary-division .food-items .order-quantity-information {
+  padding: 0;
+  border-bottom: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid lightgray;
+}
+
+.order-summary-division .food-items .order-quantity-information .order-quantity-division {
+  text-align: center;
+  padding: 20px;
+}
+
+.order-summary-division .food-items .order-quantity-information .order-quantity-division h6 {
+  margin-top: 5px;
+}
+
+.order-summary-division .food-items .order-quantity-information .order-quantity-division h4 {
+  margin-top: 5px;
+}
+
 .p-0 {
   padding: 0 !important;
 }

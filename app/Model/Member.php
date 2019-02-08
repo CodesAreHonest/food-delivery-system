@@ -24,4 +24,15 @@ class Member extends Authenticatable
     public function getAuthPassword() {
         return $this->s_password;
     }
+
+    public static function check_credit_card ($member_email) {
+
+        $member = Member::where('s_email', $member_email)
+            ->where('b_card_information', 1)
+            ->first(['b_card_information']);
+
+        $outcomes = $member ? $member['b_card_information'] : false;
+
+        return $outcomes;
+    }
 }

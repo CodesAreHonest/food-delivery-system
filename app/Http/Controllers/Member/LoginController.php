@@ -31,7 +31,7 @@ class LoginController extends Controller
 
         switch ($login['response_code']) {
             case 200:
-                return response()->json ($login, 200);
+                return response()->json ($login);
             case 401:
                 return response()->json ($login);
             default:

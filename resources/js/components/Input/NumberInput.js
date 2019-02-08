@@ -24,6 +24,8 @@ class NumberInput extends Component {
                 required={this.props.required}
                 disabled={this.props.disabled}
                 min={this.props.min}
+                max={this.props.max}
+                pattern={this.props.pattern}
 
                 valid={this.state.valid}
             />
@@ -46,7 +48,10 @@ NumberInput.propTypes = {
     required: PropTypes.bool,
     disabled: PropTypes.bool,
     min: PropTypes.number,
+    max: PropTypes.number,
     value: PropTypes.any,
+    pattern: PropTypes.string,
+    onkeypress: PropTypes.func,
 
 };
 

@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
+
+import {connect} from 'react-redux';
+import {get_username} from "./UncontrolDropDownAction";
 
 class UncontrolDropdown extends Component {
 
@@ -14,6 +18,18 @@ class UncontrolDropdown extends Component {
         this.state = {
             dropdownOpen: false
         };
+    }
+
+    componentDidMount() {
+        this.props.get_username();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.username !== this.props.username) {
+
+            const {username} = this.props;
+            this.setState({username});
+        }
     }
 
     toggle() {
@@ -41,7 +57,7 @@ class UncontrolDropdown extends Component {
                 toggle={this.toggle}
             >
                 <DropdownToggle nav caret>
-                    Yinghua
+                    {this.state.username}
                 </DropdownToggle>
                 <DropdownMenu right>
                     <Link to="/member/manage/account">
@@ -49,12 +65,6 @@ class UncontrolDropdown extends Component {
                             Manage Account
                         </DropdownItem>
                     </Link>
-                    <DropdownItem>
-                        Order History
-                    </DropdownItem>
-                    <DropdownItem>
-                        Favourites
-                    </DropdownItem>
                     <DropdownItem divider />
                     <DropdownItem href="/member/logout">
                         Sign Out
@@ -65,5 +75,18 @@ class UncontrolDropdown extends Component {
     }
 }
 
-export default UncontrolDropdown;
+UncontrolDropdown.propTypes = {
+    username: PropTypes.string.isRequired,
+    get_username: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+    username: state.member.username
+});
+
+const mapDispatchToProps = {
+    get_username
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UncontrolDropdown);
 
