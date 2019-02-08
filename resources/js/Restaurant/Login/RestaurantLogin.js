@@ -27,7 +27,6 @@ class RestaurantLogin extends Component {
     componentDidUpdate(prevProps) {
 
         if (prevProps.login_response !== this.props.login_response) {
-
             const response = this.props.login_response.data;
             this.postLogin(response);
         }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
 import DeliveryLogin from "../Delivery/Login/DeliveryLogin";
-import RestaurantRegister from "../Restaurant/Register/RestaurantRegister";
+import DeliveryRegister from "../Delivery/Register/DeliveryRegister";
 
 
 class MemberLogin extends Component {
@@ -59,7 +59,7 @@ class MemberLogin extends Component {
                                 </TabPane>
 
                                 <TabPane tabId="register">
-                                    <RestaurantRegister />
+                                    <DeliveryRegister />
                                 </TabPane>
                             </TabContent>
                         </div>

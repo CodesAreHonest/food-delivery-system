@@ -34,7 +34,7 @@ class RegisterController extends Controller
         $validation = $this->deliveryService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -49,9 +49,9 @@ class RegisterController extends Controller
 
         switch ($register['response_code']) {
             case 200:
-                return response()->json ($register,200);
+                return response()->json ($register);
             case 500:
-                return response()->json ($register, 500);
+                return response()->json ($register);
             default:
                 return response()->json ([
                     'response_code' => 502,

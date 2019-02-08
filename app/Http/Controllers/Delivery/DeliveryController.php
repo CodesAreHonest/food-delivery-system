@@ -12,6 +12,7 @@ class DeliveryController extends Controller
       private  $deliveryService;
 
     public function __construct(DeliveryService $deliveryService) {
+        $this->middleware('auth:delivery');
         $this->deliveryService = $deliveryService;
     }
 

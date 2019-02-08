@@ -25,7 +25,6 @@ class DeliveryLogin extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
         if (prevProps.login_response !== this.props.login_response) {
 
             const response = this.props.login_response.data;
@@ -54,7 +53,7 @@ class DeliveryLogin extends Component {
     }
 
     onSubmit(e) {
-
+        console.log(this.state);
         e.preventDefault();
 
         let form = document.getElementById('delivery_login_form');
@@ -64,10 +63,7 @@ class DeliveryLogin extends Component {
         }
 
         this.props.login_delivery(this.state);
-
-        const response = this.props.login_response.data;
-        this.postLogin(response);
-    }
+    }   
 
     render() {
         return (

@@ -37,9 +37,11 @@ Route::prefix('restaurant')->group (function() {
 
 });
 
+Route::prefix('delivery')->group(function(){
+    Route::post('/register', 'Delivery\RegisterController@register')->name('post.delivery.register');
+    Route::post('/login', 'Delivery\LoginController@login')->name('post.delivery.login');
+});
 
-    Route::post('/delivery/register', 'Delivery\RegisterController@register')->name('post.delivery.register');
-    Route::post('/delivery/login', 'Delivery\LoginController@login')->name('post.delivery.login');
     Route::post('/delivery/update', 'Delivery\DeliveryController@updateDelivery')->name('post.delivery.update');
     Route::get('/delivery/get/detail', 'Delivery\DeliveryController@getDelivery')->name('get.delivery.detail');
 

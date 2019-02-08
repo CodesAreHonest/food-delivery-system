@@ -59308,6 +59308,7 @@ function (_Component) {
   }, {
     key: "onSubmit",
     value: function onSubmit(e) {
+      console.log(this.state);
       e.preventDefault();
       var form = document.getElementById('delivery_login_form');
 
@@ -59316,8 +59317,6 @@ function (_Component) {
       }
 
       this.props.login_delivery(this.state);
-      var response = this.props.login_response.data;
-      this.postLogin(response);
     }
   }, {
     key: "render",
@@ -59421,6 +59420,336 @@ var login_delivery = function login_delivery(data) {
 
 /***/ }),
 
+/***/ "./resources/js/Delivery/Register/DeliveryRegister.js":
+/*!************************************************************!*\
+  !*** ./resources/js/Delivery/Register/DeliveryRegister.js ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
+/* harmony import */ var _DeliveryRegisterAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./DeliveryRegisterAction */ "./resources/js/Delivery/Register/DeliveryRegisterAction.js");
+/* harmony import */ var _components_Input_PasswordInput__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../components/Input/PasswordInput */ "./resources/js/components/Input/PasswordInput.js");
+/* harmony import */ var _components_Input_StringInput__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../components/Input/StringInput */ "./resources/js/components/Input/StringInput.js");
+/* harmony import */ var _components_Input_TextArea__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../components/Input/TextArea */ "./resources/js/components/Input/TextArea.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/src/sweetalert2.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+
+
+
+ // Form Input
+
+
+
+
+
+
+
+var DeliveryRegister =
+/*#__PURE__*/
+function (_Component) {
+  _inherits(DeliveryRegister, _Component);
+
+  function DeliveryRegister(props) {
+    var _this;
+
+    _classCallCheck(this, DeliveryRegister);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(DeliveryRegister).call(this, props));
+    _this.state = {
+      delivery_register_username: '',
+      delivery_name: '',
+      delivery_register_password: '',
+      delivery_c_password: '',
+      delivery_address: '',
+      delivery_com_detail: ''
+    };
+    _this.onChange = _this.onChange.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.register = _this.register.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.resetForm = _this.resetForm.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.defaultState = _this.state;
+    return _this;
+  }
+
+  _createClass(DeliveryRegister, [{
+    key: "resetForm",
+    value: function resetForm() {
+      this.setState(this.defaultState);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      var _this2 = this;
+
+      if (prevProps.register_delivery_response !== this.props.register_delivery_response) {
+        var _this$props$register_ = this.props.register_delivery_response.data,
+            msgType = _this$props$register_.msgType,
+            msgTitle = _this$props$register_.msgTitle,
+            msg = _this$props$register_.msg,
+            response_code = _this$props$register_.response_code;
+        sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"].fire({
+          type: msgType,
+          title: msgTitle,
+          text: msg,
+          allowOutsideClick: false,
+          showConfirmButton: true,
+          allowEnterKey: true,
+          confirmButtonText: 'Ok',
+          timer: 2000
+        }).then(function () {
+          if (response_code === 200) {
+            _this2.resetForm();
+          }
+        });
+      }
+    }
+  }, {
+    key: "onChange",
+    value: function onChange(e) {
+      this.setState(_defineProperty({}, e.target.name, e.target.value));
+    }
+  }, {
+    key: "register",
+    value: function register(e) {
+      var _this3 = this;
+
+      e.preventDefault();
+      var form = document.getElementById('delivery_register_form');
+
+      if (!form.checkValidity()) {
+        return false;
+      }
+
+      sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"].fire({
+        type: 'question',
+        title: 'Are you sure?',
+        text: '',
+        allowOutsideClick: false,
+        allowEscapeKey: true,
+        allowEnterKey: true,
+        showCancelButton: true,
+        showConfirmButton: true,
+        showCloseButton: true,
+        confirmButtonText: 'Register (Enter)',
+        cancelButtonText: 'Cancel (Esc)',
+        confirmButtonColor: '#5cb85c',
+        reverseButtons: true
+      }).then(function (response) {
+        if (response.value) {
+          _this3.props.register_delivery(_this3.state);
+
+          sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"].fire({
+            title: 'Submitting...',
+            allowOutsideClick: false,
+            showCancelButton: false,
+            showConfirmButton: false,
+            onBeforeOpen: function onBeforeOpen() {
+              sweetalert2__WEBPACK_IMPORTED_MODULE_7__["default"].showLoading();
+            }
+          });
+        }
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Form"], {
+        id: "delivery_register_form",
+        onSubmit: this.register
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Row"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 6
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_register_username"
+      }, "Delivery Username: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_StringInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        id: "delivery_register_username",
+        name: "delivery_register_username",
+        value: this.state.delivery_register_username,
+        onChange: this.onChange,
+        placeholder: "Minimum 3 characters",
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 6
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_name"
+      }, "Delivery Name: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_StringInput__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        id: "delivery_name",
+        name: "delivery_name",
+        placeholder: "Tan You Chuan",
+        value: this.state.delivery_name,
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 6,
+        style: {
+          marginTop: '20px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_register_password"
+      }, "Password: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_PasswordInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        id: "delivery_register_password",
+        name: "delivery_register_password",
+        placeholder: "Minimum 6 characters",
+        value: this.state.delivery_register_password,
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 6,
+        style: {
+          marginTop: '20px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_c_password"
+      }, "Confirm Password: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_PasswordInput__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        id: "delivery_c_password",
+        name: "delivery_c_password",
+        placeholder: "Required to be same with password",
+        value: this.state.delivery_c_password,
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 12,
+        style: {
+          marginTop: '20px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_address"
+      }, "Address: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_TextArea__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        id: "delivery_address",
+        style: {
+          minWidth: '100%',
+          minHeight: '40px',
+          mfarginBottom: '20px'
+        },
+        name: "delivery_address",
+        placeholder: "552 Meadowbrook Ave. Florence, SC 29501",
+        value: this.state.delivery_address,
+        onChange: this.onChange,
+        required: true
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Col"], {
+        md: 12,
+        style: {
+          marginTop: '20px'
+        }
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Label"], {
+        for: "delivery_com_detail"
+      }, "Company Description: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Input_TextArea__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        id: "delivery_com_detail",
+        style: {
+          minWidth: '100%',
+          minHeight: '40px',
+          mfarginBottom: '20px'
+        },
+        name: "delivery_com_detail",
+        placeholder: "my company is the best",
+        value: this.state.delivery_com_detail,
+        onChange: this.onChange,
+        required: true
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_2__["Button"], {
+        color: "primary",
+        type: "submit",
+        block: true,
+        style: {
+          marginTop: '20px'
+        }
+      }, "Register"))));
+    }
+  }]);
+
+  return DeliveryRegister;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+DeliveryRegister.propTypes = {
+  register_delivery: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.func.isRequired,
+  register_delivery_response: prop_types__WEBPACK_IMPORTED_MODULE_1___default.a.any
+};
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    register_delivery_response: state.delivery.register_delivery_response
+  };
+};
+
+var mapDispatchToProps = {
+  register_delivery: _DeliveryRegisterAction__WEBPACK_IMPORTED_MODULE_3__["register_delivery"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_8__["connect"])(mapStateToProps, mapDispatchToProps)(DeliveryRegister));
+
+/***/ }),
+
+/***/ "./resources/js/Delivery/Register/DeliveryRegisterAction.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/Delivery/Register/DeliveryRegisterAction.js ***!
+  \******************************************************************/
+/*! exports provided: register_delivery */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "register_delivery", function() { return register_delivery; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+var REGISTER_DELIVERY = 'REGISTER_DELIVERY';
+
+var register_delivery = function register_delivery(data) {
+  return function (dispatch) {
+    var delivery_register_username = data.delivery_register_username,
+        delivery_name = data.delivery_name,
+        delivery_address = data.delivery_address,
+        delivery_register_password = data.delivery_register_password,
+        delivery_c_password = data.delivery_c_password,
+        delivery_com_detail = data.delivery_com_detail;
+    var params = {
+      'username': delivery_register_username,
+      'name': delivery_name,
+      'password': delivery_register_password,
+      'confirm_password': delivery_c_password,
+      'address': delivery_address,
+      'company_description': delivery_com_detail
+    };
+    console.log(params);
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/delivery/register', params).then(function (response) {
+      return dispatch({
+        type: REGISTER_DELIVERY,
+        payload: response
+      });
+    }).catch(function (err) {
+      console.warn(err);
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./resources/js/FoodDelivery/DeliveryLogin.js":
 /*!****************************************************!*\
   !*** ./resources/js/FoodDelivery/DeliveryLogin.js ***!
@@ -59434,7 +59763,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var reactstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! reactstrap */ "./node_modules/reactstrap/es/index.js");
 /* harmony import */ var _Delivery_Login_DeliveryLogin__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../Delivery/Login/DeliveryLogin */ "./resources/js/Delivery/Login/DeliveryLogin.js");
-/* harmony import */ var _Restaurant_Register_RestaurantRegister__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Restaurant/Register/RestaurantRegister */ "./resources/js/Restaurant/Register/RestaurantRegister.js");
+/* harmony import */ var _Delivery_Register_DeliveryRegister__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../Delivery/Register/DeliveryRegister */ "./resources/js/Delivery/Register/DeliveryRegister.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -59527,7 +59856,7 @@ function (_Component) {
         tabId: "login"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Delivery_Login_DeliveryLogin__WEBPACK_IMPORTED_MODULE_2__["default"], null)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(reactstrap__WEBPACK_IMPORTED_MODULE_1__["TabPane"], {
         tabId: "register"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Restaurant_Register_RestaurantRegister__WEBPACK_IMPORTED_MODULE_3__["default"], null)))))));
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Delivery_Register_DeliveryRegister__WEBPACK_IMPORTED_MODULE_3__["default"], null)))))));
     }
   }]);
 

@@ -11,7 +11,6 @@ class LoginController extends Controller
     private  $deliveryService;
 
     public function __construct(DeliveryService $deliveryService) {
-        $this->middleware('guest:delivery')->except('logout');
         $this->deliveryService = $deliveryService;
     }
 
@@ -25,16 +24,16 @@ class LoginController extends Controller
         $validation = $this->deliveryService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         $login = $this->deliveryService->login ($request);
 
         switch ($login['response_code']) {
             case 200:
-                return response()->json ($login, 200);
+                return response()->json ($login);
             case 401:
-                return response()->json ($login, 401);
+                return response()->json ($login);
             default:
                 return response()->json ([
                     'response_code' => 502,
