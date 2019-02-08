@@ -9,12 +9,22 @@ class OrderHistoryCard extends Component {
 
         this.state = {
             color: ''
-        }
+        };
+
+        this.renderLayout = this.renderLayout.bind(this);
     }
 
     componentDidMount() {
+        this.renderLayout(this.props.delivery_status);
+    }
 
-        const {delivery_status} = this.props;
+    componentDidUpdate(prevProps) {
+        if (prevProps.delivery_status !== this.props.delivery_status) {
+            this.renderLayout(this.props.delivery_status);
+        }
+    }
+
+    renderLayout(delivery_status) {
 
         switch (delivery_status) {
             case 'paid':
@@ -27,6 +37,7 @@ class OrderHistoryCard extends Component {
                 this.setState({color: 'success', value: 100});
                 break;
         }
+
     }
 
     render() {

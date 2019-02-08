@@ -18,16 +18,18 @@ class OrderHistory extends Component {
 
         this.state = {
             delivery: {value: 'all', label: 'All'},
-            date_from: null,
-            date_to: null,
+            start_date: null,
+            end_date: null,
+            search: '',
         };
 
         this.renderLayout = this.renderLayout.bind(this);
         this.searchOrder = this.searchOrder.bind(this);
+        this.statusChange = this.statusChange.bind(this);
     }
 
     componentDidMount() {
-        this.props.order_summary();
+        this.props.order_summary(this.state);
     }
 
     componentDidUpdate (prevProps) {
@@ -35,6 +37,12 @@ class OrderHistory extends Component {
         if (prevProps.summary_detail !== this.props.summary_detail) {
             this.renderLayout(this.props.summary_detail)
         }
+    }
+
+    statusChange(delivery) {
+        this.setState({delivery},() => {
+           this.props.order_summary(this.state);
+        });
     }
 
     searchOrder() {
@@ -85,7 +93,7 @@ class OrderHistory extends Component {
                                     closeMenuOnSelect={true}
                                     options={delivery_options}
                                     value={this.state.delivery}
-                                    onChange={delivery => this.setState({delivery})}
+                                    onChange={this.statusChange}
                                 />
                             </Col>
 
@@ -93,11 +101,11 @@ class OrderHistory extends Component {
                                 <DatePicker
                                     className="form-control"
                                     dropdownMode="select"
-                                    selected={this.state.date_from}
+                                    selected={this.state.start_date}
                                     dateFormat="dd-MM-YYYY"
                                     placeholderText="Start Date"
-                                    onSelect={date_from => this.setState({date_from})}
-                                    onChange={date_from => this.setState({date_from})}
+                                    onSelect={start_date => this.setState({start_date})}
+                                    onChange={start_date => this.setState({start_date})}
                                 />
                             </Col>
 
@@ -105,11 +113,11 @@ class OrderHistory extends Component {
                                 <DatePicker
                                     className="form-control"
                                     dropdownMode="select"
-                                    selected={this.state.date_to}
+                                    selected={this.state.end_date}
                                     dateFormat="dd-MM-YYYY"
                                     placeholderText="End Date"
-                                    onSelect={date_to => this.setState({date_to})}
-                                    onChange={date_to => this.setState({date_to})}
+                                    onSelect={end_date => this.setState({end_date})}
+                                    onChange={end_date => this.setState({end_date})}
                                 />
                             </Col>
 

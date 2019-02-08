@@ -141,11 +141,40 @@ class CartService extends BaseService
             's_delivery_status'
         ];
 
-        $data = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
+        $query = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
             ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
             ->where('s_member_email', $request['member_email'])
-            ->where('b_paid', 1)
-            ->select($columns)
+            ->where('b_paid', 1);
+
+        if ($request->has('delivery_status')) {
+            if ($request['delivery_status'] != 'all') {
+                $query = $query->where('s_delivery_status',  $request['delivery_status']);
+            }
+        }
+
+        if ($request->has('search')) {
+            if ($request['search'] != '') {
+                $query = $query->where('s_restaurant_name', 'LIKE', "%{$request['search']}%");
+            }
+        }
+
+        if ($request->has('start_date')) {
+
+            if ($request['start_date'] != '') {
+                $start_date = Carbon::parse($request['start_date'])->startOfDay()->toDateTimeString();
+                $query = $query->where('dt_paid', '>=', $start_date);
+            }
+        }
+
+        if ($request->has('end_date')) {
+
+            if ($request['end_date'] != '') {
+                $end_date = Carbon::parse($request['end_date'])->endOfDay()->toDateTimeString();
+                $query = $query->where('dt_paid', '<=', $end_date);
+            }
+        }
+
+        $data = $query->select($columns)
             ->groupBy('s_image', 'food.s_name', 's_delivery_status')
             ->get();
 
