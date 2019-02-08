@@ -104,8 +104,8 @@ class CartController extends Controller
             'member_email'              => 'required|email|max:100',
             'delivery_status'           => 'nullable|string|max:50',
             'search'                    => 'nullable|string|max:50',
-            'start_date'                => 'nullable|date|format:d-m-Y',
-            'end_date'                  => 'nullable|date|format:d-m-Y',
+            'start_date'                => 'nullable|date_format:d-m-Y',
+            'end_date'                  => 'nullable|date_format:d-m-Y',
         ];
 
         $validation = $this->cartService->validator($request->all(), $rules);

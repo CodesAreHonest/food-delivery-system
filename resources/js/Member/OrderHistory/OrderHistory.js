@@ -26,6 +26,8 @@ class OrderHistory extends Component {
         this.renderLayout = this.renderLayout.bind(this);
         this.searchOrder = this.searchOrder.bind(this);
         this.statusChange = this.statusChange.bind(this);
+        this.startDateChange = this.startDateChange.bind(this);
+        this.endDateChange = this.endDateChange.bind(this);
     }
 
     componentDidMount() {
@@ -33,7 +35,6 @@ class OrderHistory extends Component {
     }
 
     componentDidUpdate (prevProps) {
-
         if (prevProps.summary_detail !== this.props.summary_detail) {
             this.renderLayout(this.props.summary_detail)
         }
@@ -45,8 +46,22 @@ class OrderHistory extends Component {
         });
     }
 
-    searchOrder() {
+    startDateChange(start_date) {
+        this.setState({start_date}, () => {
+            this.props.order_summary(this.state);
+        });
+    }
 
+    endDateChange(end_date) {
+        this.setState({end_date}, () => {
+            this.props.order_summary(this.state);
+        });
+    }
+
+    searchOrder(search) {
+        this.setState({search}, () => {
+            this.props.order_summary(this.state);
+        })
     }
 
     renderLayout(summary_detail) {
@@ -104,8 +119,7 @@ class OrderHistory extends Component {
                                     selected={this.state.start_date}
                                     dateFormat="dd-MM-YYYY"
                                     placeholderText="Start Date"
-                                    onSelect={start_date => this.setState({start_date})}
-                                    onChange={start_date => this.setState({start_date})}
+                                    onChange={this.startDateChange}
                                 />
                             </Col>
 
@@ -116,8 +130,7 @@ class OrderHistory extends Component {
                                     selected={this.state.end_date}
                                     dateFormat="dd-MM-YYYY"
                                     placeholderText="End Date"
-                                    onSelect={end_date => this.setState({end_date})}
-                                    onChange={end_date => this.setState({end_date})}
+                                    onChange={this.endDateChange}
                                 />
                             </Col>
 

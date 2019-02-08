@@ -1,12 +1,13 @@
 const ORDER_SUMMARY = 'ORDER_SUMMARY';
 
 import axios from 'axios';
+import moment from 'moment';
 
 export const order_summary = (data) => dispatch => {
 
     const delivery_status = data.delivery.value;
-    const start_date = data.start_date === null ? '' : data.start_date;
-    const end_date = data.end_date === null ? '' : data.end_date;
+    const start_date = data.start_date === null ? '' : moment(data.start_date).format('DD-MM-YYYY');
+    const end_date = data.end_date === null ? '' : moment(data.end_date).format('DD-MM-YYYY');
     const {search} = data;
 
     const params = {
