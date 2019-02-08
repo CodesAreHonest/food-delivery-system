@@ -1,11 +1,13 @@
 const ADD_CART = 'ADD_CART';
 const GET_CART = 'GET_CART';
 const CART_CHECKOUT = 'CART_CHECKOUT';
+const ORDER_SUMMARY = 'ORDER_SUMMARY';
 
 const initialState = {
     add_cart_response: [],
     cart_detail: [],
-    cart_checkout_response: []
+    cart_checkout_response: [],
+    order_summary_detail: []
 };
 
 export default function (state = initialState, action) {
@@ -24,6 +26,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 cart_checkout_response: action.payload
+            };
+        case ORDER_SUMMARY:
+            return {
+                ...state,
+                order_summary_detail: action.payload
             };
         default:
             return state;

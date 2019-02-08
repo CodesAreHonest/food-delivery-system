@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import NavigationBar from "../NavigationBar/NavigationBar";
-import {Col, Container, Row, Progress, Badge, Button} from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 import ReactSelect from "../../components/Input/ReactSelect";
 import {delivery_options} from "../Home/MenuType";
 import SearchInput from "../../components/Input/SearchInput";
@@ -8,6 +8,9 @@ import SearchInput from "../../components/Input/SearchInput";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 
+import {connect} from 'react-redux';
+import {order_summary} from "./OrderHistoryAction";
+import OrderHistoryCard from "./OrderHistoryCard";
 
 class OrderHistory extends Component {
     constructor(props) {
@@ -19,11 +22,47 @@ class OrderHistory extends Component {
             date_to: null,
         };
 
-        this.searchOrder = this.searchOrder.bind(this);
+        this.renderLayout = this.renderLayout.bind(this);
     }
 
-    searchOrder() {
+    componentDidMount() {
+        this.props.order_summary();
+    }
 
+    componentDidUpdate (prevProps) {
+
+        if (prevProps.summary_detail !== this.props.summary_detail) {
+            this.renderLayout(this.props.summary_detail)
+        }
+    }
+
+    renderLayout(summary_detail) {
+
+        let orderSummary = summary_detail.map((value, key) => {
+
+            const {
+                s_image: food_image,
+                s_delivery_status: delivery_status,
+                dt_paid: paid_time,
+                s_name: food_name,
+                s_restaurant_name: restaurant_name,
+                total_quantity: quantity
+            } = value;
+
+            return (
+                <OrderHistoryCard
+                    key={key}
+                    restaurant_name={restaurant_name}
+                    delivery_status={delivery_status}
+                    food_name={food_name}
+                    food_image={food_image}
+                    paid_time={paid_time}
+                    quantity={quantity}
+                />
+            )
+        });
+
+        this.setState({orderSummary});
     }
 
     render() {
@@ -83,57 +122,8 @@ class OrderHistory extends Component {
 
                 <Container>
 
-                    <div className="order-summary-division">
-                        <Row>
-                            <Col md={12} className="order-restaurant-name">
-                                <Row>
-                                    <Col md={6} style={{textAlign: 'left'}} className="border-bottom">
-                                        <h5><b>Restaurant Name</b></h5>
-                                    </Col>
-                                    <Col md={5} className="border-bottom">
-                                        <Progress animated color="info" value={25} style={{marginTop: '5px'}}/>
-                                    </Col>
-                                    <Col md={1} style={{textAlign: 'right'}} className="border-bottom">
-                                        <h5 style={{color: 'white'}}><Badge color="info">Paid</Badge></h5>
-                                    </Col>
-                                </Row>
-                            </Col>
+                    {this.state.orderSummary}
 
-                            <Col md={12} >
-                                <Row className="food-items">
-                                    <Col md={2} className="order-food-division">
-                                        <img
-                                            src="https://cdn0.iconfinder.com/data/icons/webshop-essentials/100/shopping-cart-512.png"
-                                            className="order-food-image"
-                                        />
-                                    </Col>
-
-                                    <Col md={8} className="order-food-information">
-                                        <div className="order-food-name">
-                                            <h4>Food Name</h4>
-
-                                            <p><b>Paid at: </b>2019-09-20 12:00:00</p>
-
-                                        </div>
-
-                                        <div className="order-accept-division">
-                                            <Button color="success">Delivery Received</Button>
-                                        </div>
-                                    </Col>
-
-                                    <Col md={2} className="order-quantity-information">
-
-                                        <div className="order-quantity-division">
-                                            <h3>Quantity</h3>
-
-                                            <h1><b>1</b></h1>
-                                        </div>
-                                    </Col>
-
-                                </Row>
-                            </Col>
-                        </Row>
-                    </div>
 
                 </Container>
 
@@ -143,4 +133,12 @@ class OrderHistory extends Component {
     }
 }
 
-export default OrderHistory;
+const mapStateToProps = state => ({
+  summary_detail: state.cart.order_summary_detail,
+});
+
+const mapDispatchToProps = {
+    order_summary
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OrderHistory);

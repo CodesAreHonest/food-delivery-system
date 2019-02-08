@@ -138,6 +138,7 @@ class CartService extends BaseService
             'food.s_name',
             'dt_paid',
             DB::raw('sum(n_quantity) as total_quantity'),
+            's_delivery_status'
         ];
 
         $data = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
@@ -145,7 +146,7 @@ class CartService extends BaseService
             ->where('s_member_email', $request['member_email'])
             ->where('b_paid', 1)
             ->select($columns)
-            ->groupBy('s_image', 'food.s_name')
+            ->groupBy('s_image', 'food.s_name', 's_delivery_status')
             ->get();
 
         return $data;
