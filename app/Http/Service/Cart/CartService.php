@@ -277,8 +277,9 @@ class CartService extends BaseService
             ];
         }
 
-        $order['s_delivery_status'] = $request['delivery_status'];
-        $order['s_delivery_id']   = $request['delivery_username'];
+        $order['s_delivery_status']     = $request['delivery_status'];
+        $order['s_delivery_id']         = $request['delivery_username'];
+        $order['dt_delivery_shipped']   = Carbon::now()->toDateTimeString();
 
 
         $result = $order->save();

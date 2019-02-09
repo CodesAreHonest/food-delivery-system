@@ -78,7 +78,7 @@ class DeliveryLogin extends Component {
                                     name="delivery_username"
                                     value={this.state.delivery_username}
                                     onChange={this.onChange}
-                                    placeholder="Ying Hua "
+                                    placeholder="Username"
                                     required={true}
                                 />
                             </Col>

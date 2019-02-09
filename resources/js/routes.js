@@ -51,12 +51,6 @@ export const routes = [{
     path: '/restaurant/',
     component: AddFood
 }, {
-    path: '/restaurant/delivery/list',
-    component: DeliveryList
-}, {
-    path: '/restaurant/delivery/team',
-    component: DeliveryTeam
-},{
     path: '/delivery/login',
     component: DeliveryLogin
 },{

@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types';
 import {update_order_list} from "./OrderAction";
+import Swal from "sweetalert2";
 
 class OrderItem extends Component {
     constructor(props) {
@@ -15,12 +16,72 @@ class OrderItem extends Component {
 
     acceptOrder() {
 
-        this.props.update_order_list(this.props.id,'shipped');
+        Swal.fire({
+            type: 'question',
+            title: 'Are you sure you want to accept the order?',
+            text: '',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Yes (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+
+                this.props.update_order_list(this.props.id,'shipped');
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
     }
 
     rejectOrder() {
 
-        this.props.update_order_list(this.props.id,'delivered');
+        Swal.fire({
+            type: 'question',
+            title: 'Are you sure you want to reject the order?',
+            text: '',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Yes (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#e3342f',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+
+                this.props.update_order_list(this.props.id,'rejected');
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
     }
 
     render() {
@@ -54,9 +115,9 @@ class OrderItem extends Component {
 
                     <div className="button-click">
 
-                        <Button color="primary" type="button" onClick={this.acceptOrder}>Accept</Button>
+                        <Button color="success" type="button" onClick={this.acceptOrder}>Accept</Button>
 
-                        <Button color="primary" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>
+                        <Button color="danger" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>
                     </div>
 
                 </Col>
@@ -75,12 +136,8 @@ OrderItem.propTypes = {
     update_order_response: PropTypes.any
 };
 
-const mapStateToProps = state => ({
-    update_order_response: state.delivery.update_order_response,
-});
-
 const mapDispatchToProps = {
     update_order_list
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OrderItem);
+export default connect(null, mapDispatchToProps)(OrderItem);

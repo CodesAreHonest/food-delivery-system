@@ -133,7 +133,7 @@ class DeliveryRegister extends Component {
                                 <StringInput
                                     id="delivery_name"
                                     name="delivery_name"
-                                    placeholder="Tan You Chuan"
+                                    placeholder="Username"
                                     value={this.state.delivery_name}
                                     onChange={this.onChange}
                                     required={true}

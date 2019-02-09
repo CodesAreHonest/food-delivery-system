@@ -166,8 +166,6 @@ class CartController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'member_email' => 'required|email|max:100',
-            'item_id' => 'required|string|max:50',
             'delivery_username' => 'required|string|max:50',
             'order_id' => 'required|int',
             'delivery_status' => 'required|string|max:50',

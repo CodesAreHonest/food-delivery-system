@@ -8,6 +8,7 @@ import NavigationBar from "../NavigationBar/NavigationBar";
 
 import {get_delivery_list_detail} from "./OrderAction";
 import OrderItem from "./OrderItem"
+import Swal from "sweetalert2";
 
 
 
@@ -20,7 +21,6 @@ class DeliveryHome extends Component {
         };
 
         this.renderOrder = this.renderOrder.bind(this);
-
     }
 
     renderOrder(data) {
@@ -71,6 +71,27 @@ class DeliveryHome extends Component {
                 this.renderOrder(data);
             }
         }
+
+        if (prevProps.update_order_response !== this.props.update_order_response) {
+
+            let {msgType, msgTitle, msg, response_code} = this.props.update_order_response.data;
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            }).then (() => {
+
+                if (response_code === 200) {
+                    this.props.get_delivery_list_detail();
+                }
+            })
+        }
     }
 
 
@@ -98,11 +119,11 @@ class DeliveryHome extends Component {
 DeliveryHome.propTypes = {
     get_delivery_list_detail: PropTypes.func.isRequired,
     get_delivery_list_response: PropTypes.any
-
 };
 
 const mapStateToProps = state => ({
     get_delivery_list_response: state.delivery.get_delivery_list_response,
+    update_order_response: state.delivery.update_order_response,
 });
 
 const mapDispatchToProps = {

@@ -31,10 +31,6 @@ class NavigationBar extends Component {
                                     name="Add Food"
                                     url="/restaurant/"
                                 />
-                                <NavigationItem
-                                    name="Delivery Information"
-                                    url="/restaurant/delivery/team"
-                                />
                                 <UncontrolDropdown />
                             </Nav>
                         </Collapse>

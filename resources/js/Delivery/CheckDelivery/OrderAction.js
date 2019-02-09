@@ -17,7 +17,6 @@ export const get_delivery_list_detail = () => dispatch => {
 
 export const update_order_list = (id,status) => dispatch => {
 
-
     const params = {
         'order_id': id,
         'delivery_status': status,
