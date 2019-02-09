@@ -118,4 +118,36 @@ class CartController extends Controller
 
         return $order_summary;
     }
+
+    public function order_received (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'member_email'              => 'required|email|max:100',
+            'item_id'                   => 'required|string|max:50',
+        ];
+
+        $validation = $this->cartService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        /** ==========================================================================
+         *  Mark order as received
+         *  ==========================================================================
+         *  @return 200 Success
+         *  @return 500 Internal Server Error
+         *  =========================================================================== */
+
+        $order_received = $this->cartService->order_received($request);
+
+        return $order_received;
+
+    }
 }

@@ -25,6 +25,8 @@ Route::prefix('member')->group (function() {
 
         Route::get('/order/summary', 'Cart\CartController@getOrderSummary')->name('member.get.order.summary');
 
+        Route::post('/order/received', 'Cart\CartController@order_received')->name('member.post.order.received');
+
     });
 
 });

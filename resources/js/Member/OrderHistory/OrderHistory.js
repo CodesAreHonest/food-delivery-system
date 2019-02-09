@@ -11,6 +11,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import {connect} from 'react-redux';
 import {order_summary} from "./OrderHistoryAction";
 import OrderHistoryCard from "./OrderHistoryCard";
+import Swal from "sweetalert2";
 
 class OrderHistory extends Component {
     constructor(props) {
@@ -37,6 +38,28 @@ class OrderHistory extends Component {
     componentDidUpdate (prevProps) {
         if (prevProps.summary_detail !== this.props.summary_detail) {
             this.renderLayout(this.props.summary_detail)
+        }
+
+        if (prevProps.order_confirmation_response !== this.props.order_confirmation_response) {
+
+            let {msgType, msgTitle, msg, response_code} = this.props.order_confirmation_response.data;
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            }).then (() => {
+
+                if (response_code === 200) {
+                    this.props.order_summary(this.state);
+                }
+            })
+
         }
     }
 
@@ -69,6 +92,7 @@ class OrderHistory extends Component {
         let orderSummary = summary_detail.map((value, key) => {
 
             const {
+                id,
                 s_image: food_image,
                 s_delivery_status: delivery_status,
                 dt_paid: paid_time,
@@ -80,6 +104,7 @@ class OrderHistory extends Component {
             return (
                 <OrderHistoryCard
                     key={key}
+                    id={id}
                     restaurant_name={restaurant_name}
                     delivery_status={delivery_status}
                     food_name={food_name}
@@ -147,10 +172,7 @@ class OrderHistory extends Component {
                 </div>
 
                 <Container>
-
                     {this.state.orderSummary}
-
-
                 </Container>
 
             </Fragment>
@@ -160,7 +182,8 @@ class OrderHistory extends Component {
 }
 
 const mapStateToProps = state => ({
-  summary_detail: state.cart.order_summary_detail,
+    summary_detail: state.cart.order_summary_detail,
+    order_confirmation_response: state.cart.order_received_response
 });
 
 const mapDispatchToProps = {

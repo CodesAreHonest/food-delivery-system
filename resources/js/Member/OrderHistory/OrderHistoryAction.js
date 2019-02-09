@@ -1,4 +1,5 @@
 const ORDER_SUMMARY = 'ORDER_SUMMARY';
+const ORDER_RECEIVED = 'ORDER_RECEIVED';
 
 import axios from 'axios';
 import moment from 'moment';
@@ -19,6 +20,19 @@ export const order_summary = (data) => dispatch => {
         .then (response => dispatch ({
             type: ORDER_SUMMARY,
             payload: response.data,
+        })).catch (err => {
+        console.warn (err);
+    });
+};
+
+export const order_received = (id) => dispatch => {
+
+    const params = {item_id: id};
+
+    axios.post('/api/member/order/received', params)
+        .then (response => dispatch ({
+            type: ORDER_RECEIVED,
+            payload: response,
         })).catch (err => {
         console.warn (err);
     });

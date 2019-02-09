@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {Badge, Button, Col, Progress, Row} from "reactstrap";
 import PropTypes from 'prop-types';
 import OrderHistoryProgress from "./OrderHistoryProgress";
+import Swal from "sweetalert2";
+
+import {order_received} from "./OrderHistoryAction";
+import {connect} from 'react-redux';
 
 class OrderHistoryCard extends Component {
     constructor(props) {
@@ -12,6 +16,7 @@ class OrderHistoryCard extends Component {
         };
 
         this.renderLayout = this.renderLayout.bind(this);
+        this.orderReceived = this.orderReceived.bind(this);
     }
 
     componentDidMount() {
@@ -37,12 +42,49 @@ class OrderHistoryCard extends Component {
                 this.setState({color: 'success', value: 100});
                 break;
         }
+    }
+
+    orderReceived (e) {
+
+        const id = e.target.id;
+
+        Swal.fire({
+            type: 'question',
+            title: 'Are you sure?',
+            text: `Do you receive ${this.props.food_name} from ${this.props.restaurant_name} ? `,
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Yes (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+
+                this.props.order_received(id);
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
 
     }
 
     render() {
 
-        const {restaurant_name, delivery_status, food_image, food_name, paid_time, quantity} = this.props;
+        const {id, restaurant_name, delivery_status, food_image, food_name, paid_time, quantity} = this.props;
 
         return (
 
@@ -89,7 +131,7 @@ class OrderHistoryCard extends Component {
                         {
                             this.props.delivery_status === 'shipped' &&
                             <div className="order-accept-division">
-                                <Button color="success">Delivery Received</Button>
+                                <Button color="success" id={id} onClick={this.orderReceived}>Delivery Received</Button>
                             </div>
                         }
                     </Col>
@@ -111,13 +153,20 @@ class OrderHistoryCard extends Component {
 }
 
 OrderHistoryCard.propTypes = {
+    id: PropTypes.any.isRequired,
     restaurant_name: PropTypes.string.isRequired,
     delivery_status: PropTypes.string.isRequired,
     food_image: PropTypes.string.isRequired,
     food_name: PropTypes.string.isRequired,
     paid_time: PropTypes.string.isRequired,
-    quantity: PropTypes.string.isRequired
+    quantity: PropTypes.string.isRequired,
+
+    order_received: PropTypes.func.isRequired,
 };
 
-export default OrderHistoryCard;
+const mapDispatchToProps = {
+    order_received
+};
+
+export default connect(null, mapDispatchToProps)(OrderHistoryCard);
 

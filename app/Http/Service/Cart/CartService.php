@@ -133,6 +133,7 @@ class CartService extends BaseService
     public function order_summary ($request) {
 
         $columns = [
+            'shopping_cart.id',
             's_restaurant_name',
             's_image',
             'food.s_name',
@@ -179,5 +180,45 @@ class CartService extends BaseService
             ->get();
 
         return $data;
+    }
+
+    public function order_received ($request) {
+
+        $delivered_items = ShoppingCart::where('id', $request['item_id'])
+            ->where('s_delivery_status', 'shipped')
+            ->whereNotNull('s_delivery_id')
+            ->first();
+
+        if (!$delivered_items) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Delivered item not found. ',
+                'msg'           => ''
+            ];
+        }
+
+        $delivered_items->s_delivery_status = 'delivered';
+        $delivered_items->dt_delivery_delivered = Carbon::now()->toDateTimeString();
+        $delivered_items->save();
+
+        if ($delivered_items) {
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food delivered is mark as received. ',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Internal Server Error',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Internal Server Error',
+            'msg'           => ''
+        ];
     }
 }
