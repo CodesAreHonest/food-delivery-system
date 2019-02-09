@@ -47,5 +47,24 @@ Route::prefix('restaurant')->group (function() {
 //        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
     });
 
+
 });
+
+Route::prefix('delivery')->group(function(){
+    Route::post('/register', 'Delivery\RegisterController@register')->name('post.delivery.register');
+    Route::post('/login', 'Delivery\LoginController@login')->name('post.delivery.login');
+
+    Route::middleware('delivery_auth')->group(function () {
+
+        Route::post('/update', 'Delivery\DeliveryController@updateDelivery')->name('post.delivery.update');
+        Route::get('/get/detail', 'Delivery\DeliveryController@getDelivery')->name('get.delivery.detail');
+        Route::get('/get/delivery/list', 'Cart\CartController@getDeliveryList')->name('get.delivery.list');
+        Route::post('/delivery/order/update', 'Cart\CartController@updateDeliveryList')->name('post.delivery.order.update');
+
+    });
+});
+
+Route::post('/admin/register', 'Admin\RegisterController@register')->name('post.admin.register');
+Route::post('/admin/login', 'Admin\LoginController@login')->name('post.admin.login');
+Route::post('/admin/block/user', 'Member\MemberController@updateBlockUser');
 

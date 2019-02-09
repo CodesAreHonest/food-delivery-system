@@ -26,6 +26,7 @@ class MemberService extends BaseService
             's_country'     => $request['register_country'],
             'created_at'    => Carbon::now()->toDateTimeString(),
             'updated_at'    => Carbon::now()->toDateTimeString(),
+            's_status'    => '1',
         ];
 
         $member = Member::insert($input);
@@ -233,6 +234,50 @@ class MemberService extends BaseService
         ];
     }
 
+    public function updateBlockUser($request) {
+
+        $member = Member::where('s_email', $request['member_email'])->first();
+
+
+        if (!$member) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched Email',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => 'Update Unsuccessful'
+            ];
+        }
+
+        if ($member['s_status'] === 1) {
+            $member['s_status'] = 0;
+        }else{
+            $member['s_status'] = 1;
+        }
+
+
+        $result = $member->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => 'Update Unsuccessful'
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
+
+
     public function check_out ($member_email) {
 
         $credit_card_availability = Member::check_credit_card ($member_email);
@@ -246,7 +291,6 @@ class MemberService extends BaseService
                 'msg'           => ''
             ];
         }
-
         $check_out = ShoppingCart::where('b_paid', 0)
             ->update([
                 'b_paid'            => 1,
@@ -263,8 +307,7 @@ class MemberService extends BaseService
                 'msg'           => ''
             ];
         }
-
-        return [
+        return[
             'response_code' => 500,
             'response_msg'  => 'Internal Server Error',
             'msgType'       => 'error',

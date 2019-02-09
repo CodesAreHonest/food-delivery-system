@@ -27,7 +27,7 @@ class FoodController extends Controller
         $validation = $this->foodService->validator ($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         $add_food = $this->foodService->addFood($request);
@@ -54,7 +54,7 @@ class FoodController extends Controller
         $validation = $this->foodService->validator ($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         $addFoodPreview = $this->foodService->addFoodPreview($request);

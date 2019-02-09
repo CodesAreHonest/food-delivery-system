@@ -208,8 +208,47 @@ class CartService extends BaseService
                 'response_code' => 200,
                 'response_msg'  => 'Success',
                 'msgType'       => 'success',
-                'msgTitle'      => 'Food delivered is mark as received. ',
+                'msgTitle'      => 'Food delivered is mark as Delivered. ',
                 'msg'           => ''
+            ];
+        }
+
+        return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+            'msgTitle'      => 'Internal Server Error',
+            'msg'           => ''
+        ];
+
+    }
+
+    public function get_delivery_list(){
+        $columns = [
+            'shopping_cart.n_quantity',
+            'shopping_cart.id',
+            'shopping_cart.s_delivery_status',
+            'food.s_name',
+            'member.s_address'
+        ];
+
+        $list = ShoppingCart::join('food','shopping_cart.s_food_id','=','food.id')
+        ->join('member','shopping_cart.s_member_email','=','member.s_email')
+        ->where('b_paid',1)
+        ->select($columns);
+
+        $delivery_list_count = $list->count();
+
+        $data = $list->get();
+
+        if ($data) {
+            return [
+                'response_code' => 200,
+                'msgType'       => 'success',
+                'msgTitle'      => 'get Delivery List Success successfully.',
+                'msg'           => '',
+                'delivery_list' => $data,
+                'total_count' =>    $delivery_list_count        
             ];
         }
 
@@ -217,8 +256,49 @@ class CartService extends BaseService
             'response_code' => 500,
             'response_msg'  => 'Internal Server Error',
             'msgType'       => 'error',
-            'msgTitle'      => 'Internal Server Error',
+            'msgTitle'      => 'get Data Unsuccessful Unsuccessful',
             'msg'           => ''
         ];
+
     }
+
+    public function updateDeliveryList($request) 
+    {
+
+        $order = ShoppingCart::where('id', $request['order_id'])->first();
+
+        if (!$order) {
+            return [
+                'response_code' => 404,
+                'response_msg'  => 'No Matched order Id',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        $order['s_delivery_status'] = $request['delivery_status'];
+        $order['s_delivery_id']   = $request['delivery_username'];
+
+
+        $result = $order->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }   
 }

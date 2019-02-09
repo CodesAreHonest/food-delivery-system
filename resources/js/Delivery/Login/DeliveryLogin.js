@@ -5,17 +5,17 @@ import PasswordInput from "../../components/Input/PasswordInput";
 import PropTypes from 'prop-types';
 import StringInput from "../../components/Input/StringInput";
 
-import {login_restaurant} from "./RestaurantLoginAction";
+import {login_delivery} from "./DeliveryLoginAction";
 
 import {connect} from 'react-redux';
 
-class RestaurantLogin extends Component {
+class DeliveryLogin extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            restaurant_id: '',
-            restaurant_password: '',
+            delivery_username: '',
+            delivery_password: '',
             alert: null,
         };
 
@@ -25,8 +25,8 @@ class RestaurantLogin extends Component {
     }
 
     componentDidUpdate(prevProps) {
-
         if (prevProps.login_response !== this.props.login_response) {
+
             const response = this.props.login_response.data;
             this.postLogin(response);
         }
@@ -37,7 +37,7 @@ class RestaurantLogin extends Component {
         let {msg, response_code} = login_response;
 
         if (response_code === 200) {
-            window.location.href = '/restaurant/';
+            window.location.href = '/delivery/';
         }
         else {
             const alert = (
@@ -53,32 +53,32 @@ class RestaurantLogin extends Component {
     }
 
     onSubmit(e) {
-
+        console.log(this.state);
         e.preventDefault();
 
-        let form = document.getElementById('restaurant_login_form');
+        let form = document.getElementById('delivery_login_form');
 
         if (!form.checkValidity()) {
             return false;
         }
 
-        this.props.login_restaurant(this.state);
-    }
+        this.props.login_delivery(this.state);
+    }   
 
     render() {
         return (
             <div className="card">
                 <div className="card-body">
-                    <Form id="restaurant_login_form" onSubmit={this.onSubmit}>
+                    <Form id="delivery_login_form" onSubmit={this.onSubmit}>
                         <FormGroup row>
-                            <Label for="restaurant_id" md={3}>Restaurant ID: </Label>
+                            <Label for="delivery_username" md={3}>Delivery Username: </Label>
                             <Col md={9}>
                                 <StringInput
-                                    id="restaurant_id"
-                                    name="restaurant_id"
-                                    value={this.state.restaurant_id}
+                                    id="delivery_username"
+                                    name="delivery_username"
+                                    value={this.state.delivery_username}
                                     onChange={this.onChange}
-                                    placeholder="sukiya"
+                                    placeholder="Ying Hua "
                                     required={true}
                                 />
                             </Col>
@@ -88,8 +88,8 @@ class RestaurantLogin extends Component {
                             <Label for="password" md={3}>Password: </Label>
                             <Col md={9}>
                                 <PasswordInput
-                                    id="restaurant_password"
-                                    name="restaurant_password"
+                                    id="delivery_password"
+                                    name="delivery_password"
                                     value={this.state.password}
                                     onChange={this.onChange}
                                     placeholder="Minimum 6 characters"
@@ -109,19 +109,19 @@ class RestaurantLogin extends Component {
     }
 }
 
-RestaurantLogin.propTypes = {
-    login_restaurant: PropTypes.func.isRequired,
+DeliveryLogin.propTypes = {
+    login_delivery: PropTypes.func.isRequired,
     login_response: PropTypes.any
 };
 
 const mapStateToProps = state => ({
-    login_response: state.restaurant.login_restaurant_response
+    login_response: state.delivery.login_delivery_response
 });
 
 const mapDispatchToProps = {
-    login_restaurant
+    login_delivery
 };
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RestaurantLogin);
+export default connect(mapStateToProps, mapDispatchToProps)(DeliveryLogin);
