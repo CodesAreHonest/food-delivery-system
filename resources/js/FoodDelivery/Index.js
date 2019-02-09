@@ -46,7 +46,7 @@ export default class Index extends Component {
                                 <li>Register</li>
                                 <li>Sign Out</li>
                             </ul>
-                            <li>Food Menu with Advanced Filtering and Search</li>
+                            <li>Food Menu with <b>Advanced Filtering and Search</b></li>
                             <li>Shopping Cart</li>
                             <li>Order Check Out</li>
                             <li>Profile Management</li>
@@ -55,7 +55,7 @@ export default class Index extends Component {
                                 <li>Edit Profile</li>
                                 <li>Credit Card Management</li>
                             </ul>
-                            <li>Food Order Tracking</li>
+                            <li>Food Order Tracking with <b>Advanced Filtering and Search</b></li>
                             <li>Delivery Tracking and Acceptance</li>
                         </ul>
 
