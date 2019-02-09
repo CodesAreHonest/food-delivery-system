@@ -41,6 +41,9 @@ class OrderHistoryCard extends Component {
             case 'delivered':
                 this.setState({color: 'success', value: 100});
                 break;
+            case 'rejected':
+                this.setState({color: 'danger', value: 100});
+                break;
         }
     }
 

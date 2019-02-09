@@ -55,7 +55,7 @@ class FoodCard extends Component {
                         </Col>
 
                         <Col md={4} className="text-right">
-                            {this.props.food_price !== '' && '${this.props.food_price} MYR'}
+                            {this.props.food_price !== '' && `${this.props.food_price} MYR`}
                         </Col>
                     </Row>
 

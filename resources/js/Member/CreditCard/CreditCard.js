@@ -38,7 +38,7 @@ class CreditCard extends Component {
                 b_card_information,
                 s_card_name: card_name,
                 s_card_number: card_number,
-                s_expired_input: expired_input,
+                s_expired_date: expired_input,
                 n_cvc: cvc
             } = this.props.detail;
 

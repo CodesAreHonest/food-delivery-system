@@ -36,4 +36,7 @@ export const delivery_options = [{
 }, {
     value: 'delivered',
     label: 'Delivered'
+}, {
+    value: 'rejected',
+    label: 'Rejected'
 }];
