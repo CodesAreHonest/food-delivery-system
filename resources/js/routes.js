@@ -18,7 +18,9 @@ import OrderHistory from "./Member/OrderHistory/OrderHistory";
 //Delivery
 import DeliveryLogin from "./FoodDelivery/DeliveryLogin";
 import DeliveryHome from "./Delivery/CheckDelivery/DeliveryHome";
-import EditDelivery from "./Delivery/EditDelivery/EditDelivery"
+import EditDelivery from "./Delivery/EditDelivery/EditDelivery";
+
+import Index from './FoodDelivery/Index';
 
 export const routes = [{
     path: '/member/login',
@@ -59,4 +61,7 @@ export const routes = [{
 },{
     path: '/delivery/manage/account',
     component: EditDelivery
+},{
+    path: '/',
+    component: Index
 }];

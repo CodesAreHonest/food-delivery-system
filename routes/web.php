@@ -57,3 +57,5 @@ Route::prefix('delivery')->group(function() {
     });
 
 });
+
+Route::get('/', 'FoodDeliveryController@index')->name('system.home');
