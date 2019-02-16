@@ -141,7 +141,7 @@ class Home extends Component {
                             </Col>
 
                             <Col md={2}>
-                                <Link to="member/cart">
+                                <Link to="/member/cart">
                                     <Cart />
                                 </Link>
                             </Col>

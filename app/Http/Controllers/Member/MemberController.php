@@ -74,7 +74,7 @@ class MemberController extends Controller
         $validation = $this->memberService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -92,9 +92,9 @@ class MemberController extends Controller
             case 200:
                 return response()->json ($detail,200);
             case 404:
-                return response()->json ($detail, 404);
+                return response()->json ($detail);
             case 500:
-                return response()->json ($detail, 500);
+                return response()->json ($detail);
             default:
                 return response()->json ([
                     'response_code' => 502,
@@ -219,7 +219,7 @@ class MemberController extends Controller
         $validation = $this->memberService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         /** ==========================================================================
@@ -288,7 +288,7 @@ class MemberController extends Controller
                 return response()->json ([
                     'response_code' => 502,
                     'response_msg'  => 'Bad gateway'
-                ], 502);
+                ]);
         }
     }
     

@@ -88,6 +88,15 @@ class OrderItem extends Component {
 
         const { food_name, id, address, quantity,status} = this.props;
 
+        const actionButtons = (
+            <div className="button-click">
+
+                <Button color="success" type="button" onClick={this.acceptOrder}>Accept</Button>
+
+                <Button color="danger" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>
+            </div>
+        );
+
         return (
             <Row className="cart-division">
 
@@ -113,18 +122,17 @@ class OrderItem extends Component {
                         <Label>Status: {status}</Label>
                     </div>
 
-                    <div className="button-click">
-
-                        <Button color="success" type="button" onClick={this.acceptOrder}>Accept</Button>
-
-                        <Button color="danger" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>
-                    </div>
+                    { status === 'paid' && actionButtons}
 
                 </Col>
             </Row>
         )
     }
 }
+
+OrderItem.defaultProps = {
+    status: ''
+};
 
 OrderItem.propTypes = {
     id: PropTypes.number.isRequired,
