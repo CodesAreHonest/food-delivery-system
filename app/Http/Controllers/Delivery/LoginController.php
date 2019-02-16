@@ -14,7 +14,7 @@ class LoginController extends Controller
         $this->deliveryService = $deliveryService;
     }
 
-        public function login (Request $request) {
+    public function login (Request $request) {
 
         $rules = [
             'username' => 'required|string|max:50',

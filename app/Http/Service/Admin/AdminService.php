@@ -16,7 +16,7 @@ class AdminService extends BaseService
 
         $input = [
             's_username'    => $request['username'],
-            's_name'       => $request['name'],
+            's_email'        => $request['email'],
             's_password'    => Hash::make($request['password'])
         ];
 
@@ -45,8 +45,8 @@ class AdminService extends BaseService
     {
 
         $input = [
-            's_username' => $request['username'],
-            'password' => $request['password']
+            's_username' => $request['login_email'],
+            'password' => $request['login_password']
         ];
 
         $auth = Auth::guard('admin')->attempt($input);

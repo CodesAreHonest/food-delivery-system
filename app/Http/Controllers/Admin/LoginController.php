@@ -8,33 +8,32 @@ use App\Http\Service\Admin\AdminService;
 
 class LoginController extends Controller
 {
-      private  $adminService;
+    private  $adminService;
 
     public function __construct(AdminService $adminService) {
-        $this->middleware('guest:admin')->except('logout');
         $this->adminService = $adminService;
     }
 
-        public function login (Request $request) {
+    public function login (Request $request) {
 
         $rules = [
-            'username' => 'required|string|max:50',
-            'password'  =>  'required|string|max:255'
+            'login_email'       => 'required|string|max:50',
+            'login_password'    =>  'required|string|max:255'
         ];
 
         $validation = $this->adminService->validator($request->all(), $rules);
 
         if ($validation['response_code'] === 422) {
-            return response()->json ($validation, 422);
+            return response()->json ($validation);
         }
 
         $login = $this->adminService->login ($request);
 
         switch ($login['response_code']) {
             case 200:
-                return response()->json ($login, 200);
+                return response()->json ($login);
             case 401:
-                return response()->json ($login, 401);
+                return response()->json ($login);
             default:
                 return response()->json ([
                     'response_code' => 502,

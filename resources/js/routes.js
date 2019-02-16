@@ -22,6 +22,7 @@ import EditDelivery from "./Delivery/EditDelivery/EditDelivery";
 
 import Index from './FoodDelivery/Index';
 import AdminLogin from "./FoodDelivery/AdminLogin";
+import Admin from "./Admin/Home/Admin";
 
 export const routes = [{
     path: '/member/login',
@@ -68,4 +69,7 @@ export const routes = [{
 }, {
     path: '/admin/login',
     component: AdminLogin
+}, {
+    path: '/admin/',
+    component: Admin
 }];
