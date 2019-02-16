@@ -58,4 +58,19 @@ Route::prefix('delivery')->group(function() {
 
 });
 
+Route::prefix('admin')->group(function() {
+
+    Route::get('/login', 'FoodDeliveryController@index')->name('delivery.login');
+    Route::get('/logout', 'Delivery\DeliveryController@logout')->name('post.delivery.logout');
+
+    Route::group(['middleware' => 'delivery_auth'], function() {
+
+        Route::get('/', 'FoodDeliveryController@index')->name('delivery.home');
+
+        // Edit Profile
+        Route::get('/manage/account', 'FoodDeliveryController@index')->name('delivery.manage.account');
+    });
+
+});
+
 Route::get('/', 'FoodDeliveryController@index')->name('system.home');
