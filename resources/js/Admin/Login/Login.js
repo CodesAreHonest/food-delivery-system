@@ -4,7 +4,7 @@ import EmailInput from "../../components/Input/EmailInput";
 import PasswordInput from "../../components/Input/PasswordInput";
 
 import PropTypes from "prop-types";
-import {login_member} from "./LoginAction";
+import {login_admin} from "./LoginAction";
 
 import {connect} from 'react-redux';
 
@@ -25,9 +25,9 @@ class Login extends Component {
 
     componentDidUpdate(prevProps) {
 
-        if (prevProps.login_member_response !== this.props.login_member_response) {
+        if (prevProps.login_admin_response !== this.props.login_admin_response) {
 
-            const response = this.props.login_member_response.data;
+            const response = this.props.login_admin_response.data;
             this.postLogin(response);
         }
     }
@@ -64,7 +64,7 @@ class Login extends Component {
 
         const {login_email, login_password} = this.state;
 
-        this.props.login_member(login_email, login_password);
+        this.props.login_admin(login_email, login_password);
 
     }
 
@@ -109,16 +109,16 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-    login_member: PropTypes.func.isRequired,
-    login_member_response: PropTypes.any
+    login_admin: PropTypes.func.isRequired,
+    login_admin_response: PropTypes.any
 };
 
 const mapStateToProps = state => ({
-    login_member_response: state.member.login_member_response
+    login_admin_response: state.admin.login_admin_response
 });
 
 const mapDispatchToProps = {
-    login_member
+    login_admin
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

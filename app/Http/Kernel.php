@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AdminAuth;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 use App\Http\Middleware\Restaurant\RestaurantAuth;
@@ -71,6 +72,7 @@ class Kernel extends HttpKernel
         'restaurant_auth'   => RestaurantAuth::class,
         'member_auth'   => MemberAuth::class,
         'delivery_auth' => DeliveryAuth::class,
+        'admin_auth' => AdminAuth::class,
     ];
 
     /**

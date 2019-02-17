@@ -1,14 +1,17 @@
-const LOGIN_MEMBER = 'LOGIN_MEMBER';
+const LOGIN_ADMIN = 'LOGIN_ADMIN';
 
 import axios from 'axios';
 
-export const login_member = (email, password) => dispatch => {
+export const login_admin = (login_email, login_password) => dispatch => {
 
-    const params = { email, password };
+    const params = {
+        login_email,
+        login_password
+    };
 
-    axios.post('/api/member/login', params)
+    axios.post('/api/admin/login', params)
         .then (response => dispatch ({
-            type: LOGIN_MEMBER,
+            type: LOGIN_ADMIN,
             payload: response,
         })).catch (err => {
         console.warn (err);

@@ -45,13 +45,17 @@ class AdminService extends BaseService
     {
 
         $input = [
-            's_username' => $request['login_email'],
-            'password' => $request['login_password']
+            's_email'       => $request['login_email'],
+            's_password'    => $request['login_password']
         ];
 
         $auth = Auth::guard('admin')->attempt($input);
 
         if ($auth) {
+
+            $request->session()->put('admin_email', $request['login_email']);
+
+
             return [
                 'response_code' => 200,
                 'response_msg' => 'success',
