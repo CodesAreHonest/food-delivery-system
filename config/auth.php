@@ -99,11 +99,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Model\Restaurant::class,
         ],
+
         'delivery' => [
             'driver' => 'eloquent',
             'model' => App\Model\Delivery::class,
         ],
-      'admin' => [
+
+        'admin' => [
             'driver' => 'eloquent',
             'model' => App\Model\Admin::class,
         ],

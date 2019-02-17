@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {Button, Col, Form, Label, Row, FormGroup} from "reactstrap";
+import {Button, Form, Label, FormGroup} from "reactstrap";
 
 // Form Input
 import EmailInput from "../../components/Input/EmailInput";
 import PasswordInput from "../../components/Input/PasswordInput";
 import StringInput from "../../components/Input/StringInput";
 
-import ReactSelect from "../../components/Input/ReactSelect";
-
 import {connect} from 'react-redux';
-import {register_member} from "./RegisterAction";
+import {register_admin} from "./RegisterAction";
 import Swal from "sweetalert2";
 
 class Register extends Component {
@@ -22,10 +20,6 @@ class Register extends Component {
             register_email: '',
             register_password: '',
             register_c_password: '',
-            register_address: '',
-            register_state: '',
-            register_city: '',
-            register_country: {value: 'malaysia', label: 'Malaysia'}
         };
 
         this.onChange = this.onChange.bind(this);
@@ -77,8 +71,6 @@ class Register extends Component {
             return false;
         }
 
-        const data = new FormData(form);
-
         Swal.fire({
             type: 'question',
             title: 'Are you sure?',
@@ -97,7 +89,7 @@ class Register extends Component {
 
             if (response.value) {
 
-                this.props.register_member(data);
+                this.props.register_admin(this.state);
 
                 Swal.fire({
                     title: 'Submitting...',
@@ -177,15 +169,15 @@ class Register extends Component {
 }
 
 Register.propTypes = {
-    register_member_response: PropTypes.any
+    register_admin_response: PropTypes.any
 };
 
 const mapStateToProps = state => ({
-    register_response: state.member.register_member_response
+    register_response: state.admin.register_admin_response
 });
 
 const mapDispatchToProps = ({
-    register_member
-})
+    register_admin
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);

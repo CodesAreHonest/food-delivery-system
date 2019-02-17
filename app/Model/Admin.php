@@ -7,14 +7,14 @@ use Illuminate\Notifications\Notifiable;
 
 class Admin extends Authenticatable
 {
-       use Notifiable;
+    use Notifiable;
 
     protected $guard = 'admin';
 
     protected $table = 'admin';
 
     protected $fillable = [
-        's_username', 's_name', 's_password'
+        's_username', 's_email', 's_password'
     ];
 
     protected $hidden = [
