@@ -10,13 +10,15 @@ import "react-table/react-table.css";
 import {getTheadProps, getTrProps} from "./AdminStyle";
 
 import {connect} from 'react-redux';
+import AdminModal from "./AdminModal";
 
 class Admin extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            data: []
+            data: [],
+            modalOpen: false,
         };
 
         this.columns = [{
@@ -37,10 +39,22 @@ class Admin extends Component {
             sortable: false,
             Cell: row => (
                 <div>
-                    <Button color="success" size="sm" outline id={row.value}>More</Button>
+                    <Button
+                        color="success"
+                        size="sm"
+                        outline
+                        id={row.value}
+                        onClick={this.showDetail}
+                    >More</Button>
                 </div>
             )
         }];
+
+        this.showDetail = this.showDetail.bind(this);
+    }
+
+    showDetail(e) {
+        this.setState({modalOpen: true, order_id: e.target.id});
     }
 
     componentDidUpdate(prevProps) {
@@ -85,7 +99,7 @@ class Admin extends Component {
 
     render() {
 
-        const {table} = this.state;
+        const {table, modalOpen, order_id} = this.state;
 
         return (
             <Fragment>
@@ -102,6 +116,15 @@ class Admin extends Component {
                     </Col>
 
                 </Row>
+
+                {
+                    modalOpen &&
+                        <AdminModal
+                            order_id={order_id}
+                            modal={modalOpen}
+                            isOpen={() => this.setState({modalOpen: false})}
+                        />
+                }
 
             </Fragment>
         )

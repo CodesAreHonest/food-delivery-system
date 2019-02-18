@@ -310,6 +310,12 @@ class CartService extends BaseService
             ->whereNotNull('s_delivery_status')
             ->orderBy('shopping_cart.created_at', 'desc');
 
+        if ($request->has('id')) {
+            if ($request['id'] != '') {
+                $query = $query->where('shopping_cart.id', $request['id']);
+            }
+        }
+
         if ($request->has('user_email')) {
             if ($request['user_email'] != '') {
                 $query = $query->where('s_member_email', 'LIKE', "%{$request['user_email']}%");
