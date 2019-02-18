@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Label, Row} from "reactstrap";
 import StringInput from "../../components/Input/StringInput";
 import ReactSelect from "../../components/Input/ReactSelect";
-import {statusSelect} from "./AdminSelect";
+import {statusSelect} from "./AdminUtility";
 import DatePicker from "react-datepicker/es";
 
-class ContentFilter extends Component {
+class AdminFilter extends Component {
     constructor(props) {
         super(props);
 
@@ -95,4 +95,4 @@ class ContentFilter extends Component {
     }
 }
 
-export default ContentFilter;
+export default AdminFilter;

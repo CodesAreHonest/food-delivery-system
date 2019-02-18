@@ -43,8 +43,6 @@ Route::prefix('restaurant')->group (function() {
 
         Route::post('/update/profile', 'Restaurant\RestaurantController@updateRestaurant')->name('post.update.restaurant');
         Route::get('/detail', 'Restaurant\RestaurantController@getRestaurant')->name('get.restaurant.detail');
-
-//        Route::get('/get/food', 'Restaurant\FoodController@getFood')->name('get.food.detail');
     });
 
 
@@ -64,7 +62,12 @@ Route::prefix('delivery')->group(function(){
     });
 });
 
-Route::post('/admin/register', 'Admin\RegisterController@register')->name('post.admin.register');
-Route::post('/admin/login', 'Admin\LoginController@login')->name('post.admin.login');
-Route::post('/admin/block/user', 'Member\MemberController@updateBlockUser');
+Route::prefix('admin')->group(function() {
+
+    Route::post('/register', 'Admin\RegisterController@register')->name('post.admin.register');
+    Route::post('/login', 'Admin\LoginController@login')->name('post.admin.login');
+
+    Route::get('/get/food/order', 'Cart\CartController@order_food_list')->name('get.admin.food.order');
+
+});
 

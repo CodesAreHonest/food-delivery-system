@@ -301,5 +301,50 @@ class CartService extends BaseService
             'msgTitle'      => 'Update Successful',
             'msg'           => ''
         ];
-    }   
+    }
+
+    public function foodOrderList ($request) {
+
+        $query = ShoppingCart::join('food','shopping_cart.s_food_id','=','food.id')
+            ->join('member','shopping_cart.s_member_email','=','member.s_email')
+            ->whereNotNull('s_delivery_status');
+
+        if ($request->has('user_email')) {
+            if ($request['user_email'] != '') {
+                $query->where('s_member_email', $request['user_email']);
+            }
+        }
+
+        if ($request->has('order_status')) {
+            if ($request['order_status'] != '') {
+                $query->where('s_delivery_status', $request['order_status']);
+            }
+        }
+
+        if ($request->has('start_date')) {
+            if ($request['start_date'] != '') {
+                $start_date = Carbon::parse($request['start_date'])->startOfDay()->toDateTimeString();
+                $query->where('shopping_cart.created_at', '>=', $start_date);
+            }
+        }
+
+        if ($request->has('end_date')) {
+            if ($request['end_date'] != '') {
+                $end_date = Carbon::parse($request['end_date'])->startOfDay()->toDateTimeString();
+                $query->where('shopping_cart.created_at', '<=', $end_date);
+            }
+        }
+
+        $data = $query->paginate($request['limit']);
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Retrieve Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Retrieve Successful',
+            'msg'           => '',
+            'data'          => $data
+        ];
+
+    }
 }

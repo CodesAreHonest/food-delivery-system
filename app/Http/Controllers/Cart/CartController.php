@@ -187,7 +187,27 @@ class CartController extends Controller
             case 500:
                 return response()->json($update_order);
         }
+    }
 
+    public function order_food_list (Request $request) {
+
+        $rules = [
+            'user_email'    => 'nullable|string|max:100',
+            'order_status'  => 'nullable|string|max:50',
+            'start_date'    => 'nullable|date_format:d-m-Y',
+            'end_date'      => 'nullable|date_format:d-m-Y',
+            'limit'         => 'required|numeric|min:1',
+        ];
+
+        $validation = $this->cartService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json($validation);
+        }
+
+        $food_order_list = $this->cartService->foodOrderList($request);
+
+        return $food_order_list;
     }
 }
 
