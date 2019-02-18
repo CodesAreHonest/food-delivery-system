@@ -1,20 +1,44 @@
 import React, {Component} from 'react';
 import {Button, Card, CardBody, CardHeader, Col, Form, FormGroup, Label, Row} from "reactstrap";
+
 import StringInput from "../../components/Input/StringInput";
 import ReactSelect from "../../components/Input/ReactSelect";
 import {statusSelect} from "./AdminUtility";
+
 import DatePicker from "react-datepicker/es";
+import {get_food_order} from "./AdminAction";
+import connect from "react-redux/es/connect/connect";
 
 class AdminFilter extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            status: {value: 'paid', label: 'Paid'},
+            status: {value: 'all', label: 'All'},
             start_date: null,
             end_date: null,
-            user_email: ''
-        }
+            user_email: '',
+            limit: 10
+        };
+
+        this.defaultState = this.state;
+
+        this.resetFilter = this.resetFilter.bind(this);
+        this.search = this.search.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.get_food_order (this.state);
+    }
+
+    resetFilter() {
+        this.setState(this.defaultState, () => {
+            this.props.get_food_order(this.defaultState);
+        })
+    }
+
+    search () {
+        this.props.get_food_order(this.state);
     }
 
     render() {
@@ -44,6 +68,7 @@ class AdminFilter extends Component {
                                 <ReactSelect
                                     name="status"
                                     options={statusSelect}
+                                    closeMenuOnSelect={true}
                                     value={this.state.status}
                                     onChange={(status) => this.setState({status})}
                                 />
@@ -81,11 +106,21 @@ class AdminFilter extends Component {
 
                     <Row>
                         <Col md={6}>
-                            <Button color="secondary" size="sm" block>Clear</Button>
+                            <Button
+                                color="secondary"
+                                size="sm"
+                                block
+                                onClick={this.resetFilter}
+                            >Clear</Button>
                         </Col>
 
                         <Col md={6}>
-                            <Button color="primary" size="sm" block>Search</Button>
+                            <Button
+                                color="primary"
+                                size="sm"
+                                block
+                                onClick={this.search}
+                            >Search</Button>
                         </Col>
                     </Row>
 
@@ -95,4 +130,8 @@ class AdminFilter extends Component {
     }
 }
 
-export default AdminFilter;
+const mapDispatchToProps = {
+    get_food_order
+};
+
+export default connect(null, mapDispatchToProps)(AdminFilter);

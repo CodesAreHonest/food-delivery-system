@@ -307,31 +307,32 @@ class CartService extends BaseService
 
         $query = ShoppingCart::join('food','shopping_cart.s_food_id','=','food.id')
             ->join('member','shopping_cart.s_member_email','=','member.s_email')
-            ->whereNotNull('s_delivery_status');
+            ->whereNotNull('s_delivery_status')
+            ->orderBy('shopping_cart.created_at', 'desc');
 
         if ($request->has('user_email')) {
             if ($request['user_email'] != '') {
-                $query->where('s_member_email', $request['user_email']);
+                $query = $query->where('s_member_email', 'LIKE', "%{$request['user_email']}%");
             }
         }
 
         if ($request->has('order_status')) {
-            if ($request['order_status'] != '') {
-                $query->where('s_delivery_status', $request['order_status']);
+            if ($request['order_status'] != 'all') {
+                $query = $query->where('s_delivery_status', $request['order_status']);
             }
         }
 
         if ($request->has('start_date')) {
             if ($request['start_date'] != '') {
                 $start_date = Carbon::parse($request['start_date'])->startOfDay()->toDateTimeString();
-                $query->where('shopping_cart.created_at', '>=', $start_date);
+                $query = $query->where('shopping_cart.created_at', '>=', $start_date);
             }
         }
 
         if ($request->has('end_date')) {
             if ($request['end_date'] != '') {
-                $end_date = Carbon::parse($request['end_date'])->startOfDay()->toDateTimeString();
-                $query->where('shopping_cart.created_at', '<=', $end_date);
+                $end_date = Carbon::parse($request['end_date'])->endOfDay()->toDateTimeString();
+                $query = $query->where('shopping_cart.created_at', '<=', $end_date);
             }
         }
 

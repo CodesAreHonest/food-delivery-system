@@ -4,6 +4,7 @@ export const getTheadProps = rowInfo => {
             style: {
                 backgroundColor: '#1e282cd9',
                 color: '#F2F2F2',
+                fontSize: '10pt'
             }
         }
     }

@@ -1,4 +1,6 @@
 export const statusSelect = [{
+    value: 'all', label: 'All'
+},{
     value: 'paid', label: 'Paid'
 }, {
     value: 'delivered', label: 'Delivered'
