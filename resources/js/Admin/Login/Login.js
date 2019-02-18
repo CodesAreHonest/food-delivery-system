@@ -69,16 +69,21 @@ class Login extends Component {
     }
 
     render() {
+
+        const {login_email, login_password} = this.state;
+
         return (
-            <div className="card">
+            <div className="card admin-login-content card-shadow">
                 <div className="card-body">
+                    <h1 style={{textAlign: 'center', marginBottom: '20px'}}>Admin Login</h1>
+
                     <Form id="admin_login_form" onSubmit={this.onSubmit}>
                         <FormGroup>
                             <Label for="login_email">Email: </Label>
                             <EmailInput
                                 id="login_email"
                                 name="login_email"
-                                value={this.state.login_email}
+                                value={login_email}
                                 onChange={this.onChange}
                                 placeholder="test@gmail.com"
                                 required={true}
@@ -90,7 +95,7 @@ class Login extends Component {
                             <PasswordInput
                                 id="login_password"
                                 name="login_password"
-                                value={this.state.login_password}
+                                value={login_password}
                                 onChange={this.onChange}
                                 placeholder="Minimum 6 characters"
                                 required={true}
@@ -99,7 +104,7 @@ class Login extends Component {
 
                         {this.state.alert}
 
-                        <Button color="primary" type="submit" block>Login</Button>
+                        <Button color="primary login-button" type="submit" block>Login</Button>
                     </Form>
                 </div>
             </div>

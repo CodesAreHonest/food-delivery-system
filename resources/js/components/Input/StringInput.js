@@ -24,6 +24,7 @@ class StringInput extends Component {
                 disabled={this.props.disabled}
                 maxLength={this.props.maxLength}
                 value={this.props.value}
+                bsSize={this.props.bsSize}
 
                 valid={this.state.valid}
             />
@@ -47,6 +48,7 @@ StringInput.propTypes = {
     disabled: PropTypes.bool,
     maxLength: PropTypes.string,
     value: PropTypes.any,
+    bsSize: PropTypes.string,
 };
 
 
