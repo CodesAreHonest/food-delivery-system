@@ -68,7 +68,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/', 'FoodDeliveryController@index')->name('delivery.home');
 
         // Edit Profile
-        Route::get('/manage/account', 'FoodDeliveryController@index')->name('delivery.manage.account');
+        Route::get('/add', 'FoodDeliveryController@index')->name('delivery.manage.account');
     });
 
 });
