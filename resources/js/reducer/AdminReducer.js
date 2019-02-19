@@ -2,12 +2,16 @@ const LOGIN_ADMIN       = 'LOGIN_ADMIN';
 const REGISTER_ADMIN    = 'REGISTER_ADMIN';
 const GET_FOOD_ORDER    = 'GET_FOOD_ORDER';
 const GET_FOOD_DETAIL   = 'GET_FOOD_DETAIL';
+const GET_ADMIN_LIST    = 'GET_ADMIN_LIST';
+const GET_ADMIN_DETAIL  = 'GET_ADMIN_DETAIL';
 
 const initialState = {
     login_admin_response: [],
     register_admin_response: [],
     food_order: [],
     food_detail: [],
+    list: [],
+    detail: [],
 };
 
 export default function (state = initialState, action) {
@@ -31,6 +35,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 food_detail: action.payload
+            };
+        case GET_ADMIN_LIST:
+            return {
+                ...state,
+                list: action.payload
+            };
+        case GET_ADMIN_DETAIL:
+            return {
+                ...state,
+                detail: action.payload
             };
         default:
             return state;

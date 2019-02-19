@@ -21,9 +21,12 @@ import DeliveryHome from "./Delivery/CheckDelivery/DeliveryHome";
 import EditDelivery from "./Delivery/EditDelivery/EditDelivery";
 
 import Index from './FoodDelivery/Index';
+
+// Admin
 import AdminLogin from "./FoodDelivery/AdminLogin";
 import Admin from "./Admin/Home/Admin";
-import AddAdmin from "./Admin/AddAdmin/AddAdmin";
+import Management from "./Admin/Management/Management";
+import AddAdmin from "./Admin/Management/AddAdmin";
 
 export const routes = [{
     path: '/member/login',
@@ -73,6 +76,9 @@ export const routes = [{
 }, {
     path: '/admin/',
     component: Admin
+}, {
+    path: '/admin/management',
+    component: Management
 }, {
     path: '/admin/add',
     component: AddAdmin

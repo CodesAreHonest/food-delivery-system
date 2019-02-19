@@ -67,7 +67,11 @@ Route::prefix('admin')->group(function() {
     Route::post('/register', 'Admin\RegisterController@register')->name('post.admin.register');
     Route::post('/login', 'Admin\LoginController@login')->name('post.admin.login');
 
-    Route::get('/get/food/order', 'Cart\CartController@order_food_list')->name('get.admin.food.order');
+    Route::middleware('admin_auth')->group(function () {
+        Route::get('/get/food/order', 'Cart\CartController@order_food_list')->name('get.admin.food.order');
+        Route::get('/list', 'Admin\AdminController@getList')->name('get.admin.list');
+        Route::get('/detail', 'Admin\AdminController@getDetail')->name('get.admin.detail');
+    });
 
 });
 

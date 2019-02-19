@@ -60,15 +60,16 @@ Route::prefix('delivery')->group(function() {
 
 Route::prefix('admin')->group(function() {
 
-    Route::get('/login', 'FoodDeliveryController@index')->name('delivery.login');
-    Route::get('/logout', 'Delivery\DeliveryController@logout')->name('post.delivery.logout');
+    Route::get('/login', 'FoodDeliveryController@index')->name('admin.login');
+    Route::get('/logout', 'Admin\LoginController@logout')->name('post.admin.logout');
 
     Route::group(['middleware' => 'admin_auth'], function() {
 
         Route::get('/', 'FoodDeliveryController@index')->name('delivery.home');
 
         // Edit Profile
-        Route::get('/add', 'FoodDeliveryController@index')->name('delivery.manage.account');
+        Route::get('/management', 'FoodDeliveryController@index')->name('admin.manage.account');
+        Route::get('/add','FoodDeliveryController@index')->name('admin.add.account');
     });
 
 });

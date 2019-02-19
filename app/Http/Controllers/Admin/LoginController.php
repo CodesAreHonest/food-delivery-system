@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Admin\AdminService;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -40,5 +41,12 @@ class LoginController extends Controller
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function logout () {
+
+        Session::forget('admin_email');
+
+        return redirect()->route('admin.login');
     }
 }

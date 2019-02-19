@@ -73,4 +73,39 @@ class AdminService extends BaseService
             'msg' => 'Invalid username or password'
         ];
     }
+
+    public function getList ($request) {
+
+        $query = Admin::orderBy('created_at', 'desc');
+
+        if ($request->has('user_id')) {
+            $query = $query->where('s_username', 'LIKE', "%{$request['user_id']}%");
+        }
+
+        $data = $query->paginate($request['limit']);
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Retrieve Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Retrieve Successful',
+            'msg'           => '',
+            'admin_list'    => $data
+        ];
+    }
+
+    public function getDetail ($request) {
+
+        $data = Admin::where('s_email', $request['admin_email'])
+            ->first();
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Retrieve Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Retrieve Successful',
+            'msg'           => '',
+            'admin_detail'    => $data
+        ];
+    }
 }
