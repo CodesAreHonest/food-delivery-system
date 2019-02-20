@@ -25,7 +25,6 @@ export const get_admin_list = (user_id = '') => dispatch => {
 
     const params = {
         user_id,
-        limit: 10
     };
 
     axios.get('/api/admin/list', {params})

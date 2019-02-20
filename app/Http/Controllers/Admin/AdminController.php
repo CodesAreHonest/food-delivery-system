@@ -18,7 +18,6 @@ class AdminController extends Controller
 
         $rules = [
             'user_id'           => 'nullable|string|max:50',
-            'limit'             => 'required|numeric|min:1',
         ];
 
         $validation = $this->adminService->validator($request->all(), $rules);

@@ -82,7 +82,14 @@ class AdminService extends BaseService
             $query = $query->where('s_username', 'LIKE', "%{$request['user_id']}%");
         }
 
-        $data = $query->paginate($request['limit']);
+        $pageSize = $query->count();
+
+        $outputs = $query->get($request['limit']);
+
+        $admin_list = [
+            'pageSize'  => $pageSize,
+            'data'      => $outputs
+        ];
 
         return [
             'response_code' => 200,
@@ -90,7 +97,7 @@ class AdminService extends BaseService
             'msgType'       => 'success',
             'msgTitle'      => 'Retrieve Successful',
             'msg'           => '',
-            'admin_list'    => $data
+            'admin_list'    => $admin_list
         ];
     }
 
