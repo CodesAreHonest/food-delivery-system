@@ -1,0 +1,24 @@
+.admin-app {
+    background-image: linear-gradient(to right, #a0dde6, #49b1e6);
+}
+
+.admin-login-content {
+    padding: 20px;
+}
+
+.vertical-center {
+    margin-top: 100px;
+}
+
+.login-button {
+    background-image: linear-gradient(to right, #65b1e6, #4b9ae6);
+    border-radius: 10px;
+    border: none;
+    margin-top: 25px;
+    padding: 8px;
+
+    &:hover {
+        background-image: linear-gradient(to right, #5aace6, #438ee6, #4879e6);
+
+    }
+}

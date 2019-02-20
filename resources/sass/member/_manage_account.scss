@@ -1,0 +1,14 @@
+@import '../variables';
+
+.account-manage-content {
+  margin-left: (100%-82%);
+  padding: $px-16;
+  float: left;
+  width: 82%;
+}
+
+.edit-profile-background {
+  background-color: white;
+  border: 1px solid lightgray;
+  padding: 30px;
+}

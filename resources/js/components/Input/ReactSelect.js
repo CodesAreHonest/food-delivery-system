@@ -20,6 +20,7 @@ class ReactSelect extends Component {
                     onChange={this.props.onChange}
                     formatGroupLabel={this.props.formatGroupLabel}
                     placeholder={this.props.placeholder}
+                    required={this.props.required}
                 />
             </div>
         )
@@ -36,8 +37,10 @@ ReactSelect.propTypes = {
     value: PropTypes.any.isRequired,
     onChange: PropTypes.any.isRequired,
     defaultValue: PropTypes.object,
+    required: PropTypes.bool
 };
 
 ReactSelect.defaultProps = {
     closeMenuOnSelect: false,
+    required: false,
 };

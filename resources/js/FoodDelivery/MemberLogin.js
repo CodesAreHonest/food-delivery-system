@@ -10,7 +10,7 @@ class MemberLogin extends Component {
         super(props);
 
         this.state = {
-            activeTab: 'register'
+            activeTab: 'login'
         };
 
         this.toggle = this.toggle.bind(this);

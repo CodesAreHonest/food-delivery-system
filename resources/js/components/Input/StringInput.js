@@ -19,8 +19,12 @@ class StringInput extends Component {
                 name={this.props.name}
                 className={this.props.className}
                 placeholder={this.props.placeholder}
+                onChange={this.props.onChange}
                 required={this.props.required}
                 disabled={this.props.disabled}
+                maxLength={this.props.maxLength}
+                value={this.props.value}
+                bsSize={this.props.bsSize}
 
                 valid={this.state.valid}
             />
@@ -38,9 +42,13 @@ StringInput.defaultProps = {
 StringInput.propTypes = {
     name: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
     placeholder: PropTypes.string,
     required: PropTypes.bool,
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    maxLength: PropTypes.string,
+    value: PropTypes.any,
+    bsSize: PropTypes.string,
 };
 
 

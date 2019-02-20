@@ -41,6 +41,26 @@ return [
             'provider' => 'users',
         ],
 
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'member',
+        ],
+
+        'restaurant' => [
+            'driver' => 'session',
+            'provider' => 'restaurant',
+        ],
+
+        'delivery' => [
+            'driver' => 'session',
+            'provider' => 'delivery',
+        ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -70,10 +90,25 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'member' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Member::class,
+        ],
+
+        'restaurant' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Restaurant::class,
+        ],
+
+        'delivery' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Delivery::class,
+        ],
+
+        'admin' => [
+            'driver' => 'eloquent',
+            'model' => App\Model\Admin::class,
+        ],
     ],
 
     /*

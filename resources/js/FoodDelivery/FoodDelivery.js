@@ -2,8 +2,7 @@
 import React, {Component, Fragment} from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
-import MemberLogin from './MemberLogin';
-import Home from '../Member/Home/Home';
+import {routes} from '../routes';
 
 import store from '../store';
 
@@ -16,15 +15,21 @@ class FoodDelivery extends Component {
     }
 
     render() {
+
+        const ROUTES = routes.map((route, key) => (
+            <Route path={route.path} key={key} exact={true} component={route.component} />
+        ));
+
         return (
-            <Fragment>
-                <Router>
-                    <Switch>
-                        <Route path="/member/login" exact={true} component={MemberLogin} />
-                        <Route path="/member" exact={true} component={Home} />
-                    </Switch>
-                </Router>
-            </Fragment>
+            <Provider store={store}>
+                <Fragment>
+                    <Router>
+                        <Switch>
+                            {ROUTES}
+                        </Switch>
+                    </Router>
+                </Fragment>
+            </Provider>
         )
     }
 }

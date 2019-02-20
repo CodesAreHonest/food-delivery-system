@@ -4,17 +4,21 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-
 // Member
 @import 'member/login';
 @import 'member/navigation';
 @import 'member/card';
+@import 'member/sidebar';
+@import 'member/manage_account';
+@import 'member/cart';
+@import 'member/order_history';
 
-// Navigation Bar
-//@import 'navigation';
+@import 'restaurant/custom_styling';
 
-// Cards
-//@import 'card';
+@import 'admin/login';
+@import 'admin/home';
+
+@import 'landing';
 
 
 

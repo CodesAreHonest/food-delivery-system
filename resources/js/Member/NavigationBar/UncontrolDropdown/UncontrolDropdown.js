@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 import {Dropdown, DropdownToggle, DropdownMenu, DropdownItem} from 'reactstrap';
 import {Link} from 'react-router-dom';
+
+import {connect} from 'react-redux';
+import {get_username} from "./UncontrolDropDownAction";
 
 class UncontrolDropdown extends Component {
 
@@ -14,6 +18,18 @@ class UncontrolDropdown extends Component {
         this.state = {
             dropdownOpen: false
         };
+    }
+
+    componentDidMount() {
+        this.props.get_username();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.username !== this.props.username) {
+
+            const {username} = this.props;
+            this.setState({username});
+        }
     }
 
     toggle() {
@@ -41,23 +57,17 @@ class UncontrolDropdown extends Component {
                 toggle={this.toggle}
             >
                 <DropdownToggle nav caret>
-                    Yinghua
+                    {this.state.username}
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem>
-                        Manage Account
-                    </DropdownItem>
-                    <DropdownItem>
-                        Order History
-                    </DropdownItem>
-                    <DropdownItem>
-                        Favourites
-                    </DropdownItem>
+                    <Link to="/member/manage/account">
+                        <DropdownItem>
+                            Manage Account
+                        </DropdownItem>
+                    </Link>
                     <DropdownItem divider />
-                    <DropdownItem>
-                        <Link to="/member/login" >
-                            Sign Out
-                        </Link>
+                    <DropdownItem href="/member/logout">
+                        Sign Out
                     </DropdownItem>
                 </DropdownMenu>
             </Dropdown>
@@ -65,5 +75,18 @@ class UncontrolDropdown extends Component {
     }
 }
 
-export default UncontrolDropdown;
+UncontrolDropdown.propTypes = {
+    username: PropTypes.string.isRequired,
+    get_username: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+    username: state.member.username
+});
+
+const mapDispatchToProps = {
+    get_username
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UncontrolDropdown);
 

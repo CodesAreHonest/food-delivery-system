@@ -22,7 +22,7 @@ class NavigationBar extends Component {
 
         return (
             <header>
-                <Navbar color="dark" dark expand="md">
+                <Navbar color="dark" dark expand="md" className="nav-bar-color-custom">
                     <Container>
                         <NavbarBrand href="/member">GOGO</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
