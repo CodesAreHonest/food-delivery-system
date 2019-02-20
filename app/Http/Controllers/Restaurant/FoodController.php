@@ -18,7 +18,7 @@ class FoodController extends Controller
 
         $rules = [
             'food_name'     => 'required|string|max:255',
-            'food_price'    => 'required|numeric|min:0',
+            'food_price'    => 'required|numeric|min:1',
             'food_category' => 'required|string|max:50',
             'food_image'    => 'required|mimes:jpeg,png,jpg,gif,svg|max:5120000',
             'food_description'  => 'required|string|max:255',
