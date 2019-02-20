@@ -108,4 +108,33 @@ class AdminService extends BaseService
             'admin_detail'    => $data
         ];
     }
+
+    public function updateDetail ($request) {
+
+        $admin = Admin::where('s_email', $request['admin_email'])
+            ->first();
+
+        $admin->s_username = $request['username'];
+        $admin->s_password = Hash::make($request['password']);
+
+        $result            = $admin->save();
+
+        if (!$result) {
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Internal Server Error',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Update Unsuccessful',
+                'msg'           => ''
+            ];
+        }
+
+        return [
+            'response_code' => 200,
+            'response_msg'  => 'Update Successful',
+            'msgType'       => 'success',
+            'msgTitle'      => 'Update Successful',
+            'msg'           => ''
+        ];
+    }
 }

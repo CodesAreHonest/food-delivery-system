@@ -6,9 +6,11 @@ import Sidebar from "../Sidebar/Sidebar";
 import {Row, Col, FormGroup, Label, Form, Button} from 'reactstrap';
 
 import {connect} from 'react-redux';
-import {get_admin_detail} from "./ManagementAction";
+import {get_admin_detail, update_admin_detail} from "./ManagementAction";
 import StringInput from "../../components/Input/StringInput";
 import PasswordInput from "../../components/Input/PasswordInput";
+
+import Swal from "sweetalert2";
 
 class Management extends Component {
 
@@ -24,6 +26,7 @@ class Management extends Component {
 
         this.onChange = this.onChange.bind(this);
         this.resetForm = this.resetForm.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -47,6 +50,24 @@ class Management extends Component {
             });
 
         }
+
+        if (prevProps.response !== this.props.response) {
+
+            const {msgType, msgTitle, msg} = this.props.response.data;
+
+            Swal.fire({
+                type: msgType,
+                title: msgTitle,
+                text: msg,
+                allowOutsideClick: false,
+                showConfirmButton: true,
+                allowEnterKey: true,
+                confirmButtonText: 'Ok',
+                timer: 2000
+            });
+
+            this.resetForm();
+        }
     }
 
     onChange(e) {
@@ -55,6 +76,49 @@ class Management extends Component {
 
     resetForm () {
         this.setState(this.defaultState);
+    }
+
+    onSubmit(e) {
+
+        e.preventDefault();
+
+        let form = document.getElementById('edit_admin_form');
+
+        if (!form.checkValidity()) {
+            return false;
+        }
+
+        Swal.fire({
+            type: 'warning',
+            title: 'Are you sure?',
+            text: '',
+            allowOutsideClick: false,
+            allowEscapeKey: true,
+            allowEnterKey: true,
+            showCancelButton: true,
+            showConfirmButton: true,
+            showCloseButton: true,
+            confirmButtonText: 'Update Profile (Enter)',
+            cancelButtonText: 'Cancel (Esc)',
+            confirmButtonColor: '#5cb85c',
+            reverseButtons: true,
+        }).then(response => {
+
+            if (response.value) {
+                this.props.update_admin_detail (this.state);
+
+                Swal.fire({
+                    title: 'Submitting...',
+                    allowOutsideClick: false,
+                    showCancelButton: false,
+                    showConfirmButton: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    }
+                });
+            }
+        });
+
     }
 
     render() {
@@ -73,7 +137,7 @@ class Management extends Component {
                         <Row>
                             <Col md={6}>
                                 <div className="edit-profile-background">
-                                    <Form id="edit_admin_form" >
+                                    <Form id="edit_admin_form" onSubmit={this.onSubmit}>
 
                                         <FormGroup>
                                             <Label for="email">Email: </Label>
@@ -121,17 +185,25 @@ class Management extends Component {
                                             />
                                         </FormGroup>
 
+                                        <FormGroup row>
+
+                                            <Col md={6}>
+                                                <Button color="success" block outline onClick={this.resetForm}>Clear</Button>
+
+                                            </Col>
+
+                                            <Col md={6}>
+                                                <Button color="primary" type="submit" block outline>Update</Button>
+                                            </Col>
+
+
+
+
+                                        </FormGroup>
+
+
                                     </Form>
 
-                                    <Row>
-                                        <Col md={6}>
-                                            <Button color="success" block outline onClick={this.resetForm}>Clear</Button>
-                                        </Col>
-
-                                        <Col md={6}>
-                                            <Button color="primary" block outline>Update</Button>
-                                        </Col>
-                                    </Row>
 
                                 </div>
                             </Col>
@@ -147,11 +219,13 @@ class Management extends Component {
 }
 
 const mapStateToProps = state => ({
-    detail: state.admin.detail
+    detail: state.admin.detail,
+    response: state.admin.update_admin_response,
 });
 
 const mapDispatchToProps = {
-    get_admin_detail
+    get_admin_detail,
+    update_admin_detail
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Management);
