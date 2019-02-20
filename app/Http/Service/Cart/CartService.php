@@ -305,10 +305,26 @@ class CartService extends BaseService
 
     public function foodOrderList ($request) {
 
+        $columns = [
+            'shopping_cart.id',
+            'shopping_cart.created_at',
+            's_username',
+            's_email',
+            's_country',
+            's_name',
+            's_category',
+            'n_quantity',
+            'f_total_price',
+            's_delivery_status',
+            's_delivery_id',
+            's_delivery_fee'
+        ];
+
         $query = ShoppingCart::join('food','shopping_cart.s_food_id','=','food.id')
             ->join('member','shopping_cart.s_member_email','=','member.s_email')
             ->whereNotNull('s_delivery_status')
-            ->orderBy('shopping_cart.created_at', 'desc');
+            ->orderBy('shopping_cart.created_at', 'desc')
+            ->select($columns);
 
         if ($request->has('id')) {
             if ($request['id'] != '') {
