@@ -67,7 +67,7 @@ Route::prefix('admin')->group(function() {
     Route::post('/register', 'Admin\RegisterController@register')->name('post.admin.register');
     Route::post('/login', 'Admin\LoginController@login')->name('post.admin.login');
 
-//    Route::middleware('admin_auth')->group(function () {
+    Route::middleware('admin_auth')->group(function () {
 
         Route::get('/get/food/order', 'Cart\CartController@order_food_list')->name('get.admin.food.order');
         Route::get('/list', 'Admin\AdminController@getList')->name('get.admin.list');
@@ -75,7 +75,7 @@ Route::prefix('admin')->group(function() {
 
         Route::post('/update/detail', 'Admin\AdminController@updateDetail')->name('post.admin.update.detail');
         Route::post('/add', 'Admin\AdminController@addAdmin')->name('post.add.admin');
-//    });
+    });
 
 });
 
