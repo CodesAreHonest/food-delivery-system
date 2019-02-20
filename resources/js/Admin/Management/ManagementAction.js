@@ -21,26 +21,6 @@ export const get_admin_detail = () => dispatch => {
     });
 };
 
-export const get_admin_list = (user_id = '') => dispatch => {
-
-    const params = {
-        user_id,
-    };
-
-    axios.get('/api/admin/list', {params})
-        .then (response => {
-            const {admin_list} = response.data;
-
-            dispatch ({
-                type: GET_ADMIN_LIST,
-                payload: admin_list,
-            });
-
-        }).catch (err => {
-        console.warn (err);
-    });
-};
-
 export const update_admin_detail = data => dispatch => {
 
     const {

@@ -9,7 +9,7 @@ class Sidebar extends Component {
         super (props);
 
         this.state = {
-            feature: this.props.feature
+            feature: this.props.feature,
         };
 
         this.sidebarClasses = this.sidebarClasses.bind(this);
@@ -41,11 +41,17 @@ class Sidebar extends Component {
                             Edit Admin
                         </li>
                     </Link>
-                    <Link to="/admin/add" style={{textDecoration: 'none'}}>
-                        <li id="AddAdmin">
-                            Add Admin
-                        </li>
-                    </Link>
+
+                    {
+                        this.props.role === 'super_admin' &&
+
+                        <Link to="/admin/add" style={{textDecoration: 'none'}}>
+                            <li id="AddAdmin">
+                                Add Admin
+                            </li>
+                        </Link>
+                    }
+
                 </ul>
             </aside>
         )
@@ -54,10 +60,12 @@ class Sidebar extends Component {
 
 Sidebar.propTypes = {
     feature: PropTypes.string.isRequired,
+    role: PropTypes.string,
 };
 
 Sidebar.defaultProps = {
-    feature: 'EditAdmin'
+    feature: 'EditAdmin',
+    role: 'super_admin'
 };
 
 export default Sidebar;

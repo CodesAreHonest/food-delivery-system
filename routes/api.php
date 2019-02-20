@@ -74,6 +74,7 @@ Route::prefix('admin')->group(function() {
         Route::get('/detail', 'Admin\AdminController@getDetail')->name('get.admin.detail');
 
         Route::post('/update/detail', 'Admin\AdminController@updateDetail')->name('post.admin.update.detail');
+        Route::post('/add', 'Admin\AdminController@addAdmin')->name('post.add.admin');
     });
 
 });

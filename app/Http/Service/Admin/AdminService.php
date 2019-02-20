@@ -144,4 +144,36 @@ class AdminService extends BaseService
             'msg'           => ''
         ];
     }
+
+    public function addAdmin ($request) {
+
+
+        $data = [
+            's_username'    => $request['username'],
+            's_email'       => $request['email'],
+            's_password'    => Hash::make($request['password']),
+            's_role'        => 'admin',
+        ];
+
+        $admin = Admin::insert($data);
+
+        if ($admin) {
+
+            return [
+                'response_code' => 200,
+                'response_msg' => 'success',
+                'msgType' => 'success',
+                'msgTitle' => 'Add Admin Success',
+                'msg' => ''
+            ];
+        }
+
+        return [
+            'response_code' => 500,
+            'response_msg' => 'Internal Server Error',
+            'msgType' => 'error',
+            'msgTitle' => 'Internal Server Error',
+            'msg' => 'Please Try Again'
+        ];
+    }
 }

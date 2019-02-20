@@ -4,7 +4,8 @@ const GET_FOOD_ORDER    = 'GET_FOOD_ORDER';
 const GET_FOOD_DETAIL   = 'GET_FOOD_DETAIL';
 const GET_ADMIN_LIST    = 'GET_ADMIN_LIST';
 const GET_ADMIN_DETAIL  = 'GET_ADMIN_DETAIL';
-const UPDATE_ADMIN_DETAIL  = 'UPDATE_ADMIN_DETAIL';
+const UPDATE_ADMIN_DETAIL   = 'UPDATE_ADMIN_DETAIL';
+const ADD_ADMIN             = 'ADD_ADMIN';
 
 const initialState = {
     login_admin_response: [],
@@ -14,6 +15,7 @@ const initialState = {
     list: [],
     detail: [],
     update_admin_response: [],
+    add_admin_response: [],
 };
 
 export default function (state = initialState, action) {
@@ -52,6 +54,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 update_admin_response: action.payload
+            };
+        case ADD_ADMIN:
+            return {
+                ...state,
+                add_admin_response: action.payload
             };
         default:
             return state;

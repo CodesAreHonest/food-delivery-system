@@ -22,6 +22,7 @@ class Management extends Component {
             email: '',
             password: '',
             c_password: '',
+            role: ''
         };
 
         this.onChange = this.onChange.bind(this);
@@ -123,13 +124,13 @@ class Management extends Component {
 
     render() {
 
-        const {username, email, password, c_password} = this.state;
+        const {username, email, password, c_password, role} = this.state;
 
         return (
             <Fragment>
                 <NavigationBar />
 
-                <Sidebar feature="EditAdmin" />
+                <Sidebar feature="EditAdmin" role={role}/>
 
                 <div className="account-manage-content">
                     <section>
@@ -195,9 +196,6 @@ class Management extends Component {
                                             <Col md={6}>
                                                 <Button color="primary" type="submit" block outline>Update</Button>
                                             </Col>
-
-
-
 
                                         </FormGroup>
 

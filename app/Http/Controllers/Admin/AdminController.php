@@ -67,4 +67,24 @@ class AdminController extends Controller
 
         return $update_detail;
     }
+
+    public function addAdmin (Request $request) {
+
+        $rules = [
+            'email'              => 'required|email|max:50',
+            'username'           => 'required|string|max:50',
+            'password'           => 'required|string|min:6|max:255',
+            'confirm_password'   => 'required_with:password|same:password',
+        ];
+
+        $validation = $this->adminService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        $add_admin = $this->adminService->addAdmin($request);
+
+        return $add_admin;
+    }
 }
