@@ -84,7 +84,7 @@ class AddFood extends Component {
 
             let {data: url} = this.props.add_food_preview_response.data;
 
-            const food_image_preview = `${window.location.protocol}//${window.location.hostname}/${url}`;
+            const food_image_preview = `/${url}`;
 
             this.setState({food_image_preview});
         }
