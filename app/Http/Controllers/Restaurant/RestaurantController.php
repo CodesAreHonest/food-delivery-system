@@ -12,7 +12,6 @@ class RestaurantController extends Controller
     private  $restaurantService;
 
     public function __construct(RestaurantService $restaurantService) {
-        $this->middleware('auth:restaurant');
         $this->restaurantService = $restaurantService;
     }
 
