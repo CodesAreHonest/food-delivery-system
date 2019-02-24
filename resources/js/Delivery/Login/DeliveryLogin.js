@@ -53,7 +53,6 @@ class DeliveryLogin extends Component {
     }
 
     onSubmit(e) {
-        console.log(this.state);
         e.preventDefault();
 
         let form = document.getElementById('delivery_login_form');

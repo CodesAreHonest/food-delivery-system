@@ -24,7 +24,7 @@ class DeliveryController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'delivery_username'         => 'required|string|max:50',
+        	'delivery_username'         => 'required|string|min:3|max:50',
             'delivery_name'       => 'required|string|max:100',
             'address'               => 'required|string|max:255',
             'description'               => 'required|string|max:255',

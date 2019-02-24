@@ -23,8 +23,6 @@ export const register_delivery = (data) => dispatch => {
 
     };
 
-    console.log(params);
-
     axios.post('/api/delivery/register', params)
         .then (response => dispatch ({
             type: REGISTER_DELIVERY,

@@ -70,21 +70,33 @@ class CartService extends BaseService
 
         $sum_columns = [
             DB::raw('sum(f_total_price) as cart_total_price'),
-            DB::raw('sum(s_delivery_fee) as total_delivery_fee'),
+            DB::raw('s_delivery_fee'),
         ];
 
         $sum = ShoppingCart::join('food', 'shopping_cart.s_food_id', '=', 'food.id')
             ->join('restaurant', 'restaurant.s_restaurant_id', '=', 'food.s_restaurant_id')
             ->where('s_member_email', $member_email)
             ->where('b_paid', 0)
-            ->select($sum_columns)->first();
+            ->select($sum_columns)
+            ->groupBy('s_delivery_fee', 'food.s_restaurant_id')
+            ->get();
 
         $data = $cart->select($columns)->get();
 
+        $cart_total_price = 0;
+        $delivery_fee = 0;
+
+        if ($sum) {
+            foreach ($sum as $value) {
+                $cart_total_price += $value['cart_total_price'];
+                $delivery_fee += $value['s_delivery_fee'];
+            }
+        }
+
         return [
             'cart_amount'               => $cart_amount,
-            'cart_total_fee'            => $sum['cart_total_price'],
-            'cart_total_delivery_fee'   => $sum['total_delivery_fee'],
+            'cart_total_fee'            => (float) $cart_total_price,
+            'cart_total_delivery_fee'   => (float) $delivery_fee,
             'cart_details'              => $data,
         ];
     }
