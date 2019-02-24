@@ -19,7 +19,7 @@ const labelStyle = {
     marginTop: '10px'
 };
 
-class AddFood extends Component {
+class UpdateFood extends Component {
     constructor(props) {
         super (props);
 
@@ -271,4 +271,4 @@ const mapDispatchToProps = {
     add_food_preview
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddFood);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateFood);

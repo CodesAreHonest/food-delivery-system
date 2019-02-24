@@ -28,7 +28,7 @@ class NavigationBar extends Component {
                         <Collapse isOpen={this.state.drop_down_open} navbar className="dropdown">
                             <Nav className="ml-auto" navbar>
                                 <NavigationItem
-                                    name="Add Food"
+                                    name="Food Management"
                                     url="/restaurant/"
                                 />
                                 <UncontrolDropdown />

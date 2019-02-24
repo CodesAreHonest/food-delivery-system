@@ -156,23 +156,23 @@ class FoodService extends BaseService
                 'msgTitle'      => 'Food Information Updated Successfully.',
                 'msg'           => ''
             ];
-    
-            return [
-                'response_code' => 500,
-                'response_msg'  => 'Record Updated Failed',
-                'msgType'       => 'error',
-                'msgTitle'      => 'Food Information Updated Failed.',
-                'msg'           => ''
-            ];
 
         }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Record Updated Failed',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Food Information Updated Failed.',
+            'msg'           => ''
+        ];
 
     }
 
     public function deleteFood ($request) {
 
-        $food = Food::where('s_restaurant_id', $request['s_restaurant_id'])
-            ->where('food_id', $request['food_id'])
+        $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+            ->where('id', $request['food_id'])
             ->first();
 
         $deleteFood = $food->delete();
@@ -186,15 +186,16 @@ class FoodService extends BaseService
                 'msgTitle'      => 'Food Information Deleted Successfully.',
                 'msg'           => ''
             ];
-    
-            return [
-                'response_code' => 500,
-                'response_msg'  => 'Record Deleted Failed',
-                'msgType'       => 'error',
-                'msgTitle'      => 'Food Information Deleted Failed.',
-                'msg'           => ''
-            ];
+
         }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Record Deleted Failed',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Food Information Deleted Failed.',
+            'msg'           => ''
+        ];
         
     }
 }

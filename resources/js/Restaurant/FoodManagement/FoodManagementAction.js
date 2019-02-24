@@ -1,5 +1,6 @@
 const GET_RESTAURANT_FOOD = 'GET_RESTAURANT_FOOD';
 const ADD_FOOD = 'ADD_FOOD';
+const DELETE_FOOD = 'DELETE_FOOD';
 const ADD_FOOD_PREVIEW = 'ADD_FOOD_PREVIEW';
 
 import axios from 'axios';
@@ -37,6 +38,20 @@ export const add_food = (data) => dispatch => {
         console.log(err);
     });
 
+};
+
+export const delete_food = (id) => async dispatch => {
+
+    const params = {food_id: id};
+
+    await axios.delete('/api/restaurant/delete/food', {params})
+        .then(response => dispatch ({
+            type: DELETE_FOOD,
+            payload: response,
+        }))
+        .catch(err => {
+            console.log(err);
+        });
 };
 
 export const add_food_preview = (data) => dispatch => {
