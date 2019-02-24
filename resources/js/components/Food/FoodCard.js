@@ -75,41 +75,44 @@ class FoodCard extends Component {
                     <div style={{marginTop: '5px'}}>
                         <p style={{fontSize: '12px'}}>{this.props.food_description}</p>
                     </div>
-
                 </CardBody>
 
-                <CardFooter>
-                    <Form id={this.props.id} onSubmit={this.addCart}>
-                    <Row>
-                        <Label md={3}>Quantity </Label>
-                        <Col md={4}>
-                            <NumberInput
-                                name="checkout_quantity"
-                                id="checkout_quantity"
-                                onChange={(e) => this.setState({checkout_quantity: e.target.value})}
-                                value={this.state.checkout_quantity}
-                                min={1}
-                                max={9}
-                                pattern="[0-9]"
-                                disabled={this.props.quantity_disabled}
-                                required
-                            />
-                        </Col>
+                {
+                    !this.props.cart_disabled &&
+                    <CardFooter>
+                        <Form id={this.props.id} onSubmit={this.addCart}>
+                            <Row>
+                                <Label md={3}>Quantity </Label>
+                                <Col md={4}>
+                                    <NumberInput
+                                        name="checkout_quantity"
+                                        id="checkout_quantity"
+                                        onChange={(e) => this.setState({checkout_quantity: e.target.value})}
+                                        value={this.state.checkout_quantity}
+                                        min={1}
+                                        max={9}
+                                        pattern="[0-9]"
+                                        disabled={this.props.quantity_disabled}
+                                        required
+                                    />
+                                </Col>
 
-                        <Col md={5} className="text-right">
-                            <Button
-                                type="submit"
-                                color="success"
-                                disabled={this.props.cart_disabled}
-                                outline
-                            >
-                                <CartLogo width={25} height={25} />
-                            </Button>
-                        </Col>
-                    </Row>
-                    </Form>
+                                <Col md={5} className="text-right">
+                                    <Button
+                                        type="submit"
+                                        color="success"
+                                        disabled={this.props.cart_disabled}
+                                        outline
+                                    >
+                                        <CartLogo width={25} height={25} />
+                                    </Button>
+                                </Col>
+                            </Row>
+                        </Form>
 
-                </CardFooter>
+                    </CardFooter>
+                }
+
             </Card>
 
         )
@@ -133,7 +136,7 @@ FoodCard.propTypes = {
 
 FoodCard.defaultProps = {
     quantity_disabled: true,
-    cart_disabled: true,
+    cart_disabled: false,
 };
 
 const mapStateToProps = state => ({

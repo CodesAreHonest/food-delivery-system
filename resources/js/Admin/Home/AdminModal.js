@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, ModalBody, ModalFooter, Row, Col, Card, CardBody, Label} from 'reactstrap';
+import {Button, Modal, ModalBody, ModalFooter, Row, Col} from 'reactstrap';
 
 import {connect} from 'react-redux';
 import {get_food_detail} from "./AdminAction";

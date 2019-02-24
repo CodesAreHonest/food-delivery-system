@@ -10,13 +10,18 @@ import {Row, Col, ButtonGroup, Button} from 'reactstrap';
 import FoodFilter from "./FoodFilter";
 
 import {connect} from 'react-redux';
+import AdminModal from "../../Admin/Home/AdminModal";
+import AddFood from "./AddFood";
 
 class FoodManagement extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            table: []
+            table: [],
+            addModal: false,
+            updateModal: false,
+            deleteModal: false
         };
 
         this.columns = [{
@@ -39,8 +44,8 @@ class FoodManagement extends Component {
             accessor: 'id',
             Cell: row => (
                 <ButtonGroup size="sm">
-                    <Button color="success">Update </Button>
-                    <Button color="danger">Delete</Button>
+                    <Button color="success" id={row.value}>Update </Button>
+                    <Button color="danger" id={row.value}>Delete</Button>
                 </ButtonGroup>
             )
         }]
@@ -77,7 +82,7 @@ class FoodManagement extends Component {
 
     render() {
 
-        const {table} = this.state;
+        const {table, addModal, updateModal, deleteModal} = this.state;
 
         return (
             <Fragment>
@@ -90,6 +95,7 @@ class FoodManagement extends Component {
                             color="primary"
                             block
                             style={{marginBottom: '10px'}}
+                            onClick={() => this.setState({addModal: true})}
                         >
                             Add Food
                         </Button>
@@ -100,9 +106,16 @@ class FoodManagement extends Component {
 
                     <Col md={9}>
                         {table}
-
                     </Col>
                 </Row>
+
+                {
+                    addModal &&
+                    <AddFood
+                        modal={addModal}
+                        isOpen={() => this.setState({addModal: false})}
+                    />
+                }
             </Fragment>
 
         )
