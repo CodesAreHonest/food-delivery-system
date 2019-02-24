@@ -1,7 +1,9 @@
 const GET_RESTAURANT_FOOD = 'GET_RESTAURANT_FOOD';
 const ADD_FOOD = 'ADD_FOOD';
 const DELETE_FOOD = 'DELETE_FOOD';
+const UPDATE_FOOD = 'UPDATE_FOOD';
 const ADD_FOOD_PREVIEW = 'ADD_FOOD_PREVIEW';
+const GET_FOOD_DETAIL = 'GET_FOOD_DETAIL';
 
 import axios from 'axios';
 
@@ -54,9 +56,25 @@ export const delete_food = (id) => async dispatch => {
         });
 };
 
-export const add_food_preview = (data) => dispatch => {
+export const update_food = (data) => async dispatch => {
 
     axios ({
+        method: "POST",
+        url: '/api/restaurant/update/food',
+        data: data,
+        headers: {'Content-Type': 'multipart/form-data'}
+    }).then(response => dispatch ({
+        type: UPDATE_FOOD,
+        payload: response,
+    })).catch(err => {
+        console.log(err);
+    });
+
+};
+
+export const add_food_preview = (data) => async dispatch => {
+
+    await axios ({
         method: "POST",
         url: '/api/restaurant/add/food/preview',
         data: data,
@@ -67,5 +85,21 @@ export const add_food_preview = (data) => dispatch => {
     })).catch(err => {
         console.log(err);
     });
+
+};
+
+export const get_food_detail = (food_id) => async dispatch => {
+
+    const params = {
+        food_id
+    };
+
+    await axios.get('/api/restaurant/food/detail', {params})
+        .then(response => dispatch ({
+            type: GET_FOOD_DETAIL,
+            payload: response.data.food_detail,
+        })).catch(err => {
+            console.log(err);
+        });
 
 };

@@ -50,7 +50,7 @@ class FoodManagement extends Component {
                     <Button
                         color="success"
                         id={row.id}
-                        onClick={() => this.setState({updateModal: true})}
+                        onClick={(e) => this.setState({updateModal: true, food_id: e.target.id})}
                     >Update </Button>
                     <Button color="danger" id={row.id} onClick={() => this.deleteFood(row.id, row.s_name)}>Delete</Button>
                 </ButtonGroup>
@@ -139,14 +139,11 @@ class FoodManagement extends Component {
                 });
             }
         });
-
-
-
     }
 
     render() {
 
-        const {table, addModal, updateModal} = this.state;
+        const {table, addModal, updateModal, food_id} = this.state;
 
         return (
             <Fragment>
@@ -182,6 +179,7 @@ class FoodManagement extends Component {
 
                 {updateModal &&
                     <UpdateFood
+                        food_id={food_id}
                         modal={updateModal}
                         isOpen={() => this.setState({updateModal: false})}
                     />

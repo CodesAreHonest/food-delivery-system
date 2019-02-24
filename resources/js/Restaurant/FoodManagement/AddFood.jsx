@@ -11,7 +11,7 @@ import TextArea from "../../components/Input/TextArea";
 import FoodCard from "../../components/Food/FoodCard";
 
 import PropTypes from "prop-types";
-import {add_food, add_food_preview, delete_food} from "./FoodManagementAction";
+import {add_food, add_food_preview, get_restaurant_food} from "./FoodManagementAction";
 
 import {connect} from 'react-redux';
 
@@ -110,6 +110,7 @@ class AddFood extends Component {
             }).then(() => {
 
                 if (response_code === 200) {
+                    this.props.get_restaurant_food();
                     this.toggle();
                 }
 
@@ -259,6 +260,9 @@ AddFood.propTypes = {
     add_food_response: PropTypes.any,
     add_food_preview: PropTypes.func.isRequired,
     add_food_preview_response: PropTypes.any,
+
+    get_restaurant_food: PropTypes.func.isRequired,
+
 };
 
 const mapStateToProps = state => ({
@@ -268,7 +272,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
     add_food,
-    add_food_preview
+    add_food_preview,
+    get_restaurant_food
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddFood);

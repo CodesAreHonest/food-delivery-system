@@ -123,8 +123,8 @@ class FoodService extends BaseService
 
     public function updateFood ($request) {
         
-        $food = Food::where('s_restaurant_id', $request['s_restaurant_id'])
-            ->where('food_id', $request['food_id'])
+        $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+            ->where('id', $request['food_id'])
             ->first();
 
         $params = [
@@ -137,12 +137,16 @@ class FoodService extends BaseService
 
         if ($request->has('food_image')) {
 
-            $image = $request->file('food_image');
-            $input['image_name'] = time() . "." . $image->getClientOriginalExtension();
-            $destination_path = public_path('/images');
-            $image->move($destination_path, $input['image_name']);
+            if ($request['food_image'] != NULL) {
 
-            $params['s_image'] = "/images/{$input['image_name']}";
+                $image = $request->file('food_image');
+                $input['image_name'] = time() . "." . $image->getClientOriginalExtension();
+                $destination_path = public_path('/images');
+                $image->move($destination_path, $input['image_name']);
+
+                $params['s_image'] = "/images/{$input['image_name']}";
+            }
+
         }
 
         $result = $food->update($params);
@@ -197,5 +201,33 @@ class FoodService extends BaseService
             'msg'           => ''
         ];
         
+    }
+
+    public function foodDetail ($request) {
+
+        $food = Food::where('s_restaurant_id', $request['restaurant_id'])
+            ->where('id', $request['food_id'])
+            ->first();
+
+        if ($food) {
+
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Success',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Information Retrieved Successfully.',
+                'msg'           => '',
+                'food_detail'   => $food
+            ];
+
+        }
+
+        return [
+            'response_code' => 500,
+            'response_msg'  => 'Internal Server Error',
+            'msgType'       => 'error',
+            'msgTitle'      => 'Food Information Retrieved Failed.',
+            'msg'           => ''
+        ];
     }
 }

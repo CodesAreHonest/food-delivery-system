@@ -54,9 +54,11 @@ Route::prefix('restaurant')->group(function () {
 
         Route::get('/get/food', 'Restaurant\RestaurantController@getFood')->name('get.restaurant.food');
 
-        Route::put('/update/food', 'Restaurant\FoodController@updateFood')->name('update.restaurant.food');
+        Route::post('/update/food', 'Restaurant\FoodController@updateFood')->name('update.restaurant.food');
 
         Route::delete('/delete/food', 'Restaurant\FoodController@deleteFood')->name('delete.restaurant.food');
+
+        Route::get('/food/detail', 'Restaurant\FoodController@getFoodDetail')->name('get.food.detail');
 
     });
 

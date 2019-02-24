@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Modal, ModalBody, ModalFooter, Row, Col, Form, Label} from 'reactstrap';
+import {Button, Modal, ModalBody, Row, Col, Form, Label} from 'reactstrap';
 import Swal from "sweetalert2";
 
 import StringInput from "../../components/Input/StringInput";
@@ -11,7 +11,7 @@ import TextArea from "../../components/Input/TextArea";
 import FoodCard from "../../components/Food/FoodCard";
 
 import PropTypes from "prop-types";
-import {add_food, add_food_preview, delete_food} from "./FoodManagementAction";
+import {get_food_detail, add_food_preview, update_food, get_restaurant_food} from "./FoodManagementAction";
 
 import {connect} from 'react-redux';
 
@@ -34,8 +34,12 @@ class UpdateFood extends Component {
         };
 
         this.toggle = this.toggle.bind(this);
-        this.addFood = this.addFood.bind(this);
+        this.updateFood = this.updateFood.bind(this);
         this.foodPreview = this.foodPreview.bind(this);
+    }
+
+    componentDidMount() {
+        this.props.get_food_detail(this.props.food_id);
     }
 
     foodPreview(e) {
@@ -47,36 +51,37 @@ class UpdateFood extends Component {
         })
     }
 
-    addFood(e) {
+    updateFood(e) {
 
         e.preventDefault();
 
-        let form = document.getElementById('add_food_form');
+        let form = document.getElementById('update_food_form');
 
         if (!form.checkValidity()) {
             return false;
         }
 
         const data = new FormData(form);
+        data.append('food_id', this.state.food_id);
 
         Swal.fire({
-            type: 'question',
+            type: 'warning',
             title: 'Are you sure?',
-            text: 'The food added cannot be modify.',
+            text: 'The food updated cannot be modify.',
             allowOutsideClick: false,
             allowEscapeKey: true,
             allowEnterKey: true,
             showCancelButton: true,
             showConfirmButton: true,
             showCloseButton: true,
-            confirmButtonText: 'Add Food (Enter)',
+            confirmButtonText: 'Update Food (Enter)',
             cancelButtonText: 'Cancel (Esc)',
             confirmButtonColor: '#5cb85c',
             reverseButtons: true,
         }).then(response => {
 
             if (response.value) {
-                this.props.add_food(data);
+                this.props.update_food(data);
 
                 Swal.fire({
                     title: 'Submitting...',
@@ -94,9 +99,9 @@ class UpdateFood extends Component {
 
     componentDidUpdate(prevProps) {
 
-        if (prevProps.add_food_response !== this.props.add_food_response) {
+        if (prevProps.update_food_response !== this.props.update_food_response) {
 
-            let {msgType, msgTitle, msg, response_code} = this.props.add_food_response.data;
+            let {msgType, msgTitle, msg, response_code} = this.props.update_food_response.data;
 
             Swal.fire({
                 type: msgType,
@@ -110,6 +115,7 @@ class UpdateFood extends Component {
             }).then(() => {
 
                 if (response_code === 200) {
+                    this.props.get_restaurant_food();
                     this.toggle();
                 }
 
@@ -123,6 +129,29 @@ class UpdateFood extends Component {
             const food_image_preview = `/${url}`;
 
             this.setState({food_image_preview});
+        }
+
+        if (prevProps.food_information !== this.props.food_information) {
+
+            const {
+                id: food_id,
+                s_name: food_name,
+                f_price: food_price,
+                s_category: category,
+                s_image: food_image_preview,
+                s_description: food_description
+            } = this.props.food_information;
+
+            const food_category = {label: category, value: category};
+
+            this.setState({
+                food_id,
+                food_name,
+                food_price,
+                food_category,
+                food_image_preview,
+                food_description
+            });
         }
     }
 
@@ -139,8 +168,8 @@ class UpdateFood extends Component {
                 <ModalBody>
                     <section>
                         <Form
-                            id="add_food_form"
-                            onSubmit={this.addFood}
+                            id="update_food_form"
+                            onSubmit={this.updateFood}
                         >
                             <Row>
                                 <Col md={7}>
@@ -200,7 +229,6 @@ class UpdateFood extends Component {
                                         <FileInput
                                             name="food_image"
                                             id="food_image"
-                                            required={true}
                                             value={this.state.file}
                                             onChange={this.foodPreview}
                                         />
@@ -245,30 +273,36 @@ class UpdateFood extends Component {
                     </section>
 
                 </ModalBody>
-                <ModalFooter>
-                    <Button color="success" onClick={this.toggle}>OK</Button>
-                </ModalFooter>
             </Modal>
 
         )
     }
 }
 
-AddFood.propTypes = {
-    add_food: PropTypes.func.isRequired,
-    add_food_response: PropTypes.any,
+UpdateFood.propTypes = {
+    get_food_detail: PropTypes.func.isRequired,
+    food_information: PropTypes.any,
+
     add_food_preview: PropTypes.func.isRequired,
     add_food_preview_response: PropTypes.any,
+
+    update_food: PropTypes.func.isRequired,
+    update_food_response: PropTypes.any,
+
+    get_restaurant_food: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-    add_food_response: state.food.add_food_response,
+    update_food_response: state.food.update_food_response,
+    food_information: state.food.food_information,
     add_food_preview_response: state.food.add_food_preview_response,
 });
 
 const mapDispatchToProps = {
-    add_food,
-    add_food_preview
+    get_food_detail,
+    add_food_preview,
+    update_food,
+    get_restaurant_food
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UpdateFood);
