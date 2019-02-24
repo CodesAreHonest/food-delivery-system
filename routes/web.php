@@ -34,11 +34,11 @@ Route::prefix('restaurant')->group(function() {
 
         Route::get('/', 'FoodDeliveryController@index')->name('restaurant.home');
 
-        // Edit Profile
         Route::get('/manage/account', 'FoodDeliveryController@index')->name('restaurant.manage.account');
 
         Route::get('/delivery/list', 'FoodDeliveryController@index')->name('restaurant.delivery.list');
         Route::get('/delivery/team', 'FoodDeliveryController@index')->name('restaurant.delivery.team');
+
     });
 
 });

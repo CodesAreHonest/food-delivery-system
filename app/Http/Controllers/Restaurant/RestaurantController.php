@@ -5,14 +5,17 @@ namespace App\Http\Controllers\Restaurant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Service\Restaurant\RestaurantService;
+use App\Http\Service\Restaurant\FoodService;
 use Illuminate\Support\Facades\Session;
 
 class RestaurantController extends Controller
 {
     private  $restaurantService;
+    private  $foodService;
 
-    public function __construct(RestaurantService $restaurantService) {
+    public function __construct(RestaurantService $restaurantService, FoodService $foodService) {
         $this->restaurantService = $restaurantService;
+        $this->foodService = $foodService;
     }
 
     public function updateRestaurant(Request $request) {
@@ -72,6 +75,10 @@ class RestaurantController extends Controller
 
         $rules = [
             'restaurant_id'         => 'required|string|max:50',
+            'page'                     => 'required|numeric|min:1',
+            'limit'                    => 'required|numeric|min:1',
+            'category'                 => 'nullable|string|max:100',
+            'search_text'              => 'nullable|string|max:100',
         ];
 
         $validation = $this->restaurantService->validator($request->all(), $rules);
@@ -93,6 +100,40 @@ class RestaurantController extends Controller
                     'response_msg'  => 'Bad gateway'
                 ], 502);
         }
+    }
+
+    public function getFood (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'restaurant_id'            => 'required|string|max:50',
+            'page'                     => 'required|numeric|min:1',
+            'limit'                    => 'required|numeric|min:1',
+            'category'                 => 'nullable|string|max:100',
+            'search_text'              => 'nullable|string|max:100'
+        ];
+
+        $validation = $this->restaurantService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation, 422);
+        }
+
+        /** ==========================================================================
+         *  Get food detail based on filter criteria and restaurant id
+         *  ==========================================================================
+         *  @return 200 Success
+         *  =========================================================================== */
+
+        $getFood = $this->foodService->getFood($request);
+
+        return $getFood;
+
     }
 
     public function logout() {

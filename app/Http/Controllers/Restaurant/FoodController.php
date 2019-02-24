@@ -119,4 +119,72 @@ class FoodController extends Controller
                 ], 502);
         }
     }
+
+    public function updateFood (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'restaurant_id'     => 'required|string|max:100',
+            'food_id'           => 'required|integer',
+            'food_name'         => 'required|string|max:255',
+            'food_price'        => 'required|numeric|min:1',
+            'food_category'     => 'required|string|max:50',
+            'food_image'        => 'required|mimes:jpeg,png,jpg,gif,svg|max:5120000',
+            'food_description'  => 'required|string|max:255',
+        ];
+
+        $validation = $this->foodService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        /** ==========================================================================
+         *  Update Food based on Payloads
+         *  ==========================================================================
+         *  @return 200 Success
+         *  @return 500 Internal Server Error
+         *  =========================================================================== */
+
+        $updateFood = $this->foodService->updateFood($request);
+
+        return $updateFood;
+    }
+
+    public function deleteFood (Request $request) {
+
+        /** ==========================================================================
+         *  Payload validation
+         *  ==========================================================================
+         *  @return 422 Unprocessable Entity
+         *  =========================================================================== */
+
+        $rules = [
+            'restaurant_id'     => 'required|string|max:100',
+            'food_id'           => 'required|integer',
+        ];
+
+        $validation = $this->foodService->validator($request->all(), $rules);
+
+        if ($validation['response_code'] === 422) {
+            return response()->json ($validation);
+        }
+
+        /** ==========================================================================
+         *  Delete Food
+         *  ==========================================================================
+         *  @return 200 Success
+         *  @return 500 Internal Server Error
+         *  =========================================================================== */
+
+        $deleteFood = $this->foodService->deleteFood($request);
+
+        return $deleteFood;
+
+    }
 }

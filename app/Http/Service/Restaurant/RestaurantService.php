@@ -115,7 +115,8 @@ class RestaurantService extends BaseService
 
     public function getRestaurant ($request) {
 
-    $restaurant = Restaurant::where('s_restaurant_id', $request['restaurant_id'])->first();
+        $restaurant = Restaurant::where('s_restaurant_id', $request['restaurant_id'])->first();
+
         if ($restaurant) {
 
             return [

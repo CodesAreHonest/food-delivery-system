@@ -91,6 +91,12 @@ class FoodService extends BaseService
 
         $food = Food::orderBy('created_at', 'desc');
 
+        if ($request->has('restaurant_id')) {
+            if ($request['restaurant_id'] != '') {
+                $food->where('s_restaurant_id', $request['restaurant_id']);
+            }
+        }
+
         if ($request->has('category')) {
             if ($request['category'] !== 'all') {
                 $food->where('s_category', $request['category']);
@@ -113,6 +119,82 @@ class FoodService extends BaseService
             'msg'           => '',
             'food_list'     => $result
         ];
+    }
 
+    public function updateFood ($request) {
+        
+        $food = Food::where('s_restaurant_id', $request['s_restaurant_id'])
+            ->where('food_id', $request['food_id'])
+            ->first();
+
+        $params = [
+            's_name'            => $request['food_name'],
+            'f_price'           => $request['food_price'],
+            's_category'        => $request['food_category'],
+            's_description'     => $request['food_description'],
+            'updated_at'        => Carbon::now()->toDateTimeString(),
+        ];
+
+        if ($request->has('food_image')) {
+
+            $image = $request->file('food_image');
+            $input['image_name'] = time() . "." . $image->getClientOriginalExtension();
+            $destination_path = public_path('/images');
+            $image->move($destination_path, $input['image_name']);
+
+            $params['s_image'] = "/images/{$input['image_name']}";
+        }
+
+        $result = $food->update($params);
+
+        if ($result) {
+
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Record Updated Successfully.',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Information Updated Successfully.',
+                'msg'           => ''
+            ];
+    
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Record Updated Failed',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Food Information Updated Failed.',
+                'msg'           => ''
+            ];
+
+        }
+
+    }
+
+    public function deleteFood ($request) {
+
+        $food = Food::where('s_restaurant_id', $request['s_restaurant_id'])
+            ->where('food_id', $request['food_id'])
+            ->first();
+
+        $deleteFood = $food->delete();
+
+        if ($deleteFood) {
+
+            return [
+                'response_code' => 200,
+                'response_msg'  => 'Record Deleted Successfully.',
+                'msgType'       => 'success',
+                'msgTitle'      => 'Food Information Deleted Successfully.',
+                'msg'           => ''
+            ];
+    
+            return [
+                'response_code' => 500,
+                'response_msg'  => 'Record Deleted Failed',
+                'msgType'       => 'error',
+                'msgTitle'      => 'Food Information Deleted Failed.',
+                'msg'           => ''
+            ];
+        }
+        
     }
 }
