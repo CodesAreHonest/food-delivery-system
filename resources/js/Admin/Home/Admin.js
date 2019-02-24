@@ -3,7 +3,6 @@ import NavigationBar from "../../Admin/NavigationBar/NavigationBar";
 
 import {Row, Col, Button} from 'reactstrap';
 import AdminFilter from "./AdminFilter";
-import CustomPagination from "../../components/Pagination/CustomPagination";
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";

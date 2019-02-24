@@ -42,9 +42,6 @@ Route::prefix('restaurant')->group(function () {
 
     Route::post('/login', 'Restaurant\LoginController@login')->name('post.restaurant.login');
 
-    Route::get('/get/food', 'Restaurant\RestaurantController@getFood')
-    ->name('restaurant.get.food');
-
     Route::middleware('restaurant_auth')->group(function () {
 
         Route::post('/add/food', 'Restaurant\FoodController@addFood');
@@ -55,9 +52,11 @@ Route::prefix('restaurant')->group(function () {
 
         Route::get('/detail', 'Restaurant\RestaurantController@getRestaurant')->name('get.restaurant.detail');
 
-        Route::put('/update/food', 'Restaurant\FoodController@updateFood')->name('restaurant.update.food');
+        Route::get('/get/food', 'Restaurant\RestaurantController@getFood')->name('get.restaurant.food');
 
-        Route::delete('/delete/food', 'Restaurant\FoodController@deleteFood')->name('restaurant.delete.food');
+        Route::put('/update/food', 'Restaurant\FoodController@updateFood')->name('update.restaurant.food');
+
+        Route::delete('/delete/food', 'Restaurant\FoodController@deleteFood')->name('delete.restaurant.food');
 
     });
 

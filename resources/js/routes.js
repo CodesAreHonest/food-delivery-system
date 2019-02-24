@@ -10,10 +10,9 @@ import ShoppingCart from "./Member/Cart/ShoppingCart";
 // Restaurant
 import RestaurantLogin  from './FoodDelivery/RestaurantLogin';
 import EditRestaurant   from "./Restaurant/EditRestaurant/EditRestaurant";
-import DeliveryList     from "./Restaurant/DeliveryList/DeliveryList";
-import DeliveryTeam     from "./Restaurant/DeliveryList/DeliveryTeam";
 import AddFood          from "./Restaurant/AddFood/AddFood";
-import OrderHistory from "./Member/OrderHistory/OrderHistory";
+import OrderHistory     from "./Member/OrderHistory/OrderHistory";
+import FoodManagement   from "./Restaurant/FoodManagement/FoodManagement";
 
 //Delivery
 import DeliveryLogin from "./FoodDelivery/DeliveryLogin";
@@ -57,7 +56,7 @@ export const routes = [{
     component: EditRestaurant
 }, {
     path: '/restaurant/',
-    component: AddFood
+    component: FoodManagement
 }, {
     path: '/delivery/login',
     component: DeliveryLogin
