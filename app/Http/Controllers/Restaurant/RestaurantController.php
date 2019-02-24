@@ -75,10 +75,6 @@ class RestaurantController extends Controller
 
         $rules = [
             'restaurant_id'         => 'required|string|max:50',
-            'page'                     => 'required|numeric|min:1',
-            'limit'                    => 'required|numeric|min:1',
-            'category'                 => 'nullable|string|max:100',
-            'search_text'              => 'nullable|string|max:100',
         ];
 
         $validation = $this->restaurantService->validator($request->all(), $rules);

@@ -115,7 +115,7 @@ class MemberController extends Controller
 
         $rules = [
             'member_email'          => 'required|email|max:100',
-            'username'              => 'required|string|max:50',
+            'username'              => 'required|string|min:3|max:50',
             'password'              => 'required|string|min:6|max:255',
             'confirm_password'      => 'required_with:password|same:password',
         ];
@@ -212,8 +212,8 @@ class MemberController extends Controller
         	'member_email'              => 'required|email|max:100',
             'card_name'                 => 'required|string|max:50',
             'card_number'               => 'required|digits:16',
-            'card_expired_date'         => 'required|string|max:5',
-            'cvc'              		    => 'required|string|max:3'
+            'card_expired_date'         => 'required|min:5|max:5',
+            'cvc'              		    => 'required|digits:3'
         ];
 
         $validation = $this->memberService->validator($request->all(), $rules);

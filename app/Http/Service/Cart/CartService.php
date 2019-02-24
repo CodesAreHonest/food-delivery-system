@@ -95,8 +95,8 @@ class CartService extends BaseService
 
         return [
             'cart_amount'               => $cart_amount,
-            'cart_total_fee'            => (float) $cart_total_price,
-            'cart_total_delivery_fee'   => (float) $delivery_fee,
+            'cart_total_fee'            => number_format($cart_total_price, 2),
+            'cart_total_delivery_fee'   => number_format($delivery_fee,2 ),
             'cart_details'              => $data,
         ];
     }

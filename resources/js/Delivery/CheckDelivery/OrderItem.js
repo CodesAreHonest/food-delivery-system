@@ -93,7 +93,7 @@ class OrderItem extends Component {
 
                 <Button color="success" type="button" onClick={this.acceptOrder}>Accept</Button>
 
-                <Button color="danger" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>
+                {/*<Button color="danger" type="button" style={{marginLeft: '10px'}} onClick={this.rejectOrder}>Reject</Button>*/}
             </div>
         );
 
