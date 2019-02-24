@@ -27,7 +27,7 @@ class RestaurantController extends Controller
          *  =========================================================================== */
 
         $rules = [
-        	'restaurant_id'         => 'required|string|max:50',
+        	'restaurant_id'         => 'required|string|min:3|max:50',
             'restaurant_name'       => 'required|string|max:100',
             'address'               => 'required|string|max:100',
         ];

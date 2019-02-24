@@ -23,7 +23,7 @@ class RegisterController extends Controller
          *  =========================================================================== */
 
         $rules = [
-            'restaurant_id'         => 'required|string|unique:restaurant,s_restaurant_id|max:50',
+            'restaurant_id'         => 'required|string|unique:restaurant,s_restaurant_id|min:3|max:50',
             'restaurant_name'       => 'required|string|max:100',
             'password'              => 'required|string|min:6|max:255',
             'confirm_password'      => 'required_with:password|same:password',

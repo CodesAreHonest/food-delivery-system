@@ -27,6 +27,8 @@ export default class Index extends Component {
                                 <li>Sign Out</li>
                             </ul>
                             <li>Add Food</li>
+                            <li>Edit Food</li>
+                            <li>Delete Food</li>
                             <li>Edit Profile</li>
                         </ul>
 
@@ -78,8 +80,8 @@ export default class Index extends Component {
                             <li>Delivery Management</li>
                             <ul>
                                 <li>Accept Order</li>
-                                <li>Reject Order</li>
                             </ul>
+                            <li>Edit Profile</li>
                         </ul>
 
                         <Link to="/delivery/login">
