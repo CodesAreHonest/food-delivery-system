@@ -86,10 +86,10 @@ Features
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1 Authentication   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.1 Login   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.1.2 Register   
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2 Add Food
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.2 Add Food   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.3 Edit Food  
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.4 Delete Food    
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5 Edit Profile
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.5 Edit Profile   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.6 Profile Management    
 
 **3. Delivery Site**  
@@ -97,7 +97,7 @@ Features
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.1 Login   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1.2 Register   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2 Delivery Management   
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Accept Order
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.2.1 Accept Order   
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.3 Edit Profile    
 
 **4. Admin Site**  
